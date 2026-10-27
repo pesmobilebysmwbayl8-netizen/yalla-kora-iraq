@@ -2,44 +2,8 @@
   "success": true,
   "count": 15,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-27T22:09:25+00:00",
+  "updated_at": "2026-10-27T23:07:15+00:00",
   "matches": [
-    {
-      "team1": "ريكرياتيفو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6805426.png",
-      "team2": "رايو فاليكانو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf680c331.png",
-      "time": "11:00 PM",
-      "score": "1-1",
-      "status": "جارية الان",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عبدالله المحيسن",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "عبدالله المحيسن",
-        "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "فليتوود تاون",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
-      "team2": "أرسنال",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
-      "time": "11:00 PM",
-      "score": "1-1",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 2",
-      "commentator": "علي محمد علي",
-      "league": "كأس الرابطة الإنجليزية",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-2/",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "علي محمد علي",
-        "كأس الرابطة الإنجليزية"
-      ]
-    },
     {
       "team1": "شباب الأهلي",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8686c0c28.png",
@@ -167,6 +131,24 @@
       ]
     },
     {
+      "team1": "كولن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c08c0.png",
+      "team2": "يونيون برلين",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c84e3.png",
+      "time": "10:45 PM",
+      "score": "5-0",
+      "status": "انتهت",
+      "channel": "أبو ظبي الرياضية اكسترا",
+      "commentator": "أحمد الخير",
+      "league": "كأس ألمانيا",
+      "match_link": "https://mood.kora-live-tv-eg.com/bein-7/",
+      "debug_info": [
+        "أبو ظبي الرياضية اكسترا",
+        "أحمد الخير",
+        "كأس ألمانيا"
+      ]
+    },
+    {
       "team1": "دورتموند",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676bcab9.png",
       "team2": "فيردر بريمن",
@@ -239,21 +221,21 @@
       ]
     },
     {
-      "team1": "كولن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c08c0.png",
-      "team2": "يونيون برلين",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c84e3.png",
-      "time": "10:45 PM",
-      "score": "5-0",
+      "team1": "فليتوود تاون",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
+      "team2": "أرسنال",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
+      "time": "11:00 PM",
+      "score": "1-1",
       "status": "انتهت",
-      "channel": "أبو ظبي الرياضية اكسترا",
-      "commentator": "أحمد الخير",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-7/",
+      "channel": "بي إن سبورت 2",
+      "commentator": "علي محمد علي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://mood.kora-live-tv-eg.com/bein-2/",
       "debug_info": [
-        "أبو ظبي الرياضية اكسترا",
-        "أحمد الخير",
-        "كأس ألمانيا"
+        "بي إن سبورت 2",
+        "علي محمد علي",
+        "كأس الرابطة الإنجليزية"
       ]
     },
     {
@@ -271,6 +253,24 @@
       "debug_info": [
         "MBC شاهد | رياضة",
         "نور الدين آيت علي",
+        "كأس ملك إسبانيا"
+      ]
+    },
+    {
+      "team1": "ريكرياتيفو",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6805426.png",
+      "team2": "رايو فاليكانو",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf680c331.png",
+      "time": "11:00 PM",
+      "score": "2-3",
+      "status": "انتهت",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "عبدالله المحيسن",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "عبدالله المحيسن",
         "كأس ملك إسبانيا"
       ]
     }
