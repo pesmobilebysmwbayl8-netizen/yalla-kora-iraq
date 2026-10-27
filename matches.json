@@ -2,51 +2,15 @@
   "success": true,
   "count": 15,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-27T19:22:26+00:00",
+  "updated_at": "2026-10-27T20:11:54+00:00",
   "matches": [
-    {
-      "team1": "ساسولو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f5028857.png",
-      "team2": "لاتسيو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f50303dc.png",
-      "time": "08:30 PM",
-      "score": "2-5",
-      "status": "جارية الان",
-      "channel": "StarzPlay",
-      "commentator": "فيصل الهندي",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/sassuolo-vs-lazio/",
-      "debug_info": [
-        "StarzPlay",
-        "فيصل الهندي",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "بيناتارينسي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de13e9.png",
-      "team2": "إلتشي",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de7d09.png",
-      "time": "09:00 PM",
-      "score": "1-1",
-      "status": "جارية الان",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عائد العصيمي",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-8/",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "عائد العصيمي",
-        "كأس ملك إسبانيا"
-      ]
-    },
     {
       "team1": "سيستاو ريفر",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5e65d19.png",
       "team2": "إسبانيول",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5e6c719.png",
       "time": "09:00 PM",
-      "score": "2-1",
+      "score": "2-2",
       "status": "جارية الان",
       "channel": "MBC شاهد | رياضة",
       "commentator": "فهد الدريبي",
@@ -64,7 +28,7 @@
       "team2": "الهلال",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade86858c821.png",
       "time": "09:15 PM",
-      "score": "1-1",
+      "score": "3-1",
       "status": "جارية الان",
       "channel": "بي إن سبورت 1",
       "commentator": "حسن العيدروس",
@@ -77,31 +41,13 @@
       ]
     },
     {
-      "team1": "دورتموند",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676bcab9.png",
-      "team2": "فيردر بريمن",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676c5dc1.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "أبو ظبي الرياضية 1",
-      "commentator": "عيسى الحربين",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/premium-3/",
-      "debug_info": [
-        "أبو ظبي الرياضية 1",
-        "عيسى الحربين",
-        "كأس ألمانيا"
-      ]
-    },
-    {
       "team1": "روما",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f512073f.png",
       "team2": "كالياري",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f5128245.png",
       "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "score": "0-1",
+      "status": "جارية الان",
       "channel": "StarzPlay",
       "commentator": "عبدالله السعدي",
       "league": "الدوري الإيطالي",
@@ -119,7 +65,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f51abc67.png",
       "time": "10:45 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
       "league": "الدوري الإيطالي",
@@ -136,8 +82,8 @@
       "team2": "كارلسروهر",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6cd4643.png",
       "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "score": "1-0",
+      "status": "جارية الان",
       "channel": "أبو ظبي الرياضية 2",
       "commentator": "محمد الشامسي",
       "league": "كأس ألمانيا",
@@ -155,7 +101,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c84e3.png",
       "time": "10:45 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "أبو ظبي الرياضية اكسترا",
       "commentator": "أحمد الخير",
       "league": "كأس ألمانيا",
@@ -167,13 +113,49 @@
       ]
     },
     {
+      "team1": "دورتموند",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676bcab9.png",
+      "team2": "فيردر بريمن",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676c5dc1.png",
+      "time": "10:45 PM",
+      "score": "1-0",
+      "status": "جارية الان",
+      "channel": "أبو ظبي الرياضية 1",
+      "commentator": "عيسى الحربين",
+      "league": "كأس ألمانيا",
+      "match_link": "https://mood.kora-live-tv-eg.com/premium-3/",
+      "debug_info": [
+        "أبو ظبي الرياضية 1",
+        "عيسى الحربين",
+        "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "ريكرياتيفو",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6805426.png",
+      "team2": "رايو فاليكانو",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf680c331.png",
+      "time": "11:00 PM",
+      "score": "0-0",
+      "status": "بعد قليل",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "عبدالله المحيسن",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "عبدالله المحيسن",
+        "كأس ملك إسبانيا"
+      ]
+    },
+    {
       "team1": "فليتوود تاون",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
       "team2": "أرسنال",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
       "time": "11:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "بي إن سبورت 2",
       "commentator": "علي محمد علي",
       "league": "كأس الرابطة الإنجليزية",
@@ -191,7 +173,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6783177.png",
       "time": "11:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "MBC شاهد | رياضة",
       "commentator": "نور الدين آيت علي",
       "league": "كأس ملك إسبانيا",
@@ -199,24 +181,6 @@
       "debug_info": [
         "MBC شاهد | رياضة",
         "نور الدين آيت علي",
-        "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "ريكرياتيفو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6805426.png",
-      "team2": "رايو فاليكانو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf680c331.png",
-      "time": "11:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عبدالله المحيسن",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "عبدالله المحيسن",
         "كأس ملك إسبانيا"
       ]
     },
@@ -272,6 +236,42 @@
         "أبو ظبي الرياضية 2",
         "أحمد الحامد",
         "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "ساسولو",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f5028857.png",
+      "team2": "لاتسيو",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f50303dc.png",
+      "time": "08:30 PM",
+      "score": "2-6",
+      "status": "انتهت",
+      "channel": "StarzPlay",
+      "commentator": "فيصل الهندي",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/sassuolo-vs-lazio/",
+      "debug_info": [
+        "StarzPlay",
+        "فيصل الهندي",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "بيناتارينسي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de13e9.png",
+      "team2": "إلتشي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de7d09.png",
+      "time": "09:00 PM",
+      "score": "1-3",
+      "status": "انتهت",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "عائد العصيمي",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://mood.kora-live-tv-eg.com/bein-8/",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "عائد العصيمي",
+        "كأس ملك إسبانيا"
       ]
     }
   ]
