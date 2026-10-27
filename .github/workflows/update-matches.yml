@@ -34,7 +34,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check requests beautifulsoup4
 
       - name: Fetch and parse matches
-        run: python scripts/update_matches.py
+        run: python update_matches.py
 
       - name: Commit updated JSON when changed
         run: |
