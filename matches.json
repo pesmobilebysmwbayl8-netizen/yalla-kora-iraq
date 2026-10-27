@@ -1,0 +1,8 @@
+{
+  "success": false,
+  "count": 0,
+  "source": "https://yallashootio.com/matches-todays/",
+  "updated_at": null,
+  "matches": [],
+  "note": "Initial placeholder. Run the GitHub Actions workflow to populate this file."
+}
