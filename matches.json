@@ -2,7 +2,7 @@
   "success": true,
   "count": 15,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-27T11:37:41+00:00",
+  "updated_at": "2026-10-27T12:10:27+00:00",
   "matches": [
     {
       "team1": "شباب الأهلي",
@@ -221,6 +221,24 @@
       ]
     },
     {
+      "team1": "فليتوود تاون",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
+      "team2": "أرسنال",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
+      "time": "11:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 2",
+      "commentator": "علي محمد علي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/fleetwood-town-vs-arsenal/",
+      "debug_info": [
+        "بي إن سبورت 2",
+        "علي محمد علي",
+        "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
       "team1": "ماناكور",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf677c940.png",
       "team2": "فياريال",
@@ -254,24 +272,6 @@
         "MBC شاهد | رياضة",
         "عبدالله المحيسن",
         "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "فليتوود تاون",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
-      "team2": "أرسنال",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
-      "time": "11:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "بي إن سبورت 2",
-      "commentator": "علي محمد علي",
-      "league": "كأس الرابطة الإنجليزية",
-      "match_link": "https://yallashootio.com/matches/fleetwood-town-vs-arsenal/",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "علي محمد علي",
-        "كأس الرابطة الإنجليزية"
       ]
     }
   ]
