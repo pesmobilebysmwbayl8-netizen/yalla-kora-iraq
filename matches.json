@@ -2,7 +2,7 @@
   "success": true,
   "count": 24,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-28T10:44:53+00:00",
+  "updated_at": "2026-10-28T11:42:35+00:00",
   "matches": [
     {
       "team1": "قطر",
@@ -85,12 +85,12 @@
       "score": "0-0",
       "status": "لم تبدأ بعد",
       "channel": "أبو ظبي الرياضية اكسترا",
-      "commentator": "عيسى الحربين",
+      "commentator": "غير مدرج",
       "league": "كأس ألمانيا",
       "match_link": "https://yallashootio.com/matches/paderborn-vs-stuttgart/",
       "debug_info": [
         "أبو ظبي الرياضية اكسترا",
-        "عيسى الحربين",
+        "غير مدرج",
         "كأس ألمانيا"
       ]
     },
@@ -301,12 +301,12 @@
       "score": "0-0",
       "status": "لم تبدأ بعد",
       "channel": "StarzPlay",
-      "commentator": "عامر عبدالله",
+      "commentator": "عيسى الحربين",
       "league": "الدوري الإيطالي",
       "match_link": "https://yallashootio.com/matches/genoa-vs-juventus/",
       "debug_info": [
         "StarzPlay",
-        "عامر عبدالله",
+        "عيسى الحربين",
         "الدوري الإيطالي"
       ]
     },
