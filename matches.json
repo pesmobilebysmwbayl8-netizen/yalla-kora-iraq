@@ -2,26 +2,8 @@
   "success": true,
   "count": 20,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-28T00:51:57+00:00",
+  "updated_at": "2026-10-28T01:54:39+00:00",
   "matches": [
-    {
-      "team1": "قطر",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f239af.png",
-      "team2": "الإمارات",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f30576.png",
-      "time": "05:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "الكأس 1",
-      "commentator": "سعود الحريري",
-      "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://yallashootio.com/matches/%d9%82%d8%b7%d8%b1-vs-%d8%a7%d9%84%d8%a5%d9%85%d8%a7%d8%b1%d8%a7%d8%aa/",
-      "debug_info": [
-        "الكأس 1",
-        "سعود الحريري",
-        "كأس الخليج تحت 17 سنة"
-      ]
-    },
     {
       "team1": "البحرين",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ece0e0.png",
@@ -41,21 +23,21 @@
       ]
     },
     {
-      "team1": "فرايبورج",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91b9ecf.png",
-      "team2": "فولفسبورغ",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91c5d5c.png",
-      "time": "08:00 PM",
+      "team1": "قطر",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f239af.png",
+      "team2": "الإمارات",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f30576.png",
+      "time": "05:45 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "أبو ظبي الرياضية 1",
-      "commentator": "فيصل الهندي",
-      "league": "كأس ألمانيا",
-      "match_link": "https://yallashootio.com/matches/freiburg-vs-wolfsburg/",
+      "channel": "الكأس 1",
+      "commentator": "سعود الحريري",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://yallashootio.com/matches/%d9%82%d8%b7%d8%b1-vs-%d8%a7%d9%84%d8%a5%d9%85%d8%a7%d8%b1%d8%a7%d8%aa/",
       "debug_info": [
-        "أبو ظبي الرياضية 1",
-        "فيصل الهندي",
-        "كأس ألمانيا"
+        "الكأس 1",
+        "سعود الحريري",
+        "كأس الخليج تحت 17 سنة"
       ]
     },
     {
@@ -92,6 +74,24 @@
         "ON Sport",
         "بلال علام",
         "دوري ORA"
+      ]
+    },
+    {
+      "team1": "فرايبورج",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91b9ecf.png",
+      "team2": "فولفسبورغ",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91c5d5c.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية 1",
+      "commentator": "فيصل الهندي",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/freiburg-vs-wolfsburg/",
+      "debug_info": [
+        "أبو ظبي الرياضية 1",
+        "فيصل الهندي",
+        "كأس ألمانيا"
       ]
     },
     {
@@ -329,24 +329,6 @@
       ]
     },
     {
-      "team1": "الجيش الملكي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c7569b.png",
-      "team2": "إتحاد طنجة",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c81c46.png",
-      "time": "11:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "المغربية الرياضية",
-      "commentator": "زكرياء أحرضان",
-      "league": "البطولة الوطنية المغربية",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%ac%d9%8a%d8%b4-%d8%a7%d9%84%d9%85%d9%84%d9%83%d9%8a-vs-%d8%a5%d8%aa%d8%ad%d8%a7%d8%af-%d8%b7%d9%86%d8%ac%d8%a9/",
-      "debug_info": [
-        "المغربية الرياضية",
-        "زكرياء أحرضان",
-        "البطولة الوطنية المغربية"
-      ]
-    },
-    {
       "team1": "ليفربول",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf989fd8a.png",
       "team2": "تشيلسي",
@@ -362,6 +344,24 @@
         "بي إن سبورت 1",
         "أحمد البلوشي",
         "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
+      "team1": "الجيش الملكي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c7569b.png",
+      "team2": "إتحاد طنجة",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c81c46.png",
+      "time": "11:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "المغربية الرياضية",
+      "commentator": "زكرياء أحرضان",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%ac%d9%8a%d8%b4-%d8%a7%d9%84%d9%85%d9%84%d9%83%d9%8a-vs-%d8%a5%d8%aa%d8%ad%d8%a7%d8%af-%d8%b7%d9%86%d8%ac%d8%a9/",
+      "debug_info": [
+        "المغربية الرياضية",
+        "زكرياء أحرضان",
+        "البطولة الوطنية المغربية"
       ]
     }
   ]
