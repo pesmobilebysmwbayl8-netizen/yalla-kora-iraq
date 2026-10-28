@@ -1,57 +1,273 @@
 {
   "success": true,
-  "count": 15,
+  "count": 20,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-27T23:07:15+00:00",
+  "updated_at": "2026-10-28T00:01:59+00:00",
   "matches": [
     {
-      "team1": "شباب الأهلي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8686c0c28.png",
-      "team2": "استقلال طهران",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8686c9b72.png",
-      "time": "07:00 PM",
-      "score": "2-0",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 3",
-      "commentator": "علي سعيد الكعبي",
-      "league": "دوري أبطال آسيا للنخبة",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-3/",
+      "team1": "قطر",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f239af.png",
+      "team2": "الإمارات",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f30576.png",
+      "time": "05:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "الكأس 1",
+      "commentator": "سعود الحريري",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://yallashootio.com/matches/%d9%82%d8%b7%d8%b1-vs-%d8%a7%d9%84%d8%a5%d9%85%d8%a7%d8%b1%d8%a7%d8%aa/",
       "debug_info": [
-        "بي إن سبورت 3",
-        "علي سعيد الكعبي",
-        "دوري أبطال آسيا للنخبة"
+        "الكأس 1",
+        "سعود الحريري",
+        "كأس الخليج تحت 17 سنة"
       ]
     },
     {
-      "team1": "روت فايس إيسن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8675441d0.png",
-      "team2": "لايبزيج",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade86754c6aa.png",
-      "time": "08:00 PM",
-      "score": "1-2",
-      "status": "انتهت",
-      "channel": "أبو ظبي الرياضية اكسترا",
-      "commentator": "فهد عبدالرحمن",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-6/",
+      "team1": "البحرين",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ece0e0.png",
+      "team2": "عُمان",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ed4fb0.png",
+      "time": "05:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "الكأس 2",
+      "commentator": "بكر علوان",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%a8%d8%ad%d8%b1%d9%8a%d9%86-vs-%d8%b9%d9%8f%d9%85%d8%a7%d9%86/",
       "debug_info": [
-        "أبو ظبي الرياضية اكسترا",
-        "فهد عبدالرحمن",
+        "الكأس 2",
+        "بكر علوان",
+        "كأس الخليج تحت 17 سنة"
+      ]
+    },
+    {
+      "team1": "الزمالك",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9a20ab4.png",
+      "team2": "المقاولون العرب",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9a2e1ec.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "ON Sport",
+      "commentator": "بلال علام",
+      "league": "دوري ORA",
+      "match_link": "https://yallashootio.com/matches/zamalek-sc-vs-mokawloon/",
+      "debug_info": [
+        "ON Sport",
+        "بلال علام",
+        "دوري ORA"
+      ]
+    },
+    {
+      "team1": "فرايبورج",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91b9ecf.png",
+      "team2": "فولفسبورغ",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf91c5d5c.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية 1",
+      "commentator": "فيصل الهندي",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/freiburg-vs-wolfsburg/",
+      "debug_info": [
+        "أبو ظبي الرياضية 1",
+        "فيصل الهندي",
         "كأس ألمانيا"
       ]
     },
     {
-      "team1": "هامبورغ",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8675941f4.png",
-      "team2": "فرانكفورت",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade86759b9da.png",
+      "team1": "بادربورن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9274ab8.png",
+      "team2": "شتوتجارت",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf927b3ad.png",
       "time": "08:00 PM",
-      "score": "1-3",
-      "status": "انتهت",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية اكسترا",
+      "commentator": "عيسى الحربين",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/paderborn-vs-stuttgart/",
+      "debug_info": [
+        "أبو ظبي الرياضية اكسترا",
+        "عيسى الحربين",
+        "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "ميلان",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf81cad46.png",
+      "team2": "بولونيا",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf81d2095.png",
+      "time": "08:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "فارس عوض",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/ac-milan-vs-bologna/",
+      "debug_info": [
+        "StarzPlay",
+        "فارس عوض",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "بارما",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf823b91b.png",
+      "team2": "أودينيزي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8247300.png",
+      "time": "08:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "أحمد الخير",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/parma-vs-udinese/",
+      "debug_info": [
+        "StarzPlay",
+        "أحمد الخير",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "فينيسا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf82a55a6.png",
+      "team2": "إنتر ميلان",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf82b22ab.png",
+      "time": "08:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "محمد الشامسي",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/venezia-vs-inter/",
+      "debug_info": [
+        "StarzPlay",
+        "محمد الشامسي",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "أنايتاسونا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf86322ef.png",
+      "team2": "ألافيس",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8639fe6.png",
+      "time": "09:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "عبدالله الشهري",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://yallashootio.com/matches/anaitasuna-ft-vs-alaves/",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "عبدالله الشهري",
+        "كأس ملك إسبانيا"
+      ]
+    },
+    {
+      "team1": "الرجاء الرياضي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c15443.png",
+      "team2": "حسنية أكادير",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c225fe.png",
+      "time": "09:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "المغربية الرياضية",
+      "commentator": "عبدالحق الشراط",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%b1%d8%ac%d8%a7%d8%a1-%d8%a7%d9%84%d8%b1%d9%8a%d8%a7%d8%b6%d9%8a-vs-%d8%ad%d8%b3%d9%86%d9%8a%d8%a9-%d8%a3%d9%83%d8%a7%d8%af%d9%8a%d8%b1-2/",
+      "debug_info": [
+        "المغربية الرياضية",
+        "عبدالحق الشراط",
+        "البطولة الوطنية المغربية"
+      ]
+    },
+    {
+      "team1": "مان سيتي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9698cbc.png",
+      "team2": "برايتون",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf969f5ff.png",
+      "time": "10:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 4",
+      "commentator": "حفيظ دراجي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/man-city-vs-brighton/",
+      "debug_info": [
+        "بي إن سبورت 4",
+        "حفيظ دراجي",
+        "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
+      "team1": "بايرن ميونخ",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf944aa93.png",
+      "team2": "مجدبرج",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf94592ba.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية 1",
+      "commentator": "حازم عبدالسلام",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/fc-bayern-vs-magdeburg/",
+      "debug_info": [
+        "أبو ظبي الرياضية 1",
+        "حازم عبدالسلام",
+        "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "سندرلاند",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf971de95.png",
+      "team2": "برينتفورد",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf97254b0.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 5",
+      "commentator": "منتصر الأزهري",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/sunderland-vs-brentford/",
+      "debug_info": [
+        "بي إن سبورت 5",
+        "منتصر الأزهري",
+        "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
+      "team1": "جنوى",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf831a6f6.png",
+      "team2": "يوفنتوس",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8326150.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "عامر عبدالله",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/genoa-vs-juventus/",
+      "debug_info": [
+        "StarzPlay",
+        "عامر عبدالله",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "باير ليفركوزن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf93ef7bc.png",
+      "team2": "نورنبرغ",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9408f96.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
       "channel": "أبو ظبي الرياضية 2",
       "commentator": "أحمد الحامد",
       "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-7/",
+      "match_link": "https://yallashootio.com/matches/leverkusen-vs-nuremberg/",
       "debug_info": [
         "أبو ظبي الرياضية 2",
         "أحمد الحامد",
@@ -59,125 +275,35 @@
       ]
     },
     {
-      "team1": "ساسولو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f5028857.png",
-      "team2": "لاتسيو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f50303dc.png",
-      "time": "08:30 PM",
-      "score": "2-6",
-      "status": "انتهت",
-      "channel": "StarzPlay",
-      "commentator": "فيصل الهندي",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/sassuolo-vs-lazio/",
-      "debug_info": [
-        "StarzPlay",
-        "فيصل الهندي",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "بيناتارينسي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de13e9.png",
-      "team2": "إلتشي",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5de7d09.png",
-      "time": "09:00 PM",
-      "score": "1-3",
-      "status": "انتهت",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عائد العصيمي",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-8/",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "عائد العصيمي",
-        "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "سيستاو ريفر",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5e65d19.png",
-      "team2": "إسبانيول",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf5e6c719.png",
-      "time": "09:00 PM",
-      "score": "4-3",
-      "status": "انتهت",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "فهد الدريبي",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-9/",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "فهد الدريبي",
-        "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "الشمال",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8685868d9.png",
-      "team2": "الهلال",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade86858c821.png",
-      "time": "09:15 PM",
-      "score": "3-1",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 1",
-      "commentator": "حسن العيدروس",
-      "league": "دوري أبطال آسيا للنخبة",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-1/",
-      "debug_info": [
-        "بي إن سبورت 1",
-        "حسن العيدروس",
-        "دوري أبطال آسيا للنخبة"
-      ]
-    },
-    {
-      "team1": "كولن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c08c0.png",
-      "team2": "يونيون برلين",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf73c84e3.png",
+      "team1": "بورنموث",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf97c72dd.png",
+      "team2": "أستون فيلا",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf97ce6c0.png",
       "time": "10:45 PM",
-      "score": "5-0",
-      "status": "انتهت",
-      "channel": "أبو ظبي الرياضية اكسترا",
-      "commentator": "أحمد الخير",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-7/",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 6",
+      "commentator": "محمد بركات",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/bournemouth-vs-aston-villa/",
       "debug_info": [
-        "أبو ظبي الرياضية اكسترا",
-        "أحمد الخير",
-        "كأس ألمانيا"
+        "بي إن سبورت 6",
+        "محمد بركات",
+        "كأس الرابطة الإنجليزية"
       ]
     },
     {
-      "team1": "دورتموند",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676bcab9.png",
-      "team2": "فيردر بريمن",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade8676c5dc1.png",
+      "team1": "مونزا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf837bed8.png",
+      "team2": "نابولي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8381ca3.png",
       "time": "10:45 PM",
-      "score": "3-2",
-      "status": "انتهت",
-      "channel": "أبو ظبي الرياضية 1",
-      "commentator": "عيسى الحربين",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/premium-3/",
-      "debug_info": [
-        "أبو ظبي الرياضية 1",
-        "عيسى الحربين",
-        "كأس ألمانيا"
-      ]
-    },
-    {
-      "team1": "روما",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f512073f.png",
-      "team2": "كالياري",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f5128245.png",
-      "time": "10:45 PM",
-      "score": "4-2",
-      "status": "انتهت",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
       "channel": "StarzPlay",
       "commentator": "عبدالله السعدي",
       "league": "الدوري الإيطالي",
-      "match_link": "https://mood.kora-live-tv-eg.com/premium-1/",
+      "match_link": "https://yallashootio.com/matches/monza-vs-ssc-napoli/",
       "debug_info": [
         "StarzPlay",
         "عبدالله السعدي",
@@ -185,93 +311,57 @@
       ]
     },
     {
-      "team1": "تورينو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f51a5828.png",
-      "team2": "كومو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade7f51abc67.png",
+      "team1": "فولهام",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9770cc6.png",
+      "team2": "كريستال بالاس",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf977732b.png",
       "time": "10:45 PM",
-      "score": "1-3",
-      "status": "انتهت",
-      "channel": "StarzPlay",
-      "commentator": "حازم عبدالسلام",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://mood.kora-live-tv-eg.com/premium-2/",
-      "debug_info": [
-        "StarzPlay",
-        "حازم عبدالسلام",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "مونشنغلادباخ",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6cccf74.png",
-      "team2": "كارلسروهر",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6cd4643.png",
-      "time": "10:45 PM",
-      "score": "2-0",
-      "status": "انتهت",
-      "channel": "أبو ظبي الرياضية 2",
-      "commentator": "محمد الشامسي",
-      "league": "كأس ألمانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-6/",
-      "debug_info": [
-        "أبو ظبي الرياضية 2",
-        "محمد الشامسي",
-        "كأس ألمانيا"
-      ]
-    },
-    {
-      "team1": "فليتوود تاون",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c16627.png",
-      "team2": "أرسنال",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ade867c1cdc7.png",
-      "time": "11:00 PM",
-      "score": "1-1",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 2",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 9",
       "commentator": "علي محمد علي",
       "league": "كأس الرابطة الإنجليزية",
-      "match_link": "https://mood.kora-live-tv-eg.com/bein-2/",
+      "match_link": "https://yallashootio.com/matches/fulham-vs-crystal-palace/",
       "debug_info": [
-        "بي إن سبورت 2",
+        "بي إن سبورت 9",
         "علي محمد علي",
         "كأس الرابطة الإنجليزية"
       ]
     },
     {
-      "team1": "ماناكور",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf677c940.png",
-      "team2": "فياريال",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6783177.png",
+      "team1": "ليفربول",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf989fd8a.png",
+      "team2": "تشيلسي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf98a7557.png",
       "time": "11:00 PM",
-      "score": "0-5",
-      "status": "انتهت",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "نور الدين آيت علي",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-1/",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 1",
+      "commentator": "أحمد البلوشي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/liverpool-vs-chelsea/",
       "debug_info": [
-        "MBC شاهد | رياضة",
-        "نور الدين آيت علي",
-        "كأس ملك إسبانيا"
+        "بي إن سبورت 1",
+        "أحمد البلوشي",
+        "كأس الرابطة الإنجليزية"
       ]
     },
     {
-      "team1": "ريكرياتيفو",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf6805426.png",
-      "team2": "رايو فاليكانو",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf680c331.png",
+      "team1": "الجيش الملكي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c7569b.png",
+      "team2": "إتحاد طنجة",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8c81c46.png",
       "time": "11:00 PM",
-      "score": "2-3",
-      "status": "انتهت",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عبدالله المحيسن",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "المغربية الرياضية",
+      "commentator": "زكرياء أحرضان",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%ac%d9%8a%d8%b4-%d8%a7%d9%84%d9%85%d9%84%d9%83%d9%8a-vs-%d8%a5%d8%aa%d8%ad%d8%a7%d8%af-%d8%b7%d9%86%d8%ac%d8%a9/",
       "debug_info": [
-        "MBC شاهد | رياضة",
-        "عبدالله المحيسن",
-        "كأس ملك إسبانيا"
+        "المغربية الرياضية",
+        "زكرياء أحرضان",
+        "البطولة الوطنية المغربية"
       ]
     }
   ]
