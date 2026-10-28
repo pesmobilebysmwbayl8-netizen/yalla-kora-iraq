@@ -2,26 +2,8 @@
   "success": true,
   "count": 20,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-28T01:54:39+00:00",
+  "updated_at": "2026-10-28T02:45:48+00:00",
   "matches": [
-    {
-      "team1": "البحرين",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ece0e0.png",
-      "team2": "عُمان",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ed4fb0.png",
-      "time": "05:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "الكأس 2",
-      "commentator": "بكر علوان",
-      "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%a8%d8%ad%d8%b1%d9%8a%d9%86-vs-%d8%b9%d9%8f%d9%85%d8%a7%d9%86/",
-      "debug_info": [
-        "الكأس 2",
-        "بكر علوان",
-        "كأس الخليج تحت 17 سنة"
-      ]
-    },
     {
       "team1": "قطر",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9f239af.png",
@@ -41,21 +23,21 @@
       ]
     },
     {
-      "team1": "بادربورن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9274ab8.png",
-      "team2": "شتوتجارت",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf927b3ad.png",
-      "time": "08:00 PM",
+      "team1": "البحرين",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ece0e0.png",
+      "team2": "عُمان",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9ed4fb0.png",
+      "time": "05:45 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "أبو ظبي الرياضية اكسترا",
-      "commentator": "عيسى الحربين",
-      "league": "كأس ألمانيا",
-      "match_link": "https://yallashootio.com/matches/paderborn-vs-stuttgart/",
+      "channel": "الكأس 2",
+      "commentator": "بكر علوان",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%a8%d8%ad%d8%b1%d9%8a%d9%86-vs-%d8%b9%d9%8f%d9%85%d8%a7%d9%86/",
       "debug_info": [
-        "أبو ظبي الرياضية اكسترا",
-        "عيسى الحربين",
-        "كأس ألمانيا"
+        "الكأس 2",
+        "بكر علوان",
+        "كأس الخليج تحت 17 سنة"
       ]
     },
     {
@@ -91,6 +73,24 @@
       "debug_info": [
         "أبو ظبي الرياضية 1",
         "فيصل الهندي",
+        "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "بادربورن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9274ab8.png",
+      "team2": "شتوتجارت",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf927b3ad.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية اكسترا",
+      "commentator": "عيسى الحربين",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/paderborn-vs-stuttgart/",
+      "debug_info": [
+        "أبو ظبي الرياضية اكسترا",
+        "عيسى الحربين",
         "كأس ألمانيا"
       ]
     },
@@ -203,6 +203,42 @@
       ]
     },
     {
+      "team1": "جنوى",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf831a6f6.png",
+      "team2": "يوفنتوس",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8326150.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "عامر عبدالله",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/genoa-vs-juventus/",
+      "debug_info": [
+        "StarzPlay",
+        "عامر عبدالله",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "مونزا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf837bed8.png",
+      "team2": "نابولي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8381ca3.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "عبدالله السعدي",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/monza-vs-ssc-napoli/",
+      "debug_info": [
+        "StarzPlay",
+        "عبدالله السعدي",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
       "team1": "فولهام",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9770cc6.png",
       "team2": "كريستال بالاس",
@@ -239,60 +275,6 @@
       ]
     },
     {
-      "team1": "مونزا",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf837bed8.png",
-      "team2": "نابولي",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8381ca3.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "StarzPlay",
-      "commentator": "عبدالله السعدي",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/monza-vs-ssc-napoli/",
-      "debug_info": [
-        "StarzPlay",
-        "عبدالله السعدي",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "باير ليفركوزن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf93ef7bc.png",
-      "team2": "نورنبرغ",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9408f96.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "أبو ظبي الرياضية 2",
-      "commentator": "أحمد الحامد",
-      "league": "كأس ألمانيا",
-      "match_link": "https://yallashootio.com/matches/leverkusen-vs-nuremberg/",
-      "debug_info": [
-        "أبو ظبي الرياضية 2",
-        "أحمد الحامد",
-        "كأس ألمانيا"
-      ]
-    },
-    {
-      "team1": "جنوى",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf831a6f6.png",
-      "team2": "يوفنتوس",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf8326150.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "StarzPlay",
-      "commentator": "عامر عبدالله",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/genoa-vs-juventus/",
-      "debug_info": [
-        "StarzPlay",
-        "عامر عبدالله",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
       "team1": "سندرلاند",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf971de95.png",
       "team2": "برينتفورد",
@@ -325,6 +307,24 @@
       "debug_info": [
         "أبو ظبي الرياضية 1",
         "حازم عبدالسلام",
+        "كأس ألمانيا"
+      ]
+    },
+    {
+      "team1": "باير ليفركوزن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf93ef7bc.png",
+      "team2": "نورنبرغ",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6adfcf9408f96.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "أبو ظبي الرياضية 2",
+      "commentator": "أحمد الحامد",
+      "league": "كأس ألمانيا",
+      "match_link": "https://yallashootio.com/matches/leverkusen-vs-nuremberg/",
+      "debug_info": [
+        "أبو ظبي الرياضية 2",
+        "أحمد الحامد",
         "كأس ألمانيا"
       ]
     },
