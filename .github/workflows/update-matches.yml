@@ -3,7 +3,8 @@ name: Update matches
 on:
   workflow_dispatch:
   schedule:
-    - cron: '7,37 * * * *'
+    schedule:
+  - cron: '*/15 * * * *'
   push:
     paths:
       - 'scripts/update_matches.py'
