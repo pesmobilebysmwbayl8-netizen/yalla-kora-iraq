@@ -2,26 +2,8 @@
   "success": true,
   "count": 15,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T00:25:33+00:00",
+  "updated_at": "2026-10-29T13:06:26+00:00",
   "matches": [
-    {
-      "team1": "إنتر ميامي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622dd136c.png",
-      "team2": "سينسيناتي",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622dd7f97.png",
-      "time": "02:30 AM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "Apple TV",
-      "commentator": "غير مدرج",
-      "league": "الدوري الأمريكي لكرة القدم",
-      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
-      "debug_info": [
-        "Apple TV",
-        "غير مدرج",
-        "الدوري الأمريكي لكرة القدم"
-      ]
-    },
     {
       "team1": "مودرن سبورت",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162263ce75.png",
@@ -41,6 +23,24 @@
       ]
     },
     {
+      "team1": "اليمن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622be4298.png",
+      "team2": "الكويت",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622beb13f.png",
+      "time": "05:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "الكأس 5",
+      "commentator": "يزن اللبابنة",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d9%8a%d9%85%d9%86-vs-%d8%a7%d9%84%d9%83%d9%88%d9%8a%d8%aa/",
+      "debug_info": [
+        "الكأس 5",
+        "يزن اللبابنة",
+        "كأس الخليج تحت 17 سنة"
+      ]
+    },
+    {
       "team1": "السعودية",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c71177.png",
       "team2": "العراق",
@@ -55,24 +55,6 @@
       "debug_info": [
         "الكأس 3",
         "سعود الحريري",
-        "كأس الخليج تحت 17 سنة"
-      ]
-    },
-    {
-      "team1": "اليمن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622be4298.png",
-      "team2": "الكويت",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622beb13f.png",
-      "time": "05:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "الكأس 8",
-      "commentator": "يزن اللبابنة",
-      "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d9%8a%d9%85%d9%86-vs-%d8%a7%d9%84%d9%83%d9%88%d9%8a%d8%aa/",
-      "debug_info": [
-        "الكأس 8",
-        "يزن اللبابنة",
         "كأس الخليج تحت 17 سنة"
       ]
     },
@@ -138,12 +120,12 @@
       "time": "09:00 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "قنوات ثمانية",
+      "channel": "ثمانية 1",
       "commentator": "خالد المديفر",
       "league": "دوري روشن السعودي",
       "match_link": "https://yallashootio.com/matches/al-nassr-fc-vs-al-kholood/",
       "debug_info": [
-        "قنوات ثمانية",
+        "ثمانية 1",
         "خالد المديفر",
         "دوري روشن السعودي"
       ]
@@ -174,12 +156,12 @@
       "time": "09:00 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "قنوات ثمانية",
+      "channel": "ثمانية 2",
       "commentator": "مشعل الشمري",
       "league": "دوري روشن السعودي",
       "match_link": "https://yallashootio.com/matches/al-riyadh-vs-al-qadsiah/",
       "debug_info": [
-        "قنوات ثمانية",
+        "ثمانية 2",
         "مشعل الشمري",
         "دوري روشن السعودي"
       ]
@@ -203,6 +185,24 @@
       ]
     },
     {
+      "team1": "إيفرتون",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16225841af.png",
+      "team2": "نيوكاسل",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162258c079.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 1",
+      "commentator": "عصام الشوالي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/everton-vs-newcastle-2/",
+      "debug_info": [
+        "بي إن سبورت 1",
+        "عصام الشوالي",
+        "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
       "team1": "فيورنتينا",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16218c0caf.png",
       "team2": "أتلانتا",
@@ -221,21 +221,21 @@
       ]
     },
     {
-      "team1": "إيفرتون",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16225841af.png",
-      "team2": "نيوكاسل",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162258c079.png",
-      "time": "10:45 PM",
+      "team1": "هورتاليزا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220d7f81.png",
+      "team2": "إشبيلية",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220e3776.png",
+      "time": "11:00 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "بي إن سبورت 1",
-      "commentator": "عصام الشوالي",
-      "league": "كأس الرابطة الإنجليزية",
-      "match_link": "https://yallashootio.com/matches/everton-vs-newcastle-2/",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://yallashootio.com/matches/sporting-hortaleza-vs-sevilla/",
       "debug_info": [
-        "بي إن سبورت 1",
-        "عصام الشوالي",
-        "كأس الرابطة الإنجليزية"
+        "غير معروف",
+        "غير معروف",
+        "كأس ملك إسبانيا"
       ]
     },
     {
@@ -257,21 +257,21 @@
       ]
     },
     {
-      "team1": "هورتاليزا",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220d7f81.png",
-      "team2": "إشبيلية",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220e3776.png",
-      "time": "11:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://yallashootio.com/matches/sporting-hortaleza-vs-sevilla/",
+      "team1": "إنتر ميامي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622dd136c.png",
+      "team2": "سينسيناتي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622dd7f97.png",
+      "time": "02:30 AM",
+      "score": "2-2",
+      "status": "انتهت",
+      "channel": "Apple TV",
+      "commentator": "غير مدرج",
+      "league": "الدوري الأمريكي لكرة القدم",
+      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
       "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "كأس ملك إسبانيا"
+        "Apple TV",
+        "غير مدرج",
+        "الدوري الأمريكي لكرة القدم"
       ]
     }
   ]
