@@ -2,7 +2,7 @@
   "success": true,
   "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T17:29:14+00:00",
+  "updated_at": "2026-10-29T17:33:17+00:00",
   "matches": [
     {
       "team1": "بيراميدز",
@@ -15,7 +15,7 @@
       "channel": "On Sport Max",
       "commentator": "محمد مصطفى عفيفي",
       "league": "دوري ORA",
-      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
+      "match_link": "",
       "debug_info": [
         "On Sport Max",
         "محمد مصطفى عفيفي",
@@ -33,7 +33,7 @@
       "channel": "المغربية الرياضية",
       "commentator": "محمد العدالي",
       "league": "البطولة الوطنية المغربية",
-      "match_link": "https://mood.kora-live-tv-eg.com/xtra1/",
+      "match_link": "",
       "debug_info": [
         "المغربية الرياضية",
         "محمد العدالي",
@@ -51,7 +51,7 @@
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
       "league": "الدوري الإيطالي",
-      "match_link": "https://mood.kora-live-tv-eg.com/premium-1/",
+      "match_link": "",
       "debug_info": [
         "StarzPlay",
         "حازم عبدالسلام",
@@ -213,7 +213,7 @@
       "channel": "Apple TV",
       "commentator": "غير مدرج",
       "league": "الدوري الأمريكي لكرة القدم",
-      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
+      "match_link": "",
       "debug_info": [
         "Apple TV",
         "غير مدرج",
@@ -231,7 +231,7 @@
       "channel": "الكأس 1",
       "commentator": "هيكل الصغير",
       "league": "الرابطة التونسية لكرة القدم",
-      "match_link": "https://mood.kora-live-tv-eg.com/xtra2/",
+      "match_link": "",
       "debug_info": [
         "الكأس 1",
         "هيكل الصغير",
@@ -249,7 +249,7 @@
       "channel": "ON Sport",
       "commentator": "أيمن الكاشف",
       "league": "دوري ORA",
-      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
+      "match_link": "",
       "debug_info": [
         "ON Sport",
         "أيمن الكاشف",
@@ -267,7 +267,7 @@
       "channel": "الكأس 5",
       "commentator": "يزن اللبابنة",
       "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-1/",
+      "match_link": "",
       "debug_info": [
         "الكأس 5",
         "يزن اللبابنة",
@@ -285,7 +285,7 @@
       "channel": "الكأس 3",
       "commentator": "سعود الحريري",
       "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
+      "match_link": "",
       "debug_info": [
         "الكأس 3",
         "سعود الحريري",
