@@ -2,7 +2,7 @@
   "success": true,
   "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T20:55:19+00:00",
+  "updated_at": "2026-10-29T21:30:23+00:00",
   "matches": [
     {
       "team1": "إيفرتون",
@@ -167,24 +167,6 @@
       ]
     },
     {
-      "team1": "بيراميدز",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae16226a9d86.png",
-      "team2": "وادي دجلة",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
-      "time": "08:00 PM",
-      "score": "2-1",
-      "status": "انتهت",
-      "channel": "On Sport Max",
-      "commentator": "محمد مصطفى عفيفي",
-      "league": "دوري ORA",
-      "match_link": "",
-      "debug_info": [
-        "On Sport Max",
-        "محمد مصطفى عفيفي",
-        "دوري ORA"
-      ]
-    },
-    {
       "team1": "المغرب الفاسي",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae16223decb9.png",
       "team2": "نهضة بركان",
@@ -200,6 +182,24 @@
         "المغربية الرياضية",
         "محمد العدالي",
         "البطولة الوطنية المغربية"
+      ]
+    },
+    {
+      "team1": "بيراميدز",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae16226a9d86.png",
+      "team2": "وادي دجلة",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
+      "time": "08:00 PM",
+      "score": "2-1",
+      "status": "انتهت",
+      "channel": "On Sport Max",
+      "commentator": "محمد مصطفى عفيفي",
+      "league": "دوري ORA",
+      "match_link": "",
+      "debug_info": [
+        "On Sport Max",
+        "محمد مصطفى عفيفي",
+        "دوري ORA"
       ]
     },
     {
