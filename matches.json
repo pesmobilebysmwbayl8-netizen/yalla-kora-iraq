@@ -2,7 +2,7 @@
   "success": true,
   "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T17:33:17+00:00",
+  "updated_at": "2026-10-29T18:17:00+00:00",
   "matches": [
     {
       "team1": "بيراميدز",
@@ -10,7 +10,7 @@
       "team2": "وادي دجلة",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
       "time": "08:00 PM",
-      "score": "0-0",
+      "score": "1-1",
       "status": "جارية الان",
       "channel": "On Sport Max",
       "commentator": "محمد مصطفى عفيفي",
@@ -46,8 +46,8 @@
       "team2": "ليتشي",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621876825.png",
       "time": "08:30 PM",
-      "score": "0-0",
-      "status": "بعد قليل",
+      "score": "1-0",
+      "status": "جارية الان",
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
       "league": "الدوري الإيطالي",
@@ -65,11 +65,11 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621b7c2e5.png",
       "time": "09:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "ثمانية 1",
       "commentator": "خالد المديفر",
       "league": "دوري روشن السعودي",
-      "match_link": "https://yallashootio.com/matches/al-nassr-fc-vs-al-kholood/",
+      "match_link": "",
       "debug_info": [
         "ثمانية 1",
         "خالد المديفر",
@@ -83,11 +83,11 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae274ac5506d.png",
       "time": "09:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "MBC شاهد | رياضة",
       "commentator": "عبدالله المحيسن",
       "league": "كأس ملك إسبانيا",
-      "match_link": "https://yallashootio.com/matches/atletico-calatayud-vs-osasuna/",
+      "match_link": "",
       "debug_info": [
         "MBC شاهد | رياضة",
         "عبدالله المحيسن",
@@ -101,11 +101,11 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621c229f8.png",
       "time": "09:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "ثمانية 2",
       "commentator": "مشعل الشمري",
       "league": "دوري روشن السعودي",
-      "match_link": "https://yallashootio.com/matches/al-riyadh-vs-al-qadsiah/",
+      "match_link": "",
       "debug_info": [
         "ثمانية 2",
         "مشعل الشمري",
@@ -119,33 +119,15 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae274b0cd93b.png",
       "time": "09:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "MBC شاهد | رياضة",
       "commentator": "رياض الحمروني",
       "league": "كأس ملك إسبانيا",
-      "match_link": "https://yallashootio.com/matches/ub-lebrijana-vs-getafe/",
+      "match_link": "",
       "debug_info": [
         "MBC شاهد | رياضة",
         "رياض الحمروني",
         "كأس ملك إسبانيا"
-      ]
-    },
-    {
-      "team1": "إيفرتون",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16225841af.png",
-      "team2": "نيوكاسل",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162258c079.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "بي إن سبورت 1",
-      "commentator": "عصام الشوالي",
-      "league": "كأس الرابطة الإنجليزية",
-      "match_link": "https://yallashootio.com/matches/everton-vs-newcastle-2/",
-      "debug_info": [
-        "بي إن سبورت 1",
-        "عصام الشوالي",
-        "كأس الرابطة الإنجليزية"
       ]
     },
     {
@@ -164,6 +146,24 @@
         "StarzPlay",
         "عيسى الحربين",
         "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "إيفرتون",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16225841af.png",
+      "team2": "نيوكاسل",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162258c079.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 1",
+      "commentator": "عصام الشوالي",
+      "league": "كأس الرابطة الإنجليزية",
+      "match_link": "https://yallashootio.com/matches/everton-vs-newcastle-2/",
+      "debug_info": [
+        "بي إن سبورت 1",
+        "عصام الشوالي",
+        "كأس الرابطة الإنجليزية"
       ]
     },
     {
