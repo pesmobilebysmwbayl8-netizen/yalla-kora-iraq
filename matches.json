@@ -1,39 +1,21 @@
 {
   "success": true,
-  "count": 15,
+  "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T13:06:26+00:00",
+  "updated_at": "2026-10-29T17:05:45+00:00",
   "matches": [
-    {
-      "team1": "مودرن سبورت",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162263ce75.png",
-      "team2": "الأهلي",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622643b8b.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "ON Sport",
-      "commentator": "أيمن الكاشف",
-      "league": "دوري ORA",
-      "match_link": "https://yallashootio.com/matches/modern-vs-al-ahly-sc/",
-      "debug_info": [
-        "ON Sport",
-        "أيمن الكاشف",
-        "دوري ORA"
-      ]
-    },
     {
       "team1": "اليمن",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622be4298.png",
       "team2": "الكويت",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622beb13f.png",
       "time": "05:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "score": "2-0",
+      "status": "جارية الان",
       "channel": "الكأس 5",
       "commentator": "يزن اللبابنة",
       "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d9%8a%d9%85%d9%86-vs-%d8%a7%d9%84%d9%83%d9%88%d9%8a%d8%aa/",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-1/",
       "debug_info": [
         "الكأس 5",
         "يزن اللبابنة",
@@ -46,34 +28,16 @@
       "team2": "العراق",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c77457.png",
       "time": "05:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "score": "1-0",
+      "status": "جارية الان",
       "channel": "الكأس 3",
       "commentator": "سعود الحريري",
       "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d8%b3%d8%b9%d9%88%d8%af%d9%8a%d8%a9-vs-%d8%a7%d9%84%d8%b9%d8%b1%d8%a7%d9%82/",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
       "debug_info": [
         "الكأس 3",
         "سعود الحريري",
         "كأس الخليج تحت 17 سنة"
-      ]
-    },
-    {
-      "team1": "المغرب الفاسي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223decb9.png",
-      "team2": "نهضة بركان",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223e59b5.png",
-      "time": "08:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "المغربية الرياضية",
-      "commentator": "محمد العدالي",
-      "league": "البطولة الوطنية المغربية",
-      "match_link": "https://yallashootio.com/matches/%d8%a7%d9%84%d9%85%d8%ba%d8%b1%d8%a8-%d8%a7%d9%84%d9%81%d8%a7%d8%b3%d9%8a-vs-%d9%86%d9%87%d8%b6%d8%a9-%d8%a8%d8%b1%d9%83%d8%a7%d9%86-2/",
-      "debug_info": [
-        "المغربية الرياضية",
-        "محمد العدالي",
-        "البطولة الوطنية المغربية"
       ]
     },
     {
@@ -83,15 +47,33 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
       "time": "08:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "On Sport Max",
       "commentator": "محمد مصطفى عفيفي",
       "league": "دوري ORA",
-      "match_link": "https://yallashootio.com/matches/pyramids-fc-vs-wadi-degla/",
+      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
       "debug_info": [
         "On Sport Max",
         "محمد مصطفى عفيفي",
         "دوري ORA"
+      ]
+    },
+    {
+      "team1": "المغرب الفاسي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223decb9.png",
+      "team2": "نهضة بركان",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223e59b5.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "بعد قليل",
+      "channel": "المغربية الرياضية",
+      "commentator": "محمد العدالي",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "https://mood.kora-live-tv-eg.com/xtra1/",
+      "debug_info": [
+        "المغربية الرياضية",
+        "محمد العدالي",
+        "البطولة الوطنية المغربية"
       ]
     },
     {
@@ -105,7 +87,7 @@
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
       "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/frosinone-vs-lecce/",
+      "match_link": "https://mood.kora-live-tv-eg.com/premium-1/",
       "debug_info": [
         "StarzPlay",
         "حازم عبدالسلام",
@@ -221,24 +203,6 @@
       ]
     },
     {
-      "team1": "هورتاليزا",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220d7f81.png",
-      "team2": "إشبيلية",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220e3776.png",
-      "time": "11:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "كأس ملك إسبانيا",
-      "match_link": "https://yallashootio.com/matches/sporting-hortaleza-vs-sevilla/",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "كأس ملك إسبانيا"
-      ]
-    },
-    {
       "team1": "برات",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622028f08.png",
       "team2": "أتلتيك بلباو",
@@ -253,6 +217,24 @@
       "debug_info": [
         "MBC شاهد | رياضة",
         "عصام عبده",
+        "كأس ملك إسبانيا"
+      ]
+    },
+    {
+      "team1": "هورتاليزا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220d7f81.png",
+      "team2": "إشبيلية",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16220e3776.png",
+      "time": "11:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "كأس ملك إسبانيا",
+      "match_link": "https://yallashootio.com/matches/sporting-hortaleza-vs-sevilla/",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
         "كأس ملك إسبانيا"
       ]
     },
@@ -272,6 +254,42 @@
         "Apple TV",
         "غير مدرج",
         "الدوري الأمريكي لكرة القدم"
+      ]
+    },
+    {
+      "team1": "الصفاقسي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae362cc96dd7.png",
+      "team2": "الترجي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae362cc9f701.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "الكأس 1",
+      "commentator": "هيكل الصغير",
+      "league": "الرابطة التونسية لكرة القدم",
+      "match_link": "https://mood.kora-live-tv-eg.com/xtra2/",
+      "debug_info": [
+        "الكأس 1",
+        "هيكل الصغير",
+        "الرابطة التونسية لكرة القدم"
+      ]
+    },
+    {
+      "team1": "مودرن سبورت",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162263ce75.png",
+      "team2": "الأهلي",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622643b8b.png",
+      "time": "05:00 PM",
+      "score": "0-1",
+      "status": "انتهت",
+      "channel": "ON Sport",
+      "commentator": "أيمن الكاشف",
+      "league": "دوري ORA",
+      "match_link": "https://mood.kora-live-tv-eg.com/on-time/",
+      "debug_info": [
+        "ON Sport",
+        "أيمن الكاشف",
+        "دوري ORA"
       ]
     }
   ]
