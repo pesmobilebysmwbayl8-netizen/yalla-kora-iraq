@@ -2,44 +2,8 @@
   "success": true,
   "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T17:05:45+00:00",
+  "updated_at": "2026-10-29T17:29:14+00:00",
   "matches": [
-    {
-      "team1": "اليمن",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622be4298.png",
-      "team2": "الكويت",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622beb13f.png",
-      "time": "05:45 PM",
-      "score": "2-0",
-      "status": "جارية الان",
-      "channel": "الكأس 5",
-      "commentator": "يزن اللبابنة",
-      "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-1/",
-      "debug_info": [
-        "الكأس 5",
-        "يزن اللبابنة",
-        "كأس الخليج تحت 17 سنة"
-      ]
-    },
-    {
-      "team1": "السعودية",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c71177.png",
-      "team2": "العراق",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c77457.png",
-      "time": "05:45 PM",
-      "score": "1-0",
-      "status": "جارية الان",
-      "channel": "الكأس 3",
-      "commentator": "سعود الحريري",
-      "league": "كأس الخليج تحت 17 سنة",
-      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
-      "debug_info": [
-        "الكأس 3",
-        "سعود الحريري",
-        "كأس الخليج تحت 17 سنة"
-      ]
-    },
     {
       "team1": "بيراميدز",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226a9d86.png",
@@ -47,7 +11,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
       "time": "08:00 PM",
       "score": "0-0",
-      "status": "بعد قليل",
+      "status": "جارية الان",
       "channel": "On Sport Max",
       "commentator": "محمد مصطفى عفيفي",
       "league": "دوري ORA",
@@ -65,7 +29,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223e59b5.png",
       "time": "08:00 PM",
       "score": "0-0",
-      "status": "بعد قليل",
+      "status": "جارية الان",
       "channel": "المغربية الرياضية",
       "commentator": "محمد العدالي",
       "league": "البطولة الوطنية المغربية",
@@ -83,7 +47,7 @@
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621876825.png",
       "time": "08:30 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
       "league": "الدوري الإيطالي",
@@ -290,6 +254,42 @@
         "ON Sport",
         "أيمن الكاشف",
         "دوري ORA"
+      ]
+    },
+    {
+      "team1": "اليمن",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622be4298.png",
+      "team2": "الكويت",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622beb13f.png",
+      "time": "05:45 PM",
+      "score": "2-0",
+      "status": "انتهت",
+      "channel": "الكأس 5",
+      "commentator": "يزن اللبابنة",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-1/",
+      "debug_info": [
+        "الكأس 5",
+        "يزن اللبابنة",
+        "كأس الخليج تحت 17 سنة"
+      ]
+    },
+    {
+      "team1": "السعودية",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c71177.png",
+      "team2": "العراق",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1622c77457.png",
+      "time": "05:45 PM",
+      "score": "1-0",
+      "status": "انتهت",
+      "channel": "الكأس 3",
+      "commentator": "سعود الحريري",
+      "league": "كأس الخليج تحت 17 سنة",
+      "match_link": "https://mood.kora-live-tv-eg.com/ssc-2/",
+      "debug_info": [
+        "الكأس 3",
+        "سعود الحريري",
+        "كأس الخليج تحت 17 سنة"
       ]
     }
   ]
