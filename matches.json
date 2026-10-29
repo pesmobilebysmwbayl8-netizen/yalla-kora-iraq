@@ -2,51 +2,15 @@
   "success": true,
   "count": 16,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-29T18:17:00+00:00",
+  "updated_at": "2026-10-29T19:23:53+00:00",
   "matches": [
-    {
-      "team1": "بيراميدز",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226a9d86.png",
-      "team2": "وادي دجلة",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
-      "time": "08:00 PM",
-      "score": "1-1",
-      "status": "جارية الان",
-      "channel": "On Sport Max",
-      "commentator": "محمد مصطفى عفيفي",
-      "league": "دوري ORA",
-      "match_link": "",
-      "debug_info": [
-        "On Sport Max",
-        "محمد مصطفى عفيفي",
-        "دوري ORA"
-      ]
-    },
-    {
-      "team1": "المغرب الفاسي",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223decb9.png",
-      "team2": "نهضة بركان",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223e59b5.png",
-      "time": "08:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "المغربية الرياضية",
-      "commentator": "محمد العدالي",
-      "league": "البطولة الوطنية المغربية",
-      "match_link": "",
-      "debug_info": [
-        "المغربية الرياضية",
-        "محمد العدالي",
-        "البطولة الوطنية المغربية"
-      ]
-    },
     {
       "team1": "فروزينوني",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162187035d.png",
       "team2": "ليتشي",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621876825.png",
       "time": "08:30 PM",
-      "score": "1-0",
+      "score": "4-1",
       "status": "جارية الان",
       "channel": "StarzPlay",
       "commentator": "حازم عبدالسلام",
@@ -64,7 +28,7 @@
       "team2": "الخلود",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621b7c2e5.png",
       "time": "09:00 PM",
-      "score": "0-0",
+      "score": "2-2",
       "status": "جارية الان",
       "channel": "ثمانية 1",
       "commentator": "خالد المديفر",
@@ -82,7 +46,7 @@
       "team2": "أوساسونا",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae274ac5506d.png",
       "time": "09:00 PM",
-      "score": "0-0",
+      "score": "0-5",
       "status": "جارية الان",
       "channel": "MBC شاهد | رياضة",
       "commentator": "عبدالله المحيسن",
@@ -100,7 +64,7 @@
       "team2": "القادسية",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae1621c229f8.png",
       "time": "09:00 PM",
-      "score": "0-0",
+      "score": "0-3",
       "status": "جارية الان",
       "channel": "ثمانية 2",
       "commentator": "مشعل الشمري",
@@ -118,7 +82,7 @@
       "team2": "خيتافي",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae274b0cd93b.png",
       "time": "09:00 PM",
-      "score": "0-0",
+      "score": "2-2",
       "status": "جارية الان",
       "channel": "MBC شاهد | رياضة",
       "commentator": "رياض الحمروني",
@@ -131,31 +95,13 @@
       ]
     },
     {
-      "team1": "فيورنتينا",
-      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16218c0caf.png",
-      "team2": "أتلانتا",
-      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16218c7d41.png",
-      "time": "10:45 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "StarzPlay",
-      "commentator": "عيسى الحربين",
-      "league": "الدوري الإيطالي",
-      "match_link": "https://yallashootio.com/matches/fiorentina-vs-atalanta-2/",
-      "debug_info": [
-        "StarzPlay",
-        "عيسى الحربين",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
       "team1": "إيفرتون",
       "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16225841af.png",
       "team2": "نيوكاسل",
       "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae162258c079.png",
       "time": "10:45 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "بي إن سبورت 1",
       "commentator": "عصام الشوالي",
       "league": "كأس الرابطة الإنجليزية",
@@ -164,6 +110,24 @@
         "بي إن سبورت 1",
         "عصام الشوالي",
         "كأس الرابطة الإنجليزية"
+      ]
+    },
+    {
+      "team1": "فيورنتينا",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16218c0caf.png",
+      "team2": "أتلانتا",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16218c7d41.png",
+      "time": "10:45 PM",
+      "score": "0-0",
+      "status": "بعد قليل",
+      "channel": "StarzPlay",
+      "commentator": "عيسى الحربين",
+      "league": "الدوري الإيطالي",
+      "match_link": "https://yallashootio.com/matches/fiorentina-vs-atalanta-2/",
+      "debug_info": [
+        "StarzPlay",
+        "عيسى الحربين",
+        "الدوري الإيطالي"
       ]
     },
     {
@@ -290,6 +254,42 @@
         "الكأس 3",
         "سعود الحريري",
         "كأس الخليج تحت 17 سنة"
+      ]
+    },
+    {
+      "team1": "بيراميدز",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226a9d86.png",
+      "team2": "وادي دجلة",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16226b0a6c.png",
+      "time": "08:00 PM",
+      "score": "2-1",
+      "status": "انتهت",
+      "channel": "On Sport Max",
+      "commentator": "محمد مصطفى عفيفي",
+      "league": "دوري ORA",
+      "match_link": "",
+      "debug_info": [
+        "On Sport Max",
+        "محمد مصطفى عفيفي",
+        "دوري ORA"
+      ]
+    },
+    {
+      "team1": "المغرب الفاسي",
+      "team1_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223decb9.png",
+      "team2": "نهضة بركان",
+      "team2_img": "https://yallashootio.com/wp-content/uploads/2026/10/alba_img_6ae16223e59b5.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "المغربية الرياضية",
+      "commentator": "محمد العدالي",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "",
+      "debug_info": [
+        "المغربية الرياضية",
+        "محمد العدالي",
+        "البطولة الوطنية المغربية"
       ]
     }
   ]
