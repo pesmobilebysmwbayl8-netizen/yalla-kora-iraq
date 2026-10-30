@@ -2,7 +2,7 @@
   "success": true,
   "count": 26,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T23:25:24+00:00",
+  "updated_at": "2026-10-30T23:59:49+00:00",
   "matches": [
     {
       "team1": "تشيلسي",
@@ -311,24 +311,6 @@
       ]
     },
     {
-      "team1": "ريال بيتيس",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444dfb5c.png",
-      "team2": "ملقا",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444e5ea8.png",
-      "time": "07:30 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "الدوري الإسباني",
-      "match_link": "",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "الدوري الإسباني"
-      ]
-    },
-    {
       "team1": "توتنهام",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c453ceb28.png",
       "team2": "كريستال بالاس",
@@ -365,21 +347,21 @@
       ]
     },
     {
-      "team1": "الهلال",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b1ef1.png",
-      "team2": "الفتح",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b8611.png",
-      "time": "08:00 PM",
+      "team1": "ريال بيتيس",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444dfb5c.png",
+      "team2": "ملقا",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444e5ea8.png",
+      "time": "07:30 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "ثمانية 1",
-      "commentator": "سعد يحيى",
-      "league": "دوري روشن السعودي",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإسباني",
       "match_link": "",
       "debug_info": [
-        "ثمانية 1",
-        "سعد يحيى",
-        "دوري روشن السعودي"
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإسباني"
       ]
     },
     {
@@ -401,21 +383,21 @@
       ]
     },
     {
-      "team1": "ميلان",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e598ac.png",
-      "team2": "إنتر ميلان",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e60764.png",
-      "time": "09:45 PM",
+      "team1": "الهلال",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b1ef1.png",
+      "team2": "الفتح",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b8611.png",
+      "time": "08:00 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "StarzPlay",
-      "commentator": "غير مدرج",
-      "league": "الدوري الإيطالي",
+      "channel": "ثمانية 1",
+      "commentator": "سعد يحيى",
+      "league": "دوري روشن السعودي",
       "match_link": "",
       "debug_info": [
-        "StarzPlay",
-        "غير مدرج",
-        "الدوري الإيطالي"
+        "ثمانية 1",
+        "سعد يحيى",
+        "دوري روشن السعودي"
       ]
     },
     {
@@ -434,6 +416,24 @@
         "غير معروف",
         "غير معروف",
         "الدوري الفرنسي"
+      ]
+    },
+    {
+      "team1": "ميلان",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e598ac.png",
+      "team2": "إنتر ميلان",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e60764.png",
+      "time": "09:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "غير مدرج",
+      "league": "الدوري الإيطالي",
+      "match_link": "",
+      "debug_info": [
+        "StarzPlay",
+        "غير مدرج",
+        "الدوري الإيطالي"
       ]
     },
     {
