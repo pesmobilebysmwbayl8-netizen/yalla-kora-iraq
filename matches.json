@@ -2,26 +2,8 @@
   "success": true,
   "count": 8,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T13:42:03+00:00",
+  "updated_at": "2026-10-30T14:37:45+00:00",
   "matches": [
-    {
-      "team1": "أبها",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514c6f15.png",
-      "team2": "الاتحاد",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514d06ad.png",
-      "time": "03:30 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "ثمانية 2",
-      "commentator": "سعد يحيى",
-      "league": "دوري روشن السعودي",
-      "match_link": "",
-      "debug_info": [
-        "ثمانية 2",
-        "سعد يحيى",
-        "دوري روشن السعودي"
-      ]
-    },
     {
       "team1": "الدرعية",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c42b68d1a.png",
@@ -29,7 +11,7 @@
       "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c42b6fee3.png",
       "time": "05:50 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "ثمانية 3",
       "commentator": "خالد المديفر",
       "league": "دوري روشن السعودي",
@@ -146,6 +128,24 @@
         "بي إن سبورت 5",
         "جواد بدة",
         "الدوري الفرنسي"
+      ]
+    },
+    {
+      "team1": "أبها",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514c6f15.png",
+      "team2": "الاتحاد",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514d06ad.png",
+      "time": "03:30 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "ثمانية 2",
+      "commentator": "سعد يحيى",
+      "league": "دوري روشن السعودي",
+      "match_link": "",
+      "debug_info": [
+        "ثمانية 2",
+        "سعد يحيى",
+        "دوري روشن السعودي"
       ]
     }
   ]
