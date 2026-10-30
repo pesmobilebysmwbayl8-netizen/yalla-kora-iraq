@@ -2,7 +2,7 @@
   "success": true,
   "count": 8,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T00:34:02+00:00",
+  "updated_at": "2026-10-30T01:40:48+00:00",
   "matches": [
     {
       "team1": "أبها",
@@ -30,13 +30,13 @@
       "time": "04:50 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
+      "channel": "ثمانية 3",
+      "commentator": "خالد المديفر",
       "league": "دوري روشن السعودي",
       "match_link": "",
       "debug_info": [
-        "غير معروف",
-        "غير معروف",
+        "ثمانية 3",
+        "خالد المديفر",
         "دوري روشن السعودي"
       ]
     },
