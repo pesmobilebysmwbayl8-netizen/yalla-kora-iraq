@@ -2,62 +2,8 @@
   "success": true,
   "count": 8,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T19:27:01+00:00",
+  "updated_at": "2026-10-30T20:09:11+00:00",
   "matches": [
-    {
-      "team1": "لوهافر",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb337bb3.png",
-      "team2": "باريس",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb33e0f8.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 1",
-      "commentator": "أحمد البلوشي",
-      "league": "الدوري الفرنسي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 1",
-        "أحمد البلوشي",
-        "الدوري الفرنسي"
-      ]
-    },
-    {
-      "team1": "نيس",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3abb83.png",
-      "team2": "رين",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3b1f5f.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 4",
-      "commentator": "أحمد عبده",
-      "league": "الدوري الفرنسي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 4",
-        "أحمد عبده",
-        "الدوري الفرنسي"
-      ]
-    },
-    {
-      "team1": "الشباب",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae275154eca9.png",
-      "team2": "الأهلي",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751554ef9.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "ثمانية 1",
-      "commentator": "راشد الدوسري",
-      "league": "دوري روشن السعودي",
-      "match_link": "",
-      "debug_info": [
-        "ثمانية 1",
-        "راشد الدوسري",
-        "دوري روشن السعودي"
-      ]
-    },
     {
       "team1": "إلفيرسبيرج",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27513580b1.png",
@@ -83,7 +29,7 @@
       "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb2be70c.png",
       "time": "11:00 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "بي إن سبورت 2",
       "commentator": "محمد فوزي",
       "league": "الدوري الإسباني",
@@ -101,7 +47,7 @@
       "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb479086.png",
       "time": "11:05 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "جارية الان",
       "channel": "بي إن سبورت 5",
       "commentator": "جواد بدة",
       "league": "الدوري الفرنسي",
@@ -146,6 +92,60 @@
         "ثمانية 3",
         "خالد المديفر",
         "دوري روشن السعودي"
+      ]
+    },
+    {
+      "team1": "الشباب",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae275154eca9.png",
+      "team2": "الأهلي",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751554ef9.png",
+      "time": "09:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "ثمانية 1",
+      "commentator": "راشد الدوسري",
+      "league": "دوري روشن السعودي",
+      "match_link": "",
+      "debug_info": [
+        "ثمانية 1",
+        "راشد الدوسري",
+        "دوري روشن السعودي"
+      ]
+    },
+    {
+      "team1": "لوهافر",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb337bb3.png",
+      "team2": "باريس",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb33e0f8.png",
+      "time": "09:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "بي إن سبورت 1",
+      "commentator": "أحمد البلوشي",
+      "league": "الدوري الفرنسي",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 1",
+        "أحمد البلوشي",
+        "الدوري الفرنسي"
+      ]
+    },
+    {
+      "team1": "نيس",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3abb83.png",
+      "team2": "رين",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3b1f5f.png",
+      "time": "09:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "بي إن سبورت 4",
+      "commentator": "أحمد عبده",
+      "league": "الدوري الفرنسي",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 4",
+        "أحمد عبده",
+        "الدوري الفرنسي"
       ]
     }
   ]
