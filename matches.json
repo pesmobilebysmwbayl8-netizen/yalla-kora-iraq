@@ -1,151 +1,475 @@
 {
   "success": true,
-  "count": 8,
+  "count": 26,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T21:28:16+00:00",
+  "updated_at": "2026-10-30T22:07:49+00:00",
   "matches": [
     {
-      "team1": "فياريال",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb2b7d99.png",
-      "team2": "إسبانيول",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb2be70c.png",
-      "time": "11:00 PM",
+      "team1": "تشيلسي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c450858e6.png",
+      "team2": "مان يونايتد",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4508c604.png",
+      "time": "02:30 PM",
       "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 2",
-      "commentator": "محمد فوزي",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "ليفانتي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44402b18.png",
+      "team2": "أتلتيكو مدريد",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44408de6.png",
+      "time": "03:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
       "league": "الدوري الإسباني",
       "match_link": "",
       "debug_info": [
-        "بي إن سبورت 2",
-        "محمد فوزي",
+        "غير معروف",
+        "غير معروف",
         "الدوري الإسباني"
       ]
     },
     {
-      "team1": "نادي ليل",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb471274.png",
-      "team2": "لانس",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb479086.png",
-      "time": "11:05 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 5",
-      "commentator": "جواد بدة",
-      "league": "الدوري الفرنسي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 5",
-        "جواد بدة",
-        "الدوري الفرنسي"
-      ]
-    },
-    {
-      "team1": "أبها",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514c6f15.png",
-      "team2": "الاتحاد",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27514d06ad.png",
+      "team1": "التعاون",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c456c4083.png",
+      "team2": "الاتفاق",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c456cad84.png",
       "time": "03:30 PM",
       "score": "0-0",
-      "status": "انتهت",
-      "channel": "ثمانية 2",
-      "commentator": "سعد يحيى",
-      "league": "دوري روشن السعودي",
-      "match_link": "",
-      "debug_info": [
-        "ثمانية 2",
-        "سعد يحيى",
-        "دوري روشن السعودي"
-      ]
-    },
-    {
-      "team1": "الدرعية",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c42b68d1a.png",
-      "team2": "نيوم",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c42b6fee3.png",
-      "time": "05:50 PM",
-      "score": "0-0",
-      "status": "انتهت",
+      "status": "لم تبدأ بعد",
       "channel": "ثمانية 3",
-      "commentator": "خالد المديفر",
-      "league": "دوري روشن السعودي",
-      "match_link": "",
-      "debug_info": [
-        "ثمانية 3",
-        "خالد المديفر",
-        "دوري روشن السعودي"
-      ]
-    },
-    {
-      "team1": "لوهافر",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb337bb3.png",
-      "team2": "باريس",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb33e0f8.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 1",
-      "commentator": "أحمد البلوشي",
-      "league": "الدوري الفرنسي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 1",
-        "أحمد البلوشي",
-        "الدوري الفرنسي"
-      ]
-    },
-    {
-      "team1": "نيس",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3abb83.png",
-      "team2": "رين",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb3b1f5f.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 4",
-      "commentator": "أحمد عبده",
-      "league": "الدوري الفرنسي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 4",
-        "أحمد عبده",
-        "الدوري الفرنسي"
-      ]
-    },
-    {
-      "team1": "الشباب",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae275154eca9.png",
-      "team2": "الأهلي",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751554ef9.png",
-      "time": "09:00 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "ثمانية 1",
       "commentator": "راشد الدوسري",
       "league": "دوري روشن السعودي",
       "match_link": "",
       "debug_info": [
-        "ثمانية 1",
+        "ثمانية 3",
         "راشد الدوسري",
         "دوري روشن السعودي"
       ]
     },
     {
-      "team1": "إلفيرسبيرج",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae27513580b1.png",
-      "team2": "ماينتس",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751360727.png",
-      "time": "09:30 PM",
+      "team1": "بولونيا",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44d59230.png",
+      "team2": "مونزا",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44d5fa02.png",
+      "time": "04:00 PM",
       "score": "0-0",
-      "status": "انتهت",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "غير مدرج",
+      "league": "الدوري الإيطالي",
+      "match_link": "",
+      "debug_info": [
+        "StarzPlay",
+        "غير مدرج",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "أوجسبورغ",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c447cd6d8.png",
+      "team2": "فرايبورج",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c447d40d5.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
       "channel": "MBC شاهد | رياضة",
-      "commentator": "عائد العصيمي",
+      "commentator": "غير مدرج",
       "league": "الدوري الألماني",
       "match_link": "",
       "debug_info": [
         "MBC شاهد | رياضة",
-        "عائد العصيمي",
+        "غير مدرج",
         "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "باير ليفركوزن",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c448361a9.png",
+      "team2": "شتوتجارت",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4483dba9.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "غير مدرج",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "غير مدرج",
+        "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "مونشنغلادباخ",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c448c17f3.png",
+      "team2": "بادربورن",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c448c84c5.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "غير مدرج",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "غير مدرج",
+        "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "شالكه",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c449f3edd.png",
+      "team2": "لايبزيج",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44a0686d.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "غير مدرج",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "غير مدرج",
+        "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "فيردر بريمن",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44a6fe4d.png",
+      "team2": "هوفنهايم",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44a76f9c.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "غير مدرج",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "غير مدرج",
+        "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "الفيحاء",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4575a4e2.png",
+      "team2": "الفيصلي",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45761786.png",
+      "time": "04:55 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "ثمانية 2",
+      "commentator": "سليمان الشريف",
+      "league": "دوري روشن السعودي",
+      "match_link": "",
+      "debug_info": [
+        "ثمانية 2",
+        "سليمان الشريف",
+        "دوري روشن السعودي"
+      ]
+    },
+    {
+      "team1": "مان سيتي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45367174.png",
+      "team2": "برايتون",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4536cfbb.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "هال سيتي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c452da906.png",
+      "team2": "إيبسويتش",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c452e0cc8.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "كوفنتري",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c451d4b21.png",
+      "team2": "سندرلاند",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c451dac5d.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "برينتفورد",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4516a4fa.png",
+      "team2": "نوتينغهام",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4517139b.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "بورنموث",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c450ec029.png",
+      "team2": "ليدز يونايتد",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c450f2d55.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "رايو فاليكانو",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44459d64.png",
+      "team2": "سيلتا فيغو",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444601fb.png",
+      "time": "05:15 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإسباني"
+      ]
+    },
+    {
+      "team1": "أودينيزي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44dc976f.png",
+      "team2": "روما",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44dd1337.png",
+      "time": "07:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "غير مدرج",
+      "league": "الدوري الإيطالي",
+      "match_link": "",
+      "debug_info": [
+        "StarzPlay",
+        "غير مدرج",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "توتنهام",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c453ceb28.png",
+      "team2": "كريستال بالاس",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c453d4911.png",
+      "time": "07:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "بايرن ميونخ",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44b5f2c1.png",
+      "team2": "دورتموند",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44b66511.png",
+      "time": "07:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC Action",
+      "commentator": "غير مدرج",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC Action",
+        "غير مدرج",
+        "الدوري الألماني"
+      ]
+    },
+    {
+      "team1": "ريال بيتيس",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444dfb5c.png",
+      "team2": "ملقا",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c444e5ea8.png",
+      "time": "07:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإسباني"
+      ]
+    },
+    {
+      "team1": "الوداد الرياضي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45a3c2b8.png",
+      "team2": "المغرب التطواني",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45a43669.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "المغربية الرياضية",
+      "commentator": "غير مدرج",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "",
+      "debug_info": [
+        "المغربية الرياضية",
+        "غير مدرج",
+        "البطولة الوطنية المغربية"
+      ]
+    },
+    {
+      "team1": "الهلال",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b1ef1.png",
+      "team2": "الفتح",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c457b8611.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "ثمانية 1",
+      "commentator": "سعد يحيى",
+      "league": "دوري روشن السعودي",
+      "match_link": "",
+      "debug_info": [
+        "ثمانية 1",
+        "سعد يحيى",
+        "دوري روشن السعودي"
+      ]
+    },
+    {
+      "team1": "تروا",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c446d08c5.png",
+      "team2": "لو مان",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c446d70e8.png",
+      "time": "09:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الفرنسي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الفرنسي"
+      ]
+    },
+    {
+      "team1": "ميلان",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e598ac.png",
+      "team2": "إنتر ميلان",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44e60764.png",
+      "time": "09:45 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "StarzPlay",
+      "commentator": "غير مدرج",
+      "league": "الدوري الإيطالي",
+      "match_link": "",
+      "debug_info": [
+        "StarzPlay",
+        "غير مدرج",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "أستون فيلا",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4546a741.png",
+      "team2": "فولهام",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45472b38.png",
+      "time": "10:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "برشلونة",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4456084d.png",
+      "team2": "ألافيس",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44568ef4.png",
+      "time": "10:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإسباني"
       ]
     }
   ]
