@@ -2,7 +2,7 @@
   "success": true,
   "count": 8,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-30T09:31:28+00:00",
+  "updated_at": "2026-10-30T10:28:15+00:00",
   "matches": [
     {
       "team1": "أبها",
@@ -41,24 +41,6 @@
       ]
     },
     {
-      "team1": "الشباب",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae275154eca9.png",
-      "team2": "الأهلي",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751554ef9.png",
-      "time": "08:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "ثمانية 1",
-      "commentator": "راشد الدوسري",
-      "league": "دوري روشن السعودي",
-      "match_link": "",
-      "debug_info": [
-        "ثمانية 1",
-        "راشد الدوسري",
-        "دوري روشن السعودي"
-      ]
-    },
-    {
       "team1": "لوهافر",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae26cb337bb3.png",
       "team2": "باريس",
@@ -92,6 +74,24 @@
         "بي إن سبورت 4",
         "أحمد عبده",
         "الدوري الفرنسي"
+      ]
+    },
+    {
+      "team1": "الشباب",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae275154eca9.png",
+      "team2": "الأهلي",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae2751554ef9.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "ثمانية 1",
+      "commentator": "راشد الدوسري",
+      "league": "دوري روشن السعودي",
+      "match_link": "",
+      "debug_info": [
+        "ثمانية 1",
+        "راشد الدوسري",
+        "دوري روشن السعودي"
       ]
     },
     {
