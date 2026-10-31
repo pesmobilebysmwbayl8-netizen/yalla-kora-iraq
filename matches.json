@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T19:15:37+00:00",
+  "updated_at": "2026-10-31T19:58:41+00:00",
   "matches": [
     {
       "team1": "ميلان",
@@ -275,6 +275,24 @@
       ]
     },
     {
+      "team1": "الوداد الرياضي",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae630040d492.png",
+      "team2": "المغرب التطواني",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6300417545.png",
+      "time": "08:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "المغربية الرياضية",
+      "commentator": "هشام فرج",
+      "league": "البطولة الوطنية المغربية",
+      "match_link": "",
+      "debug_info": [
+        "المغربية الرياضية",
+        "هشام فرج",
+        "البطولة الوطنية المغربية"
+      ]
+    },
+    {
       "team1": "الهلال",
       "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6300196200.png",
       "team2": "الفتح",
@@ -290,24 +308,6 @@
         "غير معروف",
         "غير معروف",
         "دوري روشن السعودي"
-      ]
-    },
-    {
-      "team1": "الوداد الرياضي",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae630040d492.png",
-      "team2": "المغرب التطواني",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6300417545.png",
-      "time": "08:00 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "البطولة الوطنية المغربية",
-      "match_link": "",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "البطولة الوطنية المغربية"
       ]
     }
   ]
