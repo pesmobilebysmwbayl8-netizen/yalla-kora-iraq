@@ -2,62 +2,8 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T20:30:16+00:00",
+  "updated_at": "2026-10-31T21:14:41+00:00",
   "matches": [
-    {
-      "team1": "ميلان",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fd6060d8.png",
-      "team2": "إنتر ميلان",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fd60c904.png",
-      "time": "09:45 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "StarzPlay",
-      "commentator": "فارس عوض",
-      "league": "الدوري الإيطالي",
-      "match_link": "",
-      "debug_info": [
-        "StarzPlay",
-        "فارس عوض",
-        "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "أستون فيلا",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fffeb7f2.png",
-      "team2": "فولهام",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62ffff217d.png",
-      "time": "10:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "الدوري الإنجليزي"
-      ]
-    },
-    {
-      "team1": "برشلونة",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607ba1680c.png",
-      "team2": "ألافيس",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607ba1dd7d.png",
-      "time": "10:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 1",
-      "commentator": "أحمد البلوشي",
-      "league": "الدوري الإسباني",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 1",
-        "أحمد البلوشي",
-        "الدوري الإسباني"
-      ]
-    },
     {
       "team1": "تشيلسي",
       "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6084e931b7.png",
@@ -149,24 +95,6 @@
       ]
     },
     {
-      "team1": "برينتفورد",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae60851a9ad8.png",
-      "team2": "نوتينغهام",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae60851b024a.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 2",
-      "commentator": "باسم الزير",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "باسم الزير",
-        "الدوري الإنجليزي"
-      ]
-    },
-    {
       "team1": "بورنموث",
       "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6084fa5a94.png",
       "team2": "ليدز يونايتد",
@@ -181,6 +109,24 @@
       "debug_info": [
         "بي إن سبورت 4",
         "عبدالله الغامدي",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "برينتفورد",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae60851a9ad8.png",
+      "team2": "نوتينغهام",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae60851b024a.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "بي إن سبورت 2",
+      "commentator": "باسم الزير",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 2",
+        "باسم الزير",
         "الدوري الإنجليزي"
       ]
     },
@@ -221,24 +167,6 @@
       ]
     },
     {
-      "team1": "ريال بيتيس",
-      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607b8e2016.png",
-      "team2": "ملقا",
-      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607b8e91d1.png",
-      "time": "07:30 PM",
-      "score": "0-0",
-      "status": "انتهت",
-      "channel": "بي إن سبورت 2",
-      "commentator": "نوفل باشي",
-      "league": "الدوري الإسباني",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "نوفل باشي",
-        "الدوري الإسباني"
-      ]
-    },
-    {
       "team1": "بايرن ميونخ",
       "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6082e4296d.png",
       "team2": "دورتموند",
@@ -275,6 +203,24 @@
       ]
     },
     {
+      "team1": "ريال بيتيس",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607b8e2016.png",
+      "team2": "ملقا",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607b8e91d1.png",
+      "time": "07:30 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "بي إن سبورت 2",
+      "commentator": "نوفل باشي",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 2",
+        "نوفل باشي",
+        "الدوري الإسباني"
+      ]
+    },
+    {
       "team1": "الهلال",
       "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae6300196200.png",
       "team2": "الفتح",
@@ -308,6 +254,60 @@
         "المغربية الرياضية",
         "هشام فرج",
         "البطولة الوطنية المغربية"
+      ]
+    },
+    {
+      "team1": "ميلان",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fd6060d8.png",
+      "team2": "إنتر ميلان",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fd60c904.png",
+      "time": "09:45 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "StarzPlay",
+      "commentator": "فارس عوض",
+      "league": "الدوري الإيطالي",
+      "match_link": "",
+      "debug_info": [
+        "StarzPlay",
+        "فارس عوض",
+        "الدوري الإيطالي"
+      ]
+    },
+    {
+      "team1": "برشلونة",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607ba1680c.png",
+      "team2": "ألافيس",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae607ba1dd7d.png",
+      "time": "10:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "بي إن سبورت 1",
+      "commentator": "أحمد البلوشي",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 1",
+        "أحمد البلوشي",
+        "الدوري الإسباني"
+      ]
+    },
+    {
+      "team1": "أستون فيلا",
+      "team1_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62fffeb7f2.png",
+      "team2": "فولهام",
+      "team2_img": "https://live-yallashoot.com/wp-content/uploads/2026/10/alba_img_6ae62ffff217d.png",
+      "time": "10:00 PM",
+      "score": "0-0",
+      "status": "انتهت",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
       ]
     }
   ]
