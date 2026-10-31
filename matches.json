@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T14:44:31+00:00",
+  "updated_at": "2026-10-31T15:17:17+00:00",
   "matches": [
     {
       "team1": "شالكه",
@@ -20,24 +20,6 @@
         "MBC شاهد | رياضة",
         "عبدالله المحيسن",
         "الدوري الألماني"
-      ]
-    },
-    {
-      "team1": "بورنموث",
-      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b74a4cd8.png",
-      "team2": "ليدز يونايتد",
-      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b74adafb.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 4",
-      "commentator": "عبدالله الغامدي",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 4",
-        "عبدالله الغامدي",
-        "الدوري الإنجليزي"
       ]
     },
     {
@@ -109,6 +91,24 @@
       "debug_info": [
         "بي إن سبورت 2",
         "باسم الزير",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "بورنموث",
+      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b74a4cd8.png",
+      "team2": "ليدز يونايتد",
+      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b74adafb.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "جارية الان",
+      "channel": "بي إن سبورت 4",
+      "commentator": "عبدالله الغامدي",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 4",
+        "عبدالله الغامدي",
         "الدوري الإنجليزي"
       ]
     },
