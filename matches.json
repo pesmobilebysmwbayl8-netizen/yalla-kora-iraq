@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T14:04:03+00:00",
+  "updated_at": "2026-10-31T14:44:31+00:00",
   "matches": [
     {
       "team1": "شالكه",
@@ -20,42 +20,6 @@
         "MBC شاهد | رياضة",
         "عبدالله المحيسن",
         "الدوري الألماني"
-      ]
-    },
-    {
-      "team1": "هال سيتي",
-      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b968a350.png",
-      "team2": "إيبسويتش",
-      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b96909f3.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
-        "الدوري الإنجليزي"
-      ]
-    },
-    {
-      "team1": "برينتفورد",
-      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b744fbe9.png",
-      "team2": "نوتينغهام",
-      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b7456e1e.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "جارية الان",
-      "channel": "بي إن سبورت 2",
-      "commentator": "باسم الزير",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "باسم الزير",
-        "الدوري الإنجليزي"
       ]
     },
     {
@@ -113,13 +77,49 @@
       ]
     },
     {
+      "team1": "هال سيتي",
+      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b968a350.png",
+      "team2": "إيبسويتش",
+      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b96909f3.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "جارية الان",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "برينتفورد",
+      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b744fbe9.png",
+      "team2": "نوتينغهام",
+      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b7456e1e.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "جارية الان",
+      "channel": "بي إن سبورت 2",
+      "commentator": "باسم الزير",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 2",
+        "باسم الزير",
+        "الدوري الإنجليزي"
+      ]
+    },
+    {
       "team1": "رايو فاليكانو",
       "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5e43126.png",
       "team2": "سيلتا فيغو",
       "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5e49c93.png",
       "time": "05:15 PM",
       "score": "0-0",
-      "status": "بعد قليل",
+      "status": "جارية الان",
       "channel": "beIN Xtra 1",
       "commentator": "أحمد عبده",
       "league": "الدوري الإسباني",
