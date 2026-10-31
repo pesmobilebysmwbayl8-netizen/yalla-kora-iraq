@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T08:57:14+00:00",
+  "updated_at": "2026-10-31T09:32:48+00:00",
   "matches": [
     {
       "team1": "تشيلسي",
@@ -192,13 +192,13 @@
       "time": "07:30 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
+      "channel": "بي إن سبورت 1",
+      "commentator": "علي محمد علي",
       "league": "الدوري الإنجليزي",
       "match_link": "",
       "debug_info": [
-        "غير معروف",
-        "غير معروف",
+        "بي إن سبورت 1",
+        "علي محمد علي",
         "الدوري الإنجليزي"
       ]
     },
