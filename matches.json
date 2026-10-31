@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T09:32:48+00:00",
+  "updated_at": "2026-10-31T10:16:34+00:00",
   "matches": [
     {
       "team1": "تشيلسي",
@@ -246,13 +246,13 @@
       "time": "08:00 PM",
       "score": "0-0",
       "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
+      "channel": "المغربية الرياضية",
+      "commentator": "غير مدرج",
       "league": "البطولة الوطنية المغربية",
       "match_link": "",
       "debug_info": [
-        "غير معروف",
-        "غير معروف",
+        "المغربية الرياضية",
+        "غير مدرج",
         "البطولة الوطنية المغربية"
       ]
     },
