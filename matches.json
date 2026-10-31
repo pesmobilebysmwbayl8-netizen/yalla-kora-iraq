@@ -2,7 +2,7 @@
   "success": true,
   "count": 17,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T12:18:07+00:00",
+  "updated_at": "2026-10-31T13:19:35+00:00",
   "matches": [
     {
       "team1": "تشيلسي",
@@ -47,7 +47,7 @@
       "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b6469097.png",
       "time": "04:30 PM",
       "score": "0-0",
-      "status": "لم تبدأ بعد",
+      "status": "بعد قليل",
       "channel": "MBC شاهد | رياضة",
       "commentator": "عبدالله المحيسن",
       "league": "الدوري الألماني",
@@ -185,24 +185,6 @@
       ]
     },
     {
-      "team1": "ريال بيتيس",
-      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5f4dc93.png",
-      "team2": "ملقا",
-      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5f556f1.png",
-      "time": "07:30 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "بي إن سبورت 2",
-      "commentator": "نوفل باشي",
-      "league": "الدوري الإسباني",
-      "match_link": "",
-      "debug_info": [
-        "بي إن سبورت 2",
-        "نوفل باشي",
-        "الدوري الإسباني"
-      ]
-    },
-    {
       "team1": "بايرن ميونخ",
       "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b62a7a82.png",
       "team2": "دورتموند",
@@ -236,6 +218,24 @@
         "بي إن سبورت 1",
         "علي محمد علي",
         "الدوري الإنجليزي"
+      ]
+    },
+    {
+      "team1": "ريال بيتيس",
+      "team1_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5f4dc93.png",
+      "team2": "ملقا",
+      "team2_img": "https://yalla-shootes.com/wp-content/uploads/2026/10/alba_img_6ae58b5f556f1.png",
+      "time": "07:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "بي إن سبورت 2",
+      "commentator": "نوفل باشي",
+      "league": "الدوري الإسباني",
+      "match_link": "",
+      "debug_info": [
+        "بي إن سبورت 2",
+        "نوفل باشي",
+        "الدوري الإسباني"
       ]
     },
     {
