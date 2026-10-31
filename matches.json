@@ -2,7 +2,7 @@
   "success": true,
   "count": 26,
   "source": "https://yallashootio.com/matches-todays/",
-  "updated_at": "2026-10-31T01:48:05+00:00",
+  "updated_at": "2026-10-31T02:38:14+00:00",
   "matches": [
     {
       "team1": "تشيلسي",
@@ -74,24 +74,6 @@
         "StarzPlay",
         "أحمد الخير",
         "الدوري الإيطالي"
-      ]
-    },
-    {
-      "team1": "شالكه",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c449f3edd.png",
-      "team2": "لايبزيج",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44a0686d.png",
-      "time": "04:30 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "MBC شاهد | رياضة",
-      "commentator": "عبدالله المحيسن",
-      "league": "الدوري الألماني",
-      "match_link": "",
-      "debug_info": [
-        "MBC شاهد | رياضة",
-        "عبدالله المحيسن",
-        "الدوري الألماني"
       ]
     },
     {
@@ -167,6 +149,24 @@
       ]
     },
     {
+      "team1": "شالكه",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c449f3edd.png",
+      "team2": "لايبزيج",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c44a0686d.png",
+      "time": "04:30 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "MBC شاهد | رياضة",
+      "commentator": "عبدالله المحيسن",
+      "league": "الدوري الألماني",
+      "match_link": "",
+      "debug_info": [
+        "MBC شاهد | رياضة",
+        "عبدالله المحيسن",
+        "الدوري الألماني"
+      ]
+    },
+    {
       "team1": "الفيحاء",
       "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4575a4e2.png",
       "team2": "الفيصلي",
@@ -182,6 +182,24 @@
         "ثمانية 2",
         "سليمان الشريف",
         "دوري روشن السعودي"
+      ]
+    },
+    {
+      "team1": "مان سيتي",
+      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45367174.png",
+      "team2": "برايتون",
+      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4536cfbb.png",
+      "time": "05:00 PM",
+      "score": "0-0",
+      "status": "لم تبدأ بعد",
+      "channel": "غير معروف",
+      "commentator": "غير معروف",
+      "league": "الدوري الإنجليزي",
+      "match_link": "",
+      "debug_info": [
+        "غير معروف",
+        "غير معروف",
+        "الدوري الإنجليزي"
       ]
     },
     {
@@ -253,24 +271,6 @@
       "debug_info": [
         "بي إن سبورت 4",
         "عبدالله الغامدي",
-        "الدوري الإنجليزي"
-      ]
-    },
-    {
-      "team1": "مان سيتي",
-      "team1_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c45367174.png",
-      "team2": "برايتون",
-      "team2_img": "https://yaalashoot.com/wp-content/uploads/2026/10/alba_img_6ae3c4536cfbb.png",
-      "time": "05:00 PM",
-      "score": "0-0",
-      "status": "لم تبدأ بعد",
-      "channel": "غير معروف",
-      "commentator": "غير معروف",
-      "league": "الدوري الإنجليزي",
-      "match_link": "",
-      "debug_info": [
-        "غير معروف",
-        "غير معروف",
         "الدوري الإنجليزي"
       ]
     },
