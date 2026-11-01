@@ -9,48 +9,27 @@ import requests
 
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, unquote
 from bs4 import BeautifulSoup
 
-
-# =========================
+# =====================================
 # الإعدادات
-# =========================
+# =====================================
 
 BASE_URL = "https://shot.wiki"
 OUTPUT = "matches.json"
+TZ = ZoneInfo("Asia/Baghdad")
 
-TIMEZONE = ZoneInfo("Asia/Baghdad")
+PAGES = {
+    "today": BASE_URL + "/matches-today/",
+    "yesterday": BASE_URL + "/matches-yesterday/",
+    "tomorrow": BASE_URL + "/matches-tomorrow/",
+}
 
-MAX_PAGES = 70
-REQUEST_DELAY = 0.3
-
-SITEMAP_URLS = [
-    BASE_URL + "/sitemap.xml",
-    BASE_URL + "/sitemap_index.xml",
-    BASE_URL + "/wp-sitemap.xml",
-]
-
-LISTING_URLS = [
-    BASE_URL,
-    BASE_URL + "/matches/",
-]
-
-SAMPLE_MATCH_URL = (
-    "https://shot.wiki/matches/"
-    "%d9%85%d8%a8%d8%a7%d8%b1%d8%a7%d8%a9-"
-    "%d8%b3%d8%a8%d9%88%d8%b1%d8%aa%d9%8a%d9%86%d8%ac-"
-    "%d8%a8%d8%b1%d8%a7%d8%ba%d8%a7-"
-    "%d9%88-%d9%81%d8%a7%d9%85%d8%a7%d9%84%d9%8a%d9%83%d8%a7%d9%88/"
-)
-
-
-# =========================
-# الاتصال بالموقع
-# =========================
+DELAY = 0.25
+MAX_MATCHES_PER_DAY = 100
 
 session = requests.Session()
-
 session.headers.update({
     "User-Agent": (
         "Mozilla/5.0 (Linux; Android 10) "
@@ -60,454 +39,451 @@ session.headers.update({
 })
 
 
+# =====================================
+# أدوات عامة
+# =====================================
+
+def clean(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
 def get_page(url):
     try:
-        response = session.get(url, timeout=20)
+        response = session.get(url, timeout=25)
         response.raise_for_status()
-
-        if "text/html" not in response.headers.get(
-            "Content-Type", ""
-        ) and not url.endswith(".xml"):
-            return None
-
         response.encoding = response.apparent_encoding
         return response.text
-
-    except requests.RequestException as error:
-        print("تعذر فتح:", url, error)
+    except requests.RequestException as e:
+        print("تعذر تحميل الصفحة:", url, e)
         return None
 
 
-# =========================
-# اكتشاف روابط المباريات
-# =========================
-
-def valid_match_url(url):
-    parsed = urlparse(url)
-
-    if parsed.netloc and parsed.netloc != urlparse(BASE_URL).netloc:
-        return False
-
-    return "/matches/" in parsed.path and parsed.path != "/matches/"
+def get_soup(url):
+    html = get_page(url)
+    if not html:
+        return None
+    return BeautifulSoup(html, "html.parser")
 
 
-def collect_sitemap_links():
-    found = set()
+def valid_url(url):
+    p = urlparse(url)
+    return (
+        p.netloc == "shot.wiki"
+        and "/matches/" in p.path
+        and p.path != "/matches/"
+    )
 
-    for sitemap_url in SITEMAP_URLS:
-        xml = get_page(sitemap_url)
 
-        if not xml:
+def unique(items):
+    result = []
+    seen = set()
+
+    for item in items:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+
+    return result
+
+
+# =====================================
+# جلب روابط المباريات من صفحات الأيام
+# =====================================
+
+def collect_day_links(day):
+    print("جلب روابط:", day)
+
+    soup = get_soup(PAGES[day])
+
+    if not soup:
+        return []
+
+    links = []
+
+    for a in soup.find_all("a", href=True):
+        url = urljoin(BASE_URL, a["href"]).split("#")[0]
+
+        if valid_url(url):
+            links.append(url)
+
+    links = unique(links)
+
+    print("عدد الروابط:", len(links))
+
+    return links[:MAX_MATCHES_PER_DAY]
+
+
+# =====================================
+# استخراج نص بطاقة المباراة
+# =====================================
+
+def get_card_text(anchor):
+    current = anchor
+
+    for _ in range(8):
+        if not current or not getattr(current, "parent", None):
+            break
+
+        current = current.parent
+        text = clean(current.get_text(" ", strip=True))
+
+        has_time = bool(
+            re.search(r"\b\d{1,2}:\d{2}\s*(?:AM|PM)?\b", text, re.I)
+        )
+
+        has_status = any(x in text for x in [
+            "لم تبدأ", "انتهت", "مباشر", "الشوط"
+        ])
+
+        has_score = bool(
+            re.search(r"\b\d+\s*[-:]\s*\d+\b", text)
+        )
+
+        if has_time and (has_status or has_score):
+            if len(text) < 1500:
+                return current, text
+
+    return anchor.parent, clean(anchor.parent.get_text(" ", strip=True))
+
+
+def find_card(soup, match_url):
+    for a in soup.find_all("a", href=True):
+        url = urljoin(BASE_URL, a["href"]).split("#")[0]
+
+        if url == match_url:
+            return get_card_text(a)
+
+    return None, ""
+
+
+# =====================================
+# أسماء الفريقين
+# =====================================
+
+def extract_teams(soup, url, card_text=""):
+    title = ""
+
+    for selector in [
+        "h1",
+        'meta[property="og:title"]',
+        'meta[name="twitter:title"]',
+    ]:
+        tag = soup.select_one(selector)
+
+        if not tag:
             continue
 
-        soup = BeautifulSoup(xml, "html.parser")
+        if tag.name == "meta":
+            title = clean(tag.get("content"))
+        else:
+            title = clean(tag.get_text(" ", strip=True))
 
-        for loc in soup.find_all("loc"):
-            link = loc.get_text(strip=True)
+        if title:
+            break
 
-            if link.endswith(".xml"):
-                child_xml = get_page(link)
+    page_text = clean(soup.get_text(" ", strip=True))
 
-                if child_xml:
-                    child_soup = BeautifulSoup(child_xml, "html.parser")
+    sources = [title, page_text[:2500], card_text]
 
-                    for child_loc in child_soup.find_all("loc"):
-                        child_link = child_loc.get_text(strip=True)
+    patterns = [
+        r"بطاقة المباراة\s+(.+?)\s+(?:Vs|vs|VS)\s+(.+?)(?:\s+البطولة|\s+تاريخ المباراة|$)",
+        r"مباراة\s+(.+?)\s+و\s+(.+?)(?:\s+مباشر|\s+اليوم|\s+يلا شوت|$)",
+    ]
 
-                        if valid_match_url(child_link):
-                            found.add(child_link)
+    for source in sources:
+        for pattern in patterns:
+            match = re.search(pattern, source, re.I)
 
-            elif valid_match_url(link):
-                found.add(link)
+            if match:
+                home = clean(match.group(1))
+                away = clean(match.group(2))
 
-    return found
+                home = re.sub(
+                    r"^(بث مباشر|يلا شوت)\s*", "", home
+                ).strip()
 
+                away = re.sub(
+                    r"\s*(بث مباشر|يلا شوت)$", "", away
+                ).strip()
 
-def collect_listing_links():
-    found = set()
+                if home and away and len(home) < 70 and len(away) < 70:
+                    return home, away
 
-    for listing_url in LISTING_URLS:
-        html = get_page(listing_url)
+    # محاولة أخيرة من رابط المباراة
+    slug = unquote(urlparse(url).path.split("/")[-2])
+    slug = slug.replace("مباراة-", "").replace("-", " ")
 
-        if not html:
-            continue
+    if " و " in slug:
+        parts = slug.split(" و ", 1)
 
-        soup = BeautifulSoup(html, "html.parser")
-
-        for tag in soup.find_all("a", href=True):
-            link = urljoin(BASE_URL, tag["href"]).split("#")[0]
-
-            if valid_match_url(link):
-                found.add(link)
-
-    return found
-
-
-def collect_links():
-    print("أبحث عن روابط المباريات...")
-
-    links = set()
-
-    links.update(collect_listing_links())
-    links.update(collect_sitemap_links())
-
-    # رابط المثال للفحص فقط، وليس بيانات مضمونة لمباراة اليوم
-    links.add(SAMPLE_MATCH_URL)
-
-    links = sorted(links)
-
-    print("الروابط المكتشفة:", len(links))
-
-    return links[:MAX_PAGES]
-
-
-# =========================
-# قراءة البيانات المنظمة
-# =========================
-
-def walk_json(data):
-    if isinstance(data, dict):
-        yield data
-
-        graph = data.get("@graph")
-        if isinstance(graph, list):
-            for item in graph:
-                yield from walk_json(item)
-
-        for value in data.values():
-            if isinstance(value, (dict, list)):
-                yield from walk_json(value)
-
-    elif isinstance(data, list):
-        for item in data:
-            yield from walk_json(item)
-
-
-def read_structured_data(soup):
-    events = []
-
-    for script in soup.find_all(
-        "script",
-        type="application/ld+json"
-    ):
-        raw = script.string or script.get_text()
-
-        try:
-            data = json.loads(raw)
-
-            for item in walk_json(data):
-                item_type = item.get("@type", "")
-
-                if isinstance(item_type, list):
-                    item_type = " ".join(item_type)
-
-                if (
-                    "SportsEvent" in item_type
-                    or "Event" in item_type
-                ):
-                    events.append(item)
-
-        except (ValueError, TypeError):
-            continue
-
-    return events
-
-
-def team_info(value):
-    if isinstance(value, str):
-        return value.strip(), ""
-
-    if isinstance(value, dict):
-        name = value.get("name", "")
-        logo = value.get("logo", "")
-
-        if isinstance(logo, dict):
-            logo = logo.get("url", "")
-
-        if isinstance(logo, list) and logo:
-            logo = logo[0]
-
-        if isinstance(logo, dict):
-            logo = logo.get("url", "")
-
-        return str(name).strip(), str(logo).strip()
+        if len(parts) == 2:
+            return clean(parts[0]), clean(parts[1])
 
     return "", ""
 
 
-# =========================
+# =====================================
 # التاريخ والوقت
-# =========================
+# =====================================
 
-def parse_date(value):
-    if not value:
-        return None
+def extract_datetime(text, fallback_day):
+    date_match = re.search(
+        r"(\d{1,2})[-/](\d{1,2})[-/](\d{4})",
+        text
+    )
 
-    value = str(value).strip()
+    time_match = re.search(
+        r"الساعة\s*(\d{1,2}):(\d{2})|"
+        r"\b(\d{1,2}):(\d{2})\s*(AM|PM)\b",
+        text,
+        re.I
+    )
 
-    try:
-        dt = datetime.fromisoformat(
-            value.replace("Z", "+00:00")
+    if date_match:
+        d, m, y = map(int, date_match.groups())
+        try:
+            match_date = datetime(y, m, d).date()
+        except ValueError:
+            match_date = None
+    else:
+        match_date = None
+
+    if not match_date:
+        today = datetime.now(TZ).date()
+
+        offsets = {
+            "today": 0,
+            "yesterday": -1,
+            "tomorrow": 1,
+        }
+
+        match_date = today + timedelta(
+            days=offsets[fallback_day]
         )
 
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=TIMEZONE)
-        else:
-            dt = dt.astimezone(TIMEZONE)
-
-        return dt
-
-    except ValueError:
+    if not time_match:
         return None
 
+    if time_match.group(1) is not None:
+        hour = int(time_match.group(1))
+        minute = int(time_match.group(2))
+    else:
+        hour = int(time_match.group(3))
+        minute = int(time_match.group(4))
+        period = time_match.group(5).upper()
 
-def classify_day(dt):
-    today = datetime.now(TIMEZONE).date()
+        if period == "PM" and hour != 12:
+            hour += 12
+        elif period == "AM" and hour == 12:
+            hour = 0
 
-    if dt.date() == today:
-        return "today"
+    if not (0 <= hour <= 23 and 0 <= minute <= 59):
+        return None
 
-    if dt.date() == today - timedelta(days=1):
-        return "yesterday"
+    # وقت Shot Wiki في بيانات المباراة مذكور بتوقيت مصر.
+    # العراق متقدم بساعة عن مصر في تاريخ التشغيل الحالي.
+    if "بتوقيت مصر" in text:
+        dt = datetime(
+            match_date.year,
+            match_date.month,
+            match_date.day,
+            hour,
+            minute
+        ) + timedelta(hours=1)
 
-    if dt.date() == today + timedelta(days=1):
-        return "tomorrow"
+    elif "بتوقيت بغداد" in text or "بتوقيت العراق" in text:
+        dt = datetime(
+            match_date.year,
+            match_date.month,
+            match_date.day,
+            hour,
+            minute
+        )
 
-    return None
+    else:
+        dt = datetime(
+            match_date.year,
+            match_date.month,
+            match_date.day,
+            hour,
+            minute
+        ) + timedelta(hours=1)
+
+    return dt.replace(tzinfo=TZ)
 
 
-# =========================
-# استخراج النصوص
-# =========================
+# =====================================
+# القناة والمعلق والبطولة
+# =====================================
 
-def clean_text(value):
-    if not value:
-        return ""
+def extract_channel(text):
+    patterns = [
+        r"القناة المدرجة في بيانات المباراة هي\s*(.+?)(?:\.|،|$)",
+        r"اسم القناة\s*(.+?)(?:\s+المعلق|\s+البطولة|$)",
+        r"القناة الناقلة\s*[:：]?\s*(.+?)(?:\s+المعلق|$)",
+    ]
 
-    return re.sub(
-        r"\s+",
-        " ",
-        str(value)
-    ).strip()
+    for pattern in patterns:
+        m = re.search(pattern, text, re.I)
 
-
-def find_label(soup, labels):
-    for element in soup.find_all(
-        ["div", "span", "p", "li", "td", "strong"]
-    ):
-        text = clean_text(element.get_text(" ", strip=True))
-
-        if not text or len(text) > 120:
-            continue
-
-        for label in labels:
-            if text.startswith(label):
-                value = text[len(label):].strip(" :-：")
-
-                if value:
-                    return value
-
-                sibling = element.find_next_sibling()
-
-                if sibling:
-                    value = clean_text(
-                        sibling.get_text(" ", strip=True)
-                    )
-
-                    if value and len(value) < 120:
-                        return value
+        if m:
+            return clean(m.group(1)).strip(" .،")
 
     return ""
 
 
-def extract_title(soup):
-    for selector, attribute in [
-        ('meta[property="og:title"]', "content"),
-        ('meta[name="twitter:title"]', "content"),
-    ]:
-        tag = soup.select_one(selector)
+def extract_commentator(text):
+    patterns = [
+        r"يتولى\s+(.+?)\s+التعليق",
+        r"المعلق\s*[:：]?\s*(.+?)(?:\s+البطولة|$)",
+        r"المعلق الصوتي\s*[:：]?\s*(.+?)(?:\s+البطولة|$)",
+    ]
 
-        if tag and tag.get(attribute):
-            return clean_text(tag.get(attribute))
+    for pattern in patterns:
+        m = re.search(pattern, text, re.I)
 
-    h1 = soup.find("h1")
-
-    if h1:
-        return clean_text(h1.get_text(" ", strip=True))
-
-    if soup.title:
-        return clean_text(soup.title.get_text())
+        if m:
+            return clean(m.group(1)).strip(" .،")
 
     return ""
 
 
-def extract_teams(title, event):
-    home = ""
-    away = ""
-    home_img = ""
-    away_img = ""
+def extract_league(text):
+    patterns = [
+        r"ضمن منافسات\s*(.+?)(?:\.|،|$)",
+        r"بطولة\s+(.+?)(?:\.|،|$)",
+        r"البطولة\s*(.+?)(?:\s+تاريخ المباراة|$)",
+    ]
 
-    if event:
-        home, home_img = team_info(
-            event.get("homeTeam")
-        )
+    for pattern in patterns:
+        m = re.search(pattern, text, re.I)
 
-        away, away_img = team_info(
-            event.get("awayTeam")
-        )
+        if m:
+            value = clean(m.group(1)).strip(" .،")
+            if len(value) < 120:
+                return value
 
-        if not home or not away:
-            competitors = event.get("competitor", [])
-
-            if isinstance(competitors, dict):
-                competitors = [competitors]
-
-            names = []
-
-            for competitor in competitors:
-                name, logo = team_info(competitor)
-
-                if name:
-                    names.append((name, logo))
-
-            if len(names) >= 2:
-                home = home or names[0][0]
-                away = away or names[1][0]
-
-                home_img = home_img or names[0][1]
-                away_img = away_img or names[1][1]
-
-    if not home or not away:
-        separators = [" vs ", " VS ", " - ", " – ", " و "]
-
-        for separator in separators:
-            if separator in title:
-                parts = title.split(separator, 1)
-
-                if len(parts) == 2:
-                    home = home or clean_text(parts[0])
-                    away = away or clean_text(parts[1])
-                    break
-
-    return home, away, home_img, away_img
+    return ""
 
 
-# =========================
-# حالة المباراة والنتيجة
-# =========================
+# =====================================
+# النتيجة والحالة والشعارات
+# =====================================
 
-def extract_status(soup, event):
-    status_text = ""
+def extract_score(text):
+    m = re.search(
+        r"\b(\d{1,2})\s*[-:]\s*(\d{1,2})\b",
+        text
+    )
 
-    if event:
-        status_text = clean_text(
-            event.get("eventStatus", "")
-        )
+    if m:
+        return m.group(1) + "-" + m.group(2)
 
-    if not status_text:
-        status_text = clean_text(
-            soup.get_text(" ", strip=True)
-        )[:3000]
+    return ""
 
-    lowered = status_text.lower()
 
-    if any(word in lowered for word in [
-        "live", "inprogress", "مباشر", "جارية", "الشوط"
-    ]):
-        return "live"
-
-    if any(word in lowered for word in [
-        "ended", "finished", "completed",
-        "انتهت", "نهاية المباراة"
+def extract_status(text, score):
+    if any(x in text for x in [
+        "انتهت", "نهاية المباراة", "مباراة انتهت"
     ]):
         return "ended"
+
+    if any(x in text for x in [
+        "مباشر", "جارية", "الشوط الأول", "الشوط الثاني"
+    ]):
+        return "live"
 
     return "upcoming"
 
 
-def extract_score(soup):
-    score = find_label(
-        soup,
-        ["النتيجة", "نتيجة المباراة", "Score", "النتيجة:"]
-    )
+def extract_logos(card):
+    home_img = ""
+    away_img = ""
 
-    if score and re.search(r"\d+\s*[-:]\s*\d+", score):
-        return score
+    if not card:
+        return home_img, away_img
 
-    return ""
+    images = card.find_all("img")
 
+    found = []
 
-# =========================
-# استخراج مباراة واحدة
-# =========================
-
-def parse_match(url):
-    html = get_page(url)
-
-    if not html:
-        return None
-
-    soup = BeautifulSoup(html, "html.parser")
-
-    events = read_structured_data(soup)
-    event = events[0] if events else {}
-
-    title = extract_title(soup)
-
-    home, away, home_img, away_img = extract_teams(
-        title,
-        event
-    )
-
-    # نعتمد على تاريخ بداية الحدث فقط.
-    # لا نستخدم تاريخ نشر المقال لأنه قد يكون مختلفاً.
-    date_value = ""
-
-    if event:
-        date_value = event.get("startDate", "")
-
-    if not date_value:
-        tag = soup.select_one(
-            '[itemprop="startDate"]'
+    for img in images:
+        src = (
+            img.get("data-src")
+            or img.get("data-lazy-src")
+            or img.get("src")
+            or ""
         )
 
-        if tag:
-            date_value = (
-                tag.get("content")
-                or tag.get("datetime")
-                or tag.get_text(strip=True)
-            )
+        if src.startswith("//"):
+            src = "https:" + src
 
-    if not date_value:
+        if src.startswith("http"):
+            found.append(src)
+
+    if len(found) >= 2:
+        home_img = found[0]
+        away_img = found[1]
+
+    return home_img, away_img
+
+
+# =====================================
+# قراءة مباراة واحدة
+# =====================================
+
+def parse_match(url, day, listing_soup):
+    soup = get_soup(url)
+
+    if not soup:
         return None
 
-    match_datetime = parse_date(date_value)
+    card, card_text = find_card(listing_soup, url)
 
-    if not match_datetime:
-        return None
+    page_text = clean(soup.get_text(" ", strip=True))
 
-    day = classify_day(match_datetime)
-
-    if not day:
-        return None
+    home, away = extract_teams(
+        soup, url, card_text
+    )
 
     if not home or not away:
+        print("لم أتعرف على الفريقين:", url)
         return None
 
-    league = find_label(
-        soup,
-        ["البطولة", "الدوري", "المسابقة", "League"]
-    )
+    # نقرأ التاريخ والوقت من صفحة المباراة أولاً
+    dt = extract_datetime(page_text, day)
 
-    channel = find_label(
-        soup,
-        ["القناة الناقلة", "القناة", "Channel"]
-    )
+    if not dt:
+        # عند عدم وجود تاريخ في التفاصيل نستخدم بطاقة اليوم
+        dt = extract_datetime(card_text, day)
 
-    commentator = find_label(
-        soup,
-        ["المعلق", "المعلق الصوتي", "Commentator"]
-    )
+    if not dt:
+        print("لم أتعرف على الوقت:", home, "-", away)
+        return None
+
+    # بيانات القناة والمعلق من صفحة المباراة
+    channel = extract_channel(page_text)
+    commentator = extract_commentator(page_text)
+    league = extract_league(page_text)
+
+    # معلومات البطاقة كخيار احتياطي
+    if not channel:
+        channel = extract_channel(card_text)
+
+    if not league:
+        league = extract_league(card_text)
+
+    score = extract_score(card_text)
+
+    if not score:
+        score = extract_score(page_text)
+
+    status = extract_status(card_text, score)
+
+    if not card_text:
+        status = extract_status(page_text, score)
+
+    home_img, away_img = extract_logos(card)
 
     return {
         "league": league,
@@ -517,21 +493,21 @@ def parse_match(url):
         "team2": away,
         "home_img": home_img,
         "away_img": away_img,
-        "hour": match_datetime.strftime("%H:%M"),
-        "time": match_datetime.strftime("%H:%M"),
-        "date": match_datetime.strftime("%Y-%m-%d"),
-        "match_date": match_datetime.strftime("%Y-%m-%d"),
-        "status": extract_status(soup, event),
-        "score": extract_score(soup),
+        "hour": dt.strftime("%H:%M"),
+        "time": dt.strftime("%H:%M"),
+        "date": dt.strftime("%Y-%m-%d"),
+        "match_date": dt.strftime("%Y-%m-%d"),
+        "status": status,
+        "score": score,
         "channel": channel,
         "commentator": commentator,
         "streamUrl": ""
     }
 
 
-# =========================
-# حفظ الملف بأمان
-# =========================
+# =====================================
+# حفظ JSON بأمان
+# =====================================
 
 def save_json(data):
     content = json.dumps(
@@ -548,9 +524,9 @@ def save_json(data):
             encoding="utf-8",
             dir=".",
             delete=False
-        ) as file:
-            file.write(content)
-            temp_path = file.name
+        ) as f:
+            f.write(content)
+            temp_path = f.name
 
         os.replace(temp_path, OUTPUT)
 
@@ -559,100 +535,100 @@ def save_json(data):
             os.remove(temp_path)
 
 
-# =========================
-# تشغيل التحديث
-# =========================
+# =====================================
+# التشغيل
+# =====================================
 
 def main():
     print("=" * 45)
     print("Yalla Kora - Shot Wiki")
     print("=" * 45)
 
-    links = collect_links()
+    all_matches = {}
 
-    if not links:
-        raise RuntimeError(
-            "لم يتم العثور على روابط مباريات."
-        )
+    for day in ["yesterday", "today", "tomorrow"]:
+        print("\nتحميل صفحة", day)
 
-    results = {}
-    errors = 0
+        listing_soup = get_soup(PAGES[day])
 
-    for index, url in enumerate(links, 1):
-        print(
-            f"فحص المباراة {index}/{len(links)}"
-        )
+        if not listing_soup:
+            print("تعذر تحميل صفحة", day)
+            continue
 
-        try:
-            match = parse_match(url)
+        links = []
 
-            if match:
-                key = (
-                    match["date"],
-                    match["home"],
-                    match["away"]
-                )
+        for a in listing_soup.find_all("a", href=True):
+            url = urljoin(BASE_URL, a["href"]).split("#")[0]
 
-                if key not in results:
-                    results[key] = match
-                else:
-                    old = results[key]
+            if valid_url(url):
+                links.append(url)
 
-                    for field in [
-                        "league",
-                        "channel",
-                        "commentator",
-                        "home_img",
-                        "away_img",
-                        "score"
-                    ]:
-                        if not old[field] and match[field]:
-                            old[field] = match[field]
+        links = unique(links)[:MAX_MATCHES_PER_DAY]
 
-                print(
-                    "تم العثور:",
-                    match["home"],
-                    "-",
-                    match["away"]
-                )
+        print("روابط المباريات:", len(links))
 
-        except Exception as error:
-            errors += 1
-            print("خطأ:", error)
+        for index, url in enumerate(links, 1):
+            print(f"فحص {index}/{len(links)}")
 
-        time.sleep(REQUEST_DELAY)
+            try:
+                match = parse_match(url, day, listing_soup)
 
-    matches = list(results.values())
+                if match:
+                    key = (
+                        match["date"],
+                        match["home"],
+                        match["away"]
+                    )
+
+                    all_matches[key] = match
+
+                    print(
+                        "تم:",
+                        match["home"],
+                        "-",
+                        match["away"],
+                        match["hour"]
+                    )
+
+            except Exception as e:
+                print("خطأ في المباراة:", e)
+
+            time.sleep(DELAY)
+
+    matches = list(all_matches.values())
+
+    today_date = datetime.now(TZ).date()
 
     today = [
         m for m in matches
-        if classify_day(
-            parse_date(m["date"])
-        ) == "today"
+        if m["date"] == today_date.isoformat()
     ]
+
+    yesterday_date = (
+        today_date - timedelta(days=1)
+    ).isoformat()
+
+    tomorrow_date = (
+        today_date + timedelta(days=1)
+    ).isoformat()
 
     yesterday = [
         m for m in matches
-        if classify_day(
-            parse_date(m["date"])
-        ) == "yesterday"
+        if m["date"] == yesterday_date
     ]
 
     tomorrow = [
         m for m in matches
-        if classify_day(
-            parse_date(m["date"])
-        ) == "tomorrow"
+        if m["date"] == tomorrow_date
     ]
 
-    # لا نمسح البيانات القديمة إذا لم نجد مباريات اليوم.
     if not today:
         raise RuntimeError(
-            "لم يتم العثور على مباريات اليوم. "
-            "لم يتم تغيير matches.json القديم."
+            "لم يتم استخراج مباريات اليوم. "
+            "تم الاحتفاظ بملف matches.json القديم."
         )
 
-    now = datetime.now(TIMEZONE)
+    now = datetime.now(TZ)
 
     data = {
         "success": True,
@@ -670,18 +646,18 @@ def main():
 
     save_json(data)
 
-    print("=" * 45)
-    print("اكتمل تحديث matches.json")
-    print("مباريات اليوم:", len(today))
-    print("مباريات الأمس:", len(yesterday))
-    print("مباريات الغد:", len(tomorrow))
-    print("أخطاء الصفحات:", errors)
+    print("\n" + "=" * 45)
+    print("اكتمل التحديث")
+    print("اليوم:", len(today))
+    print("الأمس:", len(yesterday))
+    print("الغد:", len(tomorrow))
     print("=" * 45)
 
 
 if __name__ == "__main__":
     try:
         main()
-    except Exception as error:
-        print("فشل التحديث:", error)
+    except Exception as e:
+        print("\nفشل التحديث:", e)
         sys.exit(1)
+            
