@@ -100,7 +100,7 @@ def collect_sitemap_links():
         if not xml:
             continue
 
-        soup = BeautifulSoup(xml, "xml")
+        soup = BeautifulSoup(xml, "html.parser")
 
         for loc in soup.find_all("loc"):
             link = loc.get_text(strip=True)
@@ -109,7 +109,7 @@ def collect_sitemap_links():
                 child_xml = get_page(link)
 
                 if child_xml:
-                    child_soup = BeautifulSoup(child_xml, "xml")
+                    child_soup = BeautifulSoup(child_xml, "html.parser")
 
                     for child_loc in child_soup.find_all("loc"):
                         child_link = child_loc.get_text(strip=True)
