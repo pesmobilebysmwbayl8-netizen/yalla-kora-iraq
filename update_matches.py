@@ -1,4 +1,3 @@
-
 import os
 import re
 import sys
@@ -13,12 +12,13 @@ from urllib.parse import urljoin, urlparse, unquote
 from bs4 import BeautifulSoup
 
 # ==========================================
-# YALLA KORA - MATCHES + STREAM LINKS
+# YALLA KORA - MATCH UPDATER
 # ==========================================
 
 BASE_URL = "https://shot.wiki"
 OUTPUT = "matches.json"
 STREAM_FILE = "stream_links.json"
+
 TZ = ZoneInfo("Asia/Baghdad")
 
 PAGES = {
@@ -83,6 +83,7 @@ def get_page(url):
         response.raise_for_status()
         response.encoding = response.apparent_encoding or "utf-8"
         return response.text
+
     except requests.RequestException as exc:
         print("Page error:", url, exc)
         return None
@@ -155,7 +156,7 @@ def normalize_team(value):
 
 def load_stream_links():
     if not os.path.exists(STREAM_FILE):
-        print("WARNING: stream_links.json not found.")
+        print("INFO: stream_links.json not found. Using match pages.")
         return []
 
     try:
@@ -163,17 +164,16 @@ def load_stream_links():
             data = json.load(file)
 
         if isinstance(data, dict):
-            # Supports {"links": [...]} or a dictionary of entries.
-            if isinstance(data.get("links"), list):
-                entries = data["links"]
-            else:
-                entries = list(data.values())
+            entries = (
+                data["links"]
+                if isinstance(data.get("links"), list)
+                else list(data.values())
+            )
 
         elif isinstance(data, list):
             entries = data
 
         else:
-            print("Invalid stream_links.json format.")
             return []
 
         result = []
@@ -208,29 +208,20 @@ def match_stream_link(match, stream_links):
     home = normalize_team(match.get("home"))
     away = normalize_team(match.get("away"))
 
-    if not home or not away:
-        return match
-
     for item in stream_links:
-        link_home = normalize_team(item.get("home"))
-        link_away = normalize_team(item.get("away"))
+        if (
+            home == normalize_team(item.get("home"))
+            and away == normalize_team(item.get("away"))
+        ):
+            # لا نمسح بيانات الصفحة بقيم فارغة.
+            for field in ("channel", "commentator", "streamUrl"):
+                value = clean(item.get(field))
 
-        # Exact home/away pair matching.
-        if home == link_home and away == link_away:
-            match["channel"] = item.get("channel", "")
-            match["commentator"] = item.get("commentator", "")
-            match["streamUrl"] = item.get("streamUrl", "")
+                if value:
+                    match[field] = value
 
-            print(
-                "CHANNEL MATCHED:",
-                match["home"],
-                "-",
-                match["away"],
-                "=>",
-                match["channel"]
-            )
-
-            return match
+            print("STREAM MATCHED:", match["channel"])
+            break
 
     return match
 
@@ -492,6 +483,87 @@ def extract_logos(card, home, away, home_logo, away_logo):
 
 
 # ==========================================
+# CHANNEL AND COMMENTATOR
+# ==========================================
+
+def extract_labeled_value(text, labels):
+    text = clean(text)
+
+    for label in labels:
+        pattern = (
+            re.escape(label)
+            + r"\s*[:：|\-]\s*"
+            + r"(.{2,80}?)"
+            + r"(?=\s+(?:القناة الناقلة|القناة|المعلق|"
+            + r"البطولة|الدوري|توقيت المباراة|تاريخ المباراة)"
+            + r"\s*[:：|\-]|$)"
+        )
+
+        found = re.search(pattern, text, re.I)
+
+        if found:
+            value = clean(found.group(1)).strip(" -|،؛:")
+
+            if value and len(value) <= 70:
+                return value
+
+    return ""
+
+
+def extract_channel(soup, page_text, card_text_value):
+    # 1) البحث في عناصر الصفحة التي تشير أسماؤها إلى القناة.
+    for tag in soup.find_all(True):
+        attrs = " ".join([
+            clean(tag.get("class")),
+            clean(tag.get("id")),
+            clean(tag.get("itemprop")),
+            clean(tag.get("data-label")),
+        ]).lower()
+
+        if any(word in attrs for word in (
+            "channel", "tv-channel", "broadcast", "television"
+        )):
+            value = clean(tag.get_text(" ", strip=True))
+
+            if (
+                value
+                and len(value) <= 70
+                and not re.search(r"القناة الناقلة|المعلق|مشاهدة|بث مباشر", value)
+            ):
+                return value
+
+    # 2) البحث في نص صفحة تفاصيل المباراة.
+    channel = extract_labeled_value(
+        page_text,
+        ("القناة الناقلة", "اسم القناة", "القناة")
+    )
+
+    if channel:
+        return channel
+
+    # 3) نص بطاقة المباراة كخيار احتياطي.
+    return extract_labeled_value(
+        card_text_value,
+        ("القناة الناقلة", "اسم القناة", "القناة")
+    )
+
+
+def extract_commentator(page_text, card_text_value):
+    value = extract_labeled_value(
+        page_text,
+        ("المعلق الرياضي", "اسم المعلق", "المعلق")
+    )
+
+    if value:
+        return value
+
+    return extract_labeled_value(
+        card_text_value,
+        ("المعلق الرياضي", "اسم المعلق", "المعلق")
+    )
+
+
+# ==========================================
 # DATE AND TIME
 # ==========================================
 
@@ -551,11 +623,7 @@ def extract_datetime(soup, event, fallback_day, card):
             ["time", "meta"],
             attrs={"datetime": True}
         ):
-            value = (
-                tag.get("datetime")
-                or tag.get("content")
-            )
-
+            value = tag.get("datetime") or tag.get("content")
             dt = parse_iso_datetime(value)
 
             if dt:
@@ -652,9 +720,7 @@ def extract_score(soup, event, card):
 
 
 def extract_status(text, event, dt, score):
-    event_status = clean(
-        event.get("eventStatus")
-    ).lower()
+    event_status = clean(event.get("eventStatus")).lower()
 
     if any(token in event_status for token in (
         "eventcanceled",
@@ -737,15 +803,13 @@ def parse_match(url, day, listing_soup):
 
     card = find_card(listing_soup, url)
     card_value = card_text(card)
+    page_text = clean(soup.get_text(" ", strip=True))
 
     structured = read_jsonld(soup)
     event = find_event(structured)
 
     home, away, home_logo, away_logo = extract_teams(
-        soup,
-        url,
-        event,
-        card
+        soup, url, event, card
     )
 
     if (
@@ -756,29 +820,20 @@ def parse_match(url, day, listing_soup):
         print("Invalid team names:", url)
         return None
 
-    dt = extract_datetime(
-        soup,
-        event,
-        day,
-        card
-    )
+    dt = extract_datetime(soup, event, day, card)
 
     if not dt:
         print("Match time missing:", home, away)
         return None
 
     home_logo, away_logo = extract_logos(
-        card,
-        home,
-        away,
-        home_logo,
-        away_logo
+        card, home, away, home_logo, away_logo
     )
 
     score = extract_score(soup, event, card)
 
     status = extract_status(
-        card_value,
+        card_value + " " + page_text[:500],
         event,
         dt,
         score
@@ -787,8 +842,18 @@ def parse_match(url, day, listing_soup):
     league = extract_league(card_value)
 
     if not league:
-        page_text = clean(soup.get_text(" ", strip=True))
         league = extract_league(page_text[:1200])
+
+    channel = extract_channel(
+        soup,
+        page_text,
+        card_value
+    )
+
+    commentator = extract_commentator(
+        page_text,
+        card_value
+    )
 
     return {
         "league": league,
@@ -804,8 +869,8 @@ def parse_match(url, day, listing_soup):
         "match_date": dt.strftime("%Y-%m-%d"),
         "status": status,
         "score": score,
-        "channel": "",
-        "commentator": "",
+        "channel": channel,
+        "commentator": commentator,
         "streamUrl": "",
     }
 
@@ -887,7 +952,6 @@ def main():
     print("YALLA KORA - MATCH UPDATER")
     print("=" * 45)
 
-    # Load channel mappings before scraping matches.
     stream_links = load_stream_links()
 
     all_matches = {}
@@ -910,18 +974,10 @@ def main():
             print(f"Checking {index}/{len(links)}")
 
             try:
-                match = parse_match(
-                    url,
-                    day,
-                    listing_soup
-                )
+                match = parse_match(url, day, listing_soup)
 
                 if match:
-                    # Restore the old stream_links.json matching feature.
-                    match = match_stream_link(
-                        match,
-                        stream_links
-                    )
+                    match = match_stream_link(match, stream_links)
 
                     key = (
                         match["date"],
@@ -937,7 +993,7 @@ def main():
                         "-",
                         match["away"],
                         "| Channel:",
-                        match["channel"] or "Not matched"
+                        match["channel"] or "Not found on source"
                     )
 
             except Exception as exc:
@@ -949,29 +1005,12 @@ def main():
 
     today_date = datetime.now(TZ).date()
     today_iso = today_date.isoformat()
+    yesterday_iso = (today_date - timedelta(days=1)).isoformat()
+    tomorrow_iso = (today_date + timedelta(days=1)).isoformat()
 
-    yesterday_iso = (
-        today_date - timedelta(days=1)
-    ).isoformat()
-
-    tomorrow_iso = (
-        today_date + timedelta(days=1)
-    ).isoformat()
-
-    today = [
-        item for item in matches
-        if item["date"] == today_iso
-    ]
-
-    yesterday = [
-        item for item in matches
-        if item["date"] == yesterday_iso
-    ]
-
-    tomorrow = [
-        item for item in matches
-        if item["date"] == tomorrow_iso
-    ]
+    today = [m for m in matches if m["date"] == today_iso]
+    yesterday = [m for m in matches if m["date"] == yesterday_iso]
+    tomorrow = [m for m in matches if m["date"] == tomorrow_iso]
 
     if "today" in failed_days or not today:
         raise RuntimeError(
@@ -1004,11 +1043,7 @@ def main():
     print("Today:", len(today))
     print("Yesterday:", len(yesterday))
     print("Tomorrow:", len(tomorrow))
-    print("Stream links:", len(stream_links))
-    print(
-        "Matched channels:",
-        sum(1 for item in matches if item["channel"])
-    )
+    print("Matched channels:", sum(1 for m in matches if m["channel"]))
     print("=" * 45)
 
 
