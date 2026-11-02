@@ -1,9 +1,9 @@
 {
   "success": true,
-  "updated_at": "2026-11-02T16:56:06.769613+03:00",
+  "updated_at": "2026-11-02T17:20:12.093806+03:00",
   "timezone": "Asia/Baghdad",
-  "count": 68,
-  "today_count": 13,
+  "count": 66,
+  "today_count": 11,
   "yesterday_count": 33,
   "tomorrow_count": 22,
   "matches": [
@@ -597,43 +597,7 @@
       "match_date": "2026-11-01",
       "status": "ended",
       "score": "0-0",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
-    {
-      "league": "بطولة آسيا, دوري أبطال آسيا للنخبة",
-      "home": "السد",
-      "away": "الأهلي",
-      "team1": "السد",
-      "team2": "الأهلي",
-      "home_img": "https://shoots-yalla.com/wp-content/uploads/2026/10/6992.png",
-      "away_img": "https://shoots-yalla.com/wp-content/uploads/2026/10/3804825.webp",
-      "hour": "18:00",
-      "time": "18:00",
-      "date": "2026-11-02",
-      "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "0-0",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
-    {
-      "league": "بطولة آسيا, دوري أبطال آسيا للنخبة",
-      "home": "الوصل",
-      "away": "القوة الجوية",
-      "team1": "الوصل",
-      "team2": "القوة الجوية",
-      "home_img": "https://shoots-yalla.com/wp-content/uploads/2026/09/8346.png",
-      "away_img": "https://shoots-yalla.com/wp-content/uploads/2026/09/11283.png",
-      "hour": "18:00",
-      "time": "18:00",
-      "date": "2026-11-02",
-      "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "0-0",
-      "channel": "",
+      "channel": "SSC 2 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -849,7 +813,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 5 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -867,7 +831,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -921,7 +885,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -939,7 +903,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1011,7 +975,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 3 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1029,7 +993,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1047,7 +1011,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أون تايم سبورتس 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1101,7 +1065,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1119,7 +1083,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 3 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1137,7 +1101,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أون تايم سبورتس 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1155,7 +1119,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -1227,48 +1191,12 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     }
   ],
   "today": [
-    {
-      "league": "بطولة آسيا, دوري أبطال آسيا للنخبة",
-      "home": "السد",
-      "away": "الأهلي",
-      "team1": "السد",
-      "team2": "الأهلي",
-      "home_img": "https://shoots-yalla.com/wp-content/uploads/2026/10/6992.png",
-      "away_img": "https://shoots-yalla.com/wp-content/uploads/2026/10/3804825.webp",
-      "hour": "18:00",
-      "time": "18:00",
-      "date": "2026-11-02",
-      "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "0-0",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
-    {
-      "league": "بطولة آسيا, دوري أبطال آسيا للنخبة",
-      "home": "الوصل",
-      "away": "القوة الجوية",
-      "team1": "الوصل",
-      "team2": "القوة الجوية",
-      "home_img": "https://shoots-yalla.com/wp-content/uploads/2026/09/8346.png",
-      "away_img": "https://shoots-yalla.com/wp-content/uploads/2026/09/11283.png",
-      "hour": "18:00",
-      "time": "18:00",
-      "date": "2026-11-02",
-      "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "0-0",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
     {
       "league": "بطولة إيطاليا, الدوري الإيطالي",
       "home": "ساسولو",
@@ -2059,7 +1987,7 @@
       "match_date": "2026-11-01",
       "status": "ended",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 2 🎙️",
       "commentator": "",
       "streamUrl": ""
     }
@@ -2079,7 +2007,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 5 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2097,7 +2025,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2151,7 +2079,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2169,7 +2097,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2241,7 +2169,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 3 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2259,7 +2187,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2277,7 +2205,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أون تايم سبورتس 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2331,7 +2259,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2349,7 +2277,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 3 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2367,7 +2295,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أون تايم سبورتس 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2385,7 +2313,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "بي إن سبورت 4 🎙️",
       "commentator": "",
       "streamUrl": ""
     },
@@ -2457,7 +2385,7 @@
       "match_date": "2026-11-03",
       "status": "upcoming",
       "score": "0-0",
-      "channel": "",
+      "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
     }
