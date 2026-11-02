@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-02T20:28:31.006273+03:00",
+  "updated_at": "2026-11-02T20:37:31.951241+03:00",
   "timezone": "Asia/Baghdad",
   "count": 81,
   "today_count": 26,
@@ -973,8 +973,8 @@
       "time": "20:30",
       "date": "2026-11-02",
       "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "stc tv",
       "commentator": "أحمد الحامد",
       "streamUrl": ""
@@ -1803,8 +1803,8 @@
       "time": "20:30",
       "date": "2026-11-02",
       "match_date": "2026-11-02",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "stc tv",
       "commentator": "أحمد الحامد",
       "streamUrl": ""
