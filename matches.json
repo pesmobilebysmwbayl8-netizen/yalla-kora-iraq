@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-03T15:36:32.176236+03:00",
+  "updated_at": "2026-11-03T16:51:23.107326+03:00",
   "timezone": "Asia/Baghdad",
   "count": 70,
   "today_count": 27,
@@ -650,7 +650,7 @@
       "date": "2026-11-03",
       "match_date": "2026-11-03",
       "status": "live",
-      "score": "2-1",
+      "score": "3-4",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -686,7 +686,7 @@
       "date": "2026-11-03",
       "match_date": "2026-11-03",
       "status": "live",
-      "score": "0-0",
+      "score": "2-2",
       "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
@@ -703,8 +703,8 @@
       "time": "16:30",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -721,8 +721,8 @@
       "time": "16:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "beIN SPORTS 8",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -1444,7 +1444,7 @@
       "date": "2026-11-03",
       "match_date": "2026-11-03",
       "status": "live",
-      "score": "2-1",
+      "score": "3-4",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1480,7 +1480,7 @@
       "date": "2026-11-03",
       "match_date": "2026-11-03",
       "status": "live",
-      "score": "0-0",
+      "score": "2-2",
       "channel": "أبو ظبي الرياضية 1 🎙️",
       "commentator": "",
       "streamUrl": ""
@@ -1497,8 +1497,8 @@
       "time": "16:30",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1515,8 +1515,8 @@
       "time": "16:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "beIN SPORTS 8",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
