@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-03T02:58:48.650986+03:00",
+  "updated_at": "2026-11-03T03:53:56.523381+03:00",
   "timezone": "Asia/Baghdad",
   "count": 70,
   "today_count": 27,
@@ -541,8 +541,8 @@
       "time": "03:15",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -559,8 +559,8 @@
       "time": "03:15",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "2-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1335,8 +1335,8 @@
       "time": "03:15",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1353,8 +1353,8 @@
       "time": "03:15",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "2-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
