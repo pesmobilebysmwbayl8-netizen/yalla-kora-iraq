@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-03T18:39:52.236191+03:00",
+  "updated_at": "2026-11-03T19:32:03.438630+03:00",
   "timezone": "Asia/Baghdad",
   "count": 70,
   "today_count": 27,
@@ -757,8 +757,8 @@
       "time": "19:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "beIN SPORTS 6",
       "commentator": "باسم الزير",
       "streamUrl": ""
@@ -775,8 +775,8 @@
       "time": "19:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "beIN SPORTS 2",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -1551,8 +1551,8 @@
       "time": "19:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "beIN SPORTS 6",
       "commentator": "باسم الزير",
       "streamUrl": ""
@@ -1569,8 +1569,8 @@
       "time": "19:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "beIN SPORTS 2",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
