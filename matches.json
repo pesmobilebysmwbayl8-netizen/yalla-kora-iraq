@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-03T17:47:20.444789+03:00",
+  "updated_at": "2026-11-03T18:39:52.236191+03:00",
   "timezone": "Asia/Baghdad",
   "count": 70,
   "today_count": 27,
@@ -703,8 +703,8 @@
       "time": "16:30",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "2-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -721,8 +721,8 @@
       "time": "16:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "live",
-      "score": "0-0",
+      "status": "ended",
+      "score": "0-2",
       "channel": "beIN SPORTS 8",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -739,8 +739,8 @@
       "time": "18:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
@@ -1497,8 +1497,8 @@
       "time": "16:30",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "2-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1515,8 +1515,8 @@
       "time": "16:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "live",
-      "score": "0-0",
+      "status": "ended",
+      "score": "0-2",
       "channel": "beIN SPORTS 8",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -1533,8 +1533,8 @@
       "time": "18:00",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-1",
       "channel": "SSC 1 🎙️",
       "commentator": "",
       "streamUrl": ""
