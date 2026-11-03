@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-03T09:37:19.593866+03:00",
+  "updated_at": "2026-11-03T10:53:53.602713+03:00",
   "timezone": "Asia/Baghdad",
   "count": 70,
   "today_count": 27,
@@ -577,8 +577,8 @@
       "time": "10:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "بي إن سبورت 5 🎙️",
       "commentator": "",
       "streamUrl": ""
@@ -1371,8 +1371,8 @@
       "time": "10:45",
       "date": "2026-11-03",
       "match_date": "2026-11-03",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "بي إن سبورت 5 🎙️",
       "commentator": "",
       "streamUrl": ""
