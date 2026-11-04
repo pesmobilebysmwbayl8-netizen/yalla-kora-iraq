@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-05T00:29:57.317435+03:00",
+  "updated_at": "2026-11-05T01:19:56.317207+03:00",
   "timezone": "Asia/Baghdad",
   "count": 102,
   "today_count": 54,
@@ -325,7 +325,7 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
+      "status": "ended",
       "score": "1-2",
       "channel": "",
       "commentator": "",
@@ -343,7 +343,7 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
+      "status": "ended",
       "score": "1-2",
       "channel": "",
       "commentator": "",
@@ -361,8 +361,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "4-1",
       "channel": "beIN SPORTS 4",
       "commentator": "علي سعيد الكعبي",
       "streamUrl": ""
@@ -379,8 +379,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-0",
+      "status": "ended",
+      "score": "2-1",
       "channel": "beIN SPORTS 5",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -397,8 +397,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "0-2",
+      "status": "ended",
+      "score": "1-2",
       "channel": "beIN SPORTS 1",
       "commentator": "علي محمد علي",
       "streamUrl": ""
@@ -415,8 +415,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "2-1",
+      "status": "ended",
+      "score": "4-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -433,8 +433,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-7",
+      "status": "ended",
+      "score": "1-9",
       "channel": "beIN SPORTS 9",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -451,8 +451,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "2-2",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 3",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
@@ -615,8 +615,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "نوفل باشي",
       "streamUrl": ""
     },
     {
@@ -633,8 +633,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 3",
+      "commentator": "عبدالله الغامدي",
       "streamUrl": ""
     },
     {
@@ -651,8 +651,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "عامر الخوذيري",
       "streamUrl": ""
     },
     {
@@ -687,8 +687,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "أحمد البلوشي",
       "streamUrl": ""
     },
     {
@@ -813,8 +813,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS XTRA 3",
+      "commentator": "عبدالله الغامدي",
       "streamUrl": ""
     },
     {
@@ -849,8 +849,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "محمد السعدي",
       "streamUrl": ""
     },
     {
@@ -1011,8 +1011,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "حسن العيدروس",
       "streamUrl": ""
     },
     {
@@ -1065,8 +1065,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 8",
+      "commentator": "باسم الزير",
       "streamUrl": ""
     },
     {
@@ -1119,8 +1119,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 1",
+      "commentator": "خليل البلوشي",
       "streamUrl": ""
     },
     {
@@ -1137,8 +1137,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "علي محمد علي",
       "streamUrl": ""
     },
     {
@@ -1191,8 +1191,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 3",
+      "commentator": "جواد بدة",
       "streamUrl": ""
     },
     {
@@ -1209,8 +1209,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 5",
+      "commentator": "محمد بركات",
       "streamUrl": ""
     },
     {
@@ -1227,8 +1227,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 9",
+      "commentator": "نوفل باشي",
       "streamUrl": ""
     },
     {
@@ -1281,8 +1281,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS XTRA 4",
+      "commentator": "أحمد فؤاد",
       "streamUrl": ""
     },
     {
@@ -1317,8 +1317,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 8",
+      "commentator": "منتصر الأزهري",
       "streamUrl": ""
     },
     {
@@ -1425,8 +1425,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "حسن العيدروس",
       "streamUrl": ""
     },
     {
@@ -2003,8 +2003,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "نوفل باشي",
       "streamUrl": ""
     },
     {
@@ -2021,8 +2021,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 3",
+      "commentator": "عبدالله الغامدي",
       "streamUrl": ""
     },
     {
@@ -2039,8 +2039,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "عامر الخوذيري",
       "streamUrl": ""
     },
     {
@@ -2075,8 +2075,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "أحمد البلوشي",
       "streamUrl": ""
     },
     {
@@ -2201,8 +2201,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS XTRA 3",
+      "commentator": "عبدالله الغامدي",
       "streamUrl": ""
     },
     {
@@ -2237,8 +2237,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "محمد السعدي",
       "streamUrl": ""
     },
     {
@@ -2399,8 +2399,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "حسن العيدروس",
       "streamUrl": ""
     },
     {
@@ -2453,8 +2453,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 8",
+      "commentator": "باسم الزير",
       "streamUrl": ""
     },
     {
@@ -2507,8 +2507,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 1",
+      "commentator": "خليل البلوشي",
       "streamUrl": ""
     },
     {
@@ -2525,8 +2525,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 2",
+      "commentator": "علي محمد علي",
       "streamUrl": ""
     },
     {
@@ -2579,8 +2579,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 3",
+      "commentator": "جواد بدة",
       "streamUrl": ""
     },
     {
@@ -2597,8 +2597,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 5",
+      "commentator": "محمد بركات",
       "streamUrl": ""
     },
     {
@@ -2615,8 +2615,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 9",
+      "commentator": "نوفل باشي",
       "streamUrl": ""
     },
     {
@@ -2669,8 +2669,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS XTRA 4",
+      "commentator": "أحمد فؤاد",
       "streamUrl": ""
     },
     {
@@ -2705,8 +2705,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 8",
+      "commentator": "منتصر الأزهري",
       "streamUrl": ""
     },
     {
@@ -2813,8 +2813,8 @@
       "match_date": "2026-11-05",
       "status": "upcoming",
       "score": "",
-      "channel": "",
-      "commentator": "",
+      "channel": "beIN SPORTS 4",
+      "commentator": "حسن العيدروس",
       "streamUrl": ""
     }
   ],
@@ -3137,7 +3137,7 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
+      "status": "ended",
       "score": "1-2",
       "channel": "",
       "commentator": "",
@@ -3155,7 +3155,7 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
+      "status": "ended",
       "score": "1-2",
       "channel": "",
       "commentator": "",
@@ -3173,8 +3173,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "4-1",
       "channel": "beIN SPORTS 4",
       "commentator": "علي سعيد الكعبي",
       "streamUrl": ""
@@ -3191,8 +3191,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-0",
+      "status": "ended",
+      "score": "2-1",
       "channel": "beIN SPORTS 5",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -3209,8 +3209,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "0-2",
+      "status": "ended",
+      "score": "1-2",
       "channel": "beIN SPORTS 1",
       "commentator": "علي محمد علي",
       "streamUrl": ""
@@ -3227,8 +3227,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "2-1",
+      "status": "ended",
+      "score": "4-1",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -3245,8 +3245,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-7",
+      "status": "ended",
+      "score": "1-9",
       "channel": "beIN SPORTS 9",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -3263,8 +3263,8 @@
       "time": "23:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "2-2",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 3",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
