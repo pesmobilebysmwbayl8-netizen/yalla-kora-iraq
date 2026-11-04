@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-04T21:33:59.038245+03:00",
+  "updated_at": "2026-11-04T22:41:11.243496+03:00",
   "timezone": "Asia/Baghdad",
   "count": 88,
   "today_count": 25,
@@ -703,8 +703,8 @@
       "time": "19:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 6",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -721,8 +721,8 @@
       "time": "20:45",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 2",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -739,8 +739,8 @@
       "time": "20:45",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "3-2",
       "channel": "beIN SPORTS 4",
       "commentator": "عصام الشوالي",
       "streamUrl": ""
@@ -758,7 +758,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "2-1",
       "channel": "beIN SPORTS XTRA 3",
       "commentator": "أحمد البلوشي",
       "streamUrl": ""
@@ -776,7 +776,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "0-1",
       "channel": "beIN SPORTS XTRA 4",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -793,8 +793,8 @@
       "time": "22:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1803,8 +1803,8 @@
       "time": "19:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 6",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -1821,8 +1821,8 @@
       "time": "20:45",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "2-3",
       "channel": "beIN SPORTS 2",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -1839,8 +1839,8 @@
       "time": "20:45",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-1",
+      "status": "ended",
+      "score": "3-2",
       "channel": "beIN SPORTS 4",
       "commentator": "عصام الشوالي",
       "streamUrl": ""
@@ -1858,7 +1858,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "2-1",
       "channel": "beIN SPORTS XTRA 3",
       "commentator": "أحمد البلوشي",
       "streamUrl": ""
@@ -1876,7 +1876,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "0-1",
       "channel": "beIN SPORTS XTRA 4",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -1893,8 +1893,8 @@
       "time": "22:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
