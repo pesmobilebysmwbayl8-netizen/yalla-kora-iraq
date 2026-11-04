@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-04T17:31:40.749533+03:00",
+  "updated_at": "2026-11-04T18:32:53.607656+03:00",
   "timezone": "Asia/Baghdad",
   "count": 88,
   "today_count": 25,
@@ -614,7 +614,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "1-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -631,8 +631,8 @@
       "time": "18:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -649,8 +649,8 @@
       "time": "18:30",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1714,7 +1714,7 @@
       "date": "2026-11-04",
       "match_date": "2026-11-04",
       "status": "live",
-      "score": "0-0",
+      "score": "1-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1731,8 +1731,8 @@
       "time": "18:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1749,8 +1749,8 @@
       "time": "18:30",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
