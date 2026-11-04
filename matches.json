@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-04T08:48:47.520119+03:00",
+  "updated_at": "2026-11-04T09:55:45.760829+03:00",
   "timezone": "Asia/Baghdad",
   "count": 88,
   "today_count": 25,
@@ -656,24 +656,6 @@
       "streamUrl": ""
     },
     {
-      "league": "الرابطة المحترفة الأولى الجزائرية",
-      "home": "مولودية الجزائر",
-      "away": "مولودية وهران",
-      "team1": "مولودية الجزائر",
-      "team2": "مولودية وهران",
-      "home_img": "https://images.fotmob.com/image_resources/logo/teamlogo/6353.png",
-      "away_img": "https://images.fotmob.com/image_resources/logo/teamlogo/101636.png",
-      "hour": "19:00",
-      "time": "19:00",
-      "date": "2026-11-04",
-      "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
-    {
       "league": "دوري أبطال آسيا 2",
       "home": "الريان",
       "away": "النهضة",
@@ -797,6 +779,24 @@
       "score": "",
       "channel": "beIN SPORTS XTRA 4",
       "commentator": "حسن العيدروس",
+      "streamUrl": ""
+    },
+    {
+      "league": "الرابطة المحترفة الأولى الجزائرية",
+      "home": "مولودية الجزائر",
+      "away": "مولودية وهران",
+      "team1": "مولودية الجزائر",
+      "team2": "مولودية وهران",
+      "home_img": "https://images.fotmob.com/image_resources/logo/teamlogo/6353.png",
+      "away_img": "https://images.fotmob.com/image_resources/logo/teamlogo/101636.png",
+      "hour": "22:00",
+      "time": "22:00",
+      "date": "2026-11-04",
+      "match_date": "2026-11-04",
+      "status": "upcoming",
+      "score": "",
+      "channel": "",
+      "commentator": "",
       "streamUrl": ""
     },
     {
@@ -1756,24 +1756,6 @@
       "streamUrl": ""
     },
     {
-      "league": "الرابطة المحترفة الأولى الجزائرية",
-      "home": "مولودية الجزائر",
-      "away": "مولودية وهران",
-      "team1": "مولودية الجزائر",
-      "team2": "مولودية وهران",
-      "home_img": "https://images.fotmob.com/image_resources/logo/teamlogo/6353.png",
-      "away_img": "https://images.fotmob.com/image_resources/logo/teamlogo/101636.png",
-      "hour": "19:00",
-      "time": "19:00",
-      "date": "2026-11-04",
-      "match_date": "2026-11-04",
-      "status": "upcoming",
-      "score": "",
-      "channel": "",
-      "commentator": "",
-      "streamUrl": ""
-    },
-    {
       "league": "دوري أبطال آسيا 2",
       "home": "الريان",
       "away": "النهضة",
@@ -1897,6 +1879,24 @@
       "score": "",
       "channel": "beIN SPORTS XTRA 4",
       "commentator": "حسن العيدروس",
+      "streamUrl": ""
+    },
+    {
+      "league": "الرابطة المحترفة الأولى الجزائرية",
+      "home": "مولودية الجزائر",
+      "away": "مولودية وهران",
+      "team1": "مولودية الجزائر",
+      "team2": "مولودية وهران",
+      "home_img": "https://images.fotmob.com/image_resources/logo/teamlogo/6353.png",
+      "away_img": "https://images.fotmob.com/image_resources/logo/teamlogo/101636.png",
+      "hour": "22:00",
+      "time": "22:00",
+      "date": "2026-11-04",
+      "match_date": "2026-11-04",
+      "status": "upcoming",
+      "score": "",
+      "channel": "",
+      "commentator": "",
       "streamUrl": ""
     },
     {
