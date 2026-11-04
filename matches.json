@@ -1,6 +1,6 @@
 {
   "success": true,
-  "updated_at": "2026-11-04T14:26:56.342369+03:00",
+  "updated_at": "2026-11-04T15:14:06.792938+03:00",
   "timezone": "Asia/Baghdad",
   "count": 88,
   "today_count": 25,
@@ -559,8 +559,8 @@
       "time": "13:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "0-0",
+      "status": "ended",
+      "score": "3-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -577,8 +577,8 @@
       "time": "13:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-2",
+      "status": "ended",
+      "score": "3-3",
       "channel": "beIN SPORTS 3",
       "commentator": "أحمد فؤاد",
       "streamUrl": ""
@@ -1659,8 +1659,8 @@
       "time": "13:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "0-0",
+      "status": "ended",
+      "score": "3-0",
       "channel": "",
       "commentator": "",
       "streamUrl": ""
@@ -1677,8 +1677,8 @@
       "time": "13:00",
       "date": "2026-11-04",
       "match_date": "2026-11-04",
-      "status": "live",
-      "score": "1-2",
+      "status": "ended",
+      "score": "3-3",
       "channel": "beIN SPORTS 3",
       "commentator": "أحمد فؤاد",
       "streamUrl": ""
