@@ -1,16 +1,22 @@
 
 # -*- coding: utf-8 -*-
+# YALLA KORA MULTI SEARCH ENGINE V6
+# Requirements: pip install requests
+
 import json
 import os
 import re
 import sys
 import time
+import html
 import tempfile
 import unicodedata
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+from html.parser import HTMLParser
+from urllib.parse import quote, urlparse
 
 import requests
 
@@ -21,13 +27,25 @@ BROADCASTS_FILE = ROOT / "broadcasts.json"
 BASE_URL = "https://www.fotmob.com/api/data"
 TZ = ZoneInfo("Asia/Baghdad")
 COUNTRY_CODE = "IRQ"
+
 DAYS = (-1, 0, 1)
 TIMEOUT = 20
+SEARCH_LIMIT = 5
+DELAY = 1.0
+
+# مصادر البحث
+SOURCES = [
+    "https://www.satzone.net/?id=2026&view=home",
+    "https://go11.io/channels",
+]
 
 session = requests.Session()
 session.headers.update({
-    "User-Agent": "Mozilla/5.0 YallaKoraSearchEngine/5.0",
-    "Accept": "application/json,text/html,application/rss+xml,*/*",
+    "User-Agent": (
+        "Mozilla/5.0 (Linux; Android 10) "
+        "AppleWebKit/537.36 Chrome/120.0 Mobile Safari/537.36"
+    ),
+    "Accept": "text/html,application/json,application/rss+xml,*/*",
     "Accept-Language": "ar-IQ,ar;q=0.9,en;q=0.5"
 })
 
@@ -37,11 +55,15 @@ TEAM_AR = {
     "liverpool": "ليفربول",
     "arsenal": "أرسنال",
     "chelsea": "تشيلسي",
+    "tottenham": "توتنهام",
+    "newcastle": "نيوكاسل",
     "real madrid": "ريال مدريد",
     "barcelona": "برشلونة",
     "atletico madrid": "أتلتيكو مدريد",
     "bayern munich": "بايرن ميونخ",
+    "borussia dortmund": "بوروسيا دورتموند",
     "paris saint-germain": "باريس سان جيرمان",
+    "psg": "باريس سان جيرمان",
     "inter milan": "إنتر ميلان",
     "ac milan": "ميلان",
     "juventus": "يوفنتوس",
@@ -50,13 +72,13 @@ TEAM_AR = {
     "al nassr": "النصر",
     "al ittihad": "الاتحاد",
     "al ahli": "الأهلي",
+    "al shabab": "الشباب",
     "al sadd": "السد",
     "al duhail": "الدحيل",
     "al shorta": "الشرطة",
     "al quwa al jawiya": "القوة الجوية",
     "al zawraa": "الزوراء",
     "iraqi stars league": "دوري نجوم العراق",
-    "iraq stars league": "دوري نجوم العراق",
     "saudi pro league": "دوري روشن السعودي",
     "premier league": "الدوري الإنجليزي الممتاز",
     "la liga": "الدوري الإسباني",
@@ -64,29 +86,36 @@ TEAM_AR = {
     "bundesliga": "الدوري الألماني",
     "ligue 1": "الدوري الفرنسي",
     "champions league": "دوري أبطال أوروبا",
-    "europa league": "الدوري الأوروبي"
+    "europa league": "الدوري الأوروبي",
 }
 
 CHANNEL_AR = {
     "bein sports": "بي إن سبورتس",
+    "bein": "بي إن سبورتس",
     "ssc": "إس إس سي",
     "alkass": "قنوات الكأس",
     "al kass": "قنوات الكأس",
     "abu dhabi sports": "أبوظبي الرياضية",
+    "iraqia sport": "العراقية الرياضية",
     "iraqia sports": "العراقية الرياضية",
     "al rabiaa": "الرابعة الرياضية",
     "alrabiaa": "الرابعة الرياضية",
     "thmanyah": "ثمانية",
+    "al thmanyah": "ثمانية",
     "dubai sports": "دبي الرياضية",
     "kuwait sports": "الكويت الرياضية",
-    "on time sports": "أون تايم سبورتس"
+    "oman sports": "عُمان الرياضية",
+    "on time sports": "أون تايم سبورتس",
+    "on sports": "أون سبورت",
+    "shahid": "شاهد",
+    "arr yadia": "الرياضية المغربية",
 }
 
 
 def clean(value):
     if value is None or isinstance(value, (dict, list)):
         return ""
-    return re.sub(r"\s+", " ", str(value)).strip()
+    return re.sub(r"\s+", " ", html.unescape(str(value))).strip()
 
 
 def normalize(value):
@@ -99,19 +128,26 @@ def normalize(value):
 
 def arabic_name(value):
     value = clean(value)
-    if not value or re.search(r"[\u0600-\u06ff]", value):
+    if not value:
+        return ""
+    if re.search(r"[\u0600-\u06ff]", value):
         return value
     return TEAM_AR.get(value.casefold(), value)
 
 
-def fetch_json(path, params=None):
+def fetch(url, params=None):
     response = session.get(
-        f"{BASE_URL}/{path.lstrip('/')}",
-        params=params or {},
-        timeout=TIMEOUT
+        url, params=params, timeout=TIMEOUT,
+        allow_redirects=True
     )
     response.raise_for_status()
-    return response.json()
+    return response
+
+
+def fetch_json(path, params=None):
+    return fetch(
+        f"{BASE_URL}/{path.lstrip('/')}", params
+    ).json()
 
 
 def load_json(path, default):
@@ -133,7 +169,7 @@ def parse_utc(value):
         if dt.tzinfo is None:
             dt = dt.replace(tzinfo=timezone.utc)
         return dt.astimezone(TZ)
-    except (ValueError, TypeError):
+    except Exception:
         return None
 
 
@@ -165,153 +201,151 @@ def old_data_maps():
     return streams, broadcasts
 
 
-def team_info(team):
-    if not isinstance(team, dict):
-        return "", ""
+# =====================================
+# HTML EXTRACTION
+# =====================================
 
-    name = (
-        clean(team.get("nameAr"))
-        or clean(team.get("name_ar"))
-        or clean(team.get("name"))
-        or clean(team.get("shortName"))
-    )
+class PageParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.parts = []
+        self.skip = 0
 
-    logo = (
-        clean(team.get("imageUrl"))
-        or clean(team.get("logo"))
-        or clean(team.get("logo_url"))
-    )
+    def handle_starttag(self, tag, attrs):
+        if tag in ("script", "style", "noscript", "svg"):
+            self.skip += 1
 
-    team_id = clean(team.get("id"))
+    def handle_endtag(self, tag):
+        if tag in ("script", "style", "noscript", "svg"):
+            self.skip = max(0, self.skip - 1)
 
-    if not logo and team_id.isdigit():
-        logo = (
-            "https://images.fotmob.com/image_resources/"
-            f"logo/teamlogo/{team_id}.png"
-        )
-
-    return arabic_name(name), logo
+    def handle_data(self, data):
+        if not self.skip:
+            value = clean(data)
+            if value:
+                self.parts.append(value)
 
 
-def match_status(status):
-    if isinstance(status, dict):
-        if status.get("cancelled") or status.get("finished"):
-            return "ended"
-        if status.get("started"):
-            return "live"
-
-        reason = clean(status.get("reason")).lower()
-
-        if reason in ("ft", "aet", "pen", "finished"):
-            return "ended"
-        if reason in ("ht", "1h", "2h", "live"):
-            return "live"
-
-    raw = clean(status).lower()
-
-    if raw in ("live", "ht", "1h", "2h"):
-        return "live"
-    if raw in ("ft", "aet", "pen", "ended", "finished"):
-        return "ended"
-
-    return "upcoming"
+def extract_text(source):
+    parser = PageParser()
+    try:
+        parser.feed(source)
+        return " ".join(parser.parts)
+    except Exception:
+        return clean(re.sub(r"<[^>]+>", " ", source))
 
 
-def get_score(item, status):
-    if isinstance(status, dict):
-        score = clean(status.get("scoreStr"))
-        if score and score not in ("-", "vs"):
-            return score.replace(" ", "")
+# =====================================
+# MULTI SOURCE SEARCH
+# =====================================
 
-    home = item.get("home", {})
-    away = item.get("away", {})
-
-    if isinstance(home, dict) and isinstance(away, dict):
-        h, a = home.get("score"), away.get("score")
-        if h is not None and a is not None:
-            return f"{h}-{a}"
-
-    return ""
-
-
-# ==============================
-# INTERNET SEARCH
-# ==============================
-
-def google_search(home, away, league, date):
-    query = (
-        f'"{home}" "{away}" "{league}" '
-        f'القناة الناقلة المعلق {date}'
-    )
-
+def google_news_search(query):
     url = "https://news.google.com/rss/search"
 
-    params = {
-        "q": query,
-        "hl": "ar",
-        "gl": "IQ",
-        "ceid": "IQ:ar"
-    }
-
     try:
-        response = session.get(
-            url, params=params, timeout=TIMEOUT
-        )
-        response.raise_for_status()
+        response = fetch(url, {
+            "q": query,
+            "hl": "ar",
+            "gl": "IQ",
+            "ceid": "IQ:ar"
+        })
 
         root = ET.fromstring(response.content)
         results = []
 
-        for item in root.findall(".//item")[:5]:
-            title = clean(item.findtext("title"))
-            description = clean(item.findtext("description"))
-            link = clean(item.findtext("link"))
-
+        for item in root.findall(".//item")[:SEARCH_LIMIT]:
             results.append({
-                "title": title,
-                "description": description,
-                "link": link
+                "title": clean(item.findtext("title")),
+                "description": clean(item.findtext("description")),
+                "link": clean(item.findtext("link"))
             })
 
         return results
 
     except Exception as error:
-        print("SEARCH ERROR:", error)
+        print("Google RSS:", error)
         return []
 
 
-def get_page_text(url):
+def bing_search(query):
+    url = "https://www.bing.com/search"
+
     try:
-        response = session.get(
-            url, timeout=TIMEOUT,
-            allow_redirects=True
-        )
-        response.raise_for_status()
+        response = fetch(url, {
+            "q": query,
+            "setlang": "ar"
+        })
 
-        text = re.sub(
-            r"<(script|style|noscript).*?>.*?</\1>",
-            " ", response.text,
-            flags=re.I | re.S
-        )
+        parser = PageParser()
+        parser.feed(response.text)
+        text = " ".join(parser.parts)
 
-        text = re.sub(r"<[^>]+>", " ", text)
+        return [{
+            "title": "",
+            "description": text[:15000],
+            "link": ""
+        }]
 
-        return clean(
-            re.sub(r"&(?:nbsp|amp|quot);", " ", text)
-        )[:30000]
+    except Exception as error:
+        print("Bing:", error)
+        return []
 
-    except Exception:
-        return ""
 
+def fetch_source_pages():
+    pages = []
+
+    for url in SOURCES:
+        try:
+            response = fetch(url)
+            text = extract_text(response.text)
+
+            pages.append({
+                "name": urlparse(url).netloc,
+                "text": text,
+                "url": url
+            })
+
+            print("SOURCE OK:", urlparse(url).netloc)
+
+        except Exception as error:
+            print("SOURCE ERROR:", url, error)
+
+    return pages
+
+
+# =====================================
+# MATCH VERIFICATION
+# =====================================
+
+def match_found(text, home, away):
+    text_norm = normalize(text)
+    h = normalize(home)
+    a = normalize(away)
+
+    return bool(
+        h and a and
+        h in text_norm and
+        a in text_norm
+    )
+
+
+# =====================================
+# CHANNEL EXTRACTION
+# =====================================
 
 def find_channel(text):
+    text = clean(text)
+
     patterns = [
-        r"(?:القناة الناقلة|على قناة|تنقلها|القناة)\s*[:：\-]?\s*"
-        r"([^،؛|.]{2,60})",
-        r"(?:beIN\s*SPORTS|SSC|Alkass|Al Kass|"
-        r"Abu Dhabi Sports|thmanyah|"
+        r"(?:القناة الناقلة|القنوات الناقلة|على قناة|"
+        r"تنقل على|تنقلها|القناة)\s*[:：\-]?\s*"
+        r"([^،؛|.]{2,65})",
+
+        r"(?:beIN\s*SPORTS|SSC(?:\s*SPORTS)?|"
+        r"Al\s*Kass|Alkass|Abu Dhabi Sports|"
+        r"Al Rabiaa|Thmanyah|ON TIME SPORTS|"
         r"قنوات الكأس|الرابعة الرياضية|ثمانية)"
-        r"(?:\s*(?:HD|4K)?\s*\d*)"
+        r"(?:\s*(?:HD|4K|Premium|Extra)?\s*\d*)?"
     ]
 
     for pattern in patterns:
@@ -320,33 +354,44 @@ def find_channel(text):
         if not found:
             continue
 
-        channel = clean(
+        value = clean(
             found.group(1) if found.lastindex
             else found.group(0)
         )
 
-        channel = re.split(
-            r"المعلق|معلق المباراة|موعد المباراة",
-            channel
+        value = re.split(
+            r"المعلق|معلق المباراة|موعد المباراة|"
+            r"توقيت المباراة|الملعب",
+            value
         )[0].strip(" :-")
 
-        for english, arabic in CHANNEL_AR.items():
-            if english in channel.casefold():
-                number = re.search(r"\d+", channel)
+        if not value:
+            continue
+
+        low = value.casefold()
+
+        for key, arabic in CHANNEL_AR.items():
+            if key in low:
+                number = re.search(r"\d+", value)
                 return arabic + (
                     " " + number.group()
                     if number else ""
                 )
 
-        if re.search(r"[\u0600-\u06ff]", channel):
-            return channel
+        if re.search(r"[\u0600-\u06ff]", value):
+            return value
 
     return ""
 
 
+# =====================================
+# COMMENTATOR EXTRACTION
+# =====================================
+
 def find_commentator(text):
     patterns = [
-        r"(?:المعلق|معلق المباراة|بصوت)\s*[:：\-]?\s*"
+        r"(?:المعلق|معلق المباراة|التعليق|"
+        r"بصوت|المعلق الصوتي)\s*[:：\-]?\s*"
         r"([\u0600-\u06ffA-Za-z .'-]{3,45})"
     ]
 
@@ -355,6 +400,7 @@ def find_commentator(text):
 
         if found:
             name = clean(found.group(1))
+
             name = re.split(
                 r"القناة|موعد|توقيت|الملعب|بطولة",
                 name
@@ -366,64 +412,92 @@ def find_commentator(text):
     return ""
 
 
-def search_broadcast(home, away, league, date):
-    results = google_search(home, away, league, date)
+# =====================================
+# BROADCAST INTELLIGENCE
+# =====================================
 
-    channel_votes = {}
-    commentator_votes = {}
+def search_match_broadcast(home, away, league, date, source_pages):
+    query = (
+        f'"{home}" "{away}" "{league}" '
+        f'القناة الناقلة المعلق {date}'
+    )
 
-    for result in results[:3]:
+    print("  SEARCH:", home, "-", away)
+
+    candidates = []
+
+    # المصدر الأول: Google News
+    for result in google_news_search(query):
         text = (
             result["title"] + " " +
             result["description"]
         )
 
-        # افتح صفحة النتيجة إذا لم تكفِ بيانات RSS
-        if not (
-            normalize(home) in normalize(text)
-            and normalize(away) in normalize(text)
-        ):
-            text += " " + get_page_text(result["link"])
-            time.sleep(0.7)
+        if not match_found(text, home, away) and result["link"]:
+            try:
+                page = fetch(result["link"])
+                text += " " + extract_text(page.text)[:20000]
+            except Exception:
+                pass
 
-        # لا تعتمد نتيجة لا تتطابق مع الفريقين
-        normalized = normalize(text)
+        if match_found(text, home, away):
+            candidates.append(("Google News", text))
 
-        if (
-            normalize(home) not in normalized
-            or normalize(away) not in normalized
-        ):
-            continue
+        time.sleep(0.5)
 
+    # المصدر الثاني: Bing
+    for result in bing_search(query):
+        text = result["description"]
+
+        if match_found(text, home, away):
+            candidates.append(("Bing", text))
+
+    # المصادر الرياضية المباشرة
+    for source in source_pages:
+        text = source["text"]
+
+        if match_found(text, home, away):
+            candidates.append((source["name"], text))
+
+    channels = {}
+    commentators = {}
+
+    for source_name, text in candidates:
         channel = find_channel(text)
         commentator = find_commentator(text)
 
         if channel:
-            channel_votes[channel] = (
-                channel_votes.get(channel, 0) + 1
-            )
+            channels[channel] = channels.get(channel, 0) + 1
 
         if commentator:
-            commentator_votes[commentator] = (
-                commentator_votes.get(commentator, 0) + 1
+            commentators[commentator] = (
+                commentators.get(commentator, 0) + 1
             )
 
+        print(
+            "  MATCHED SOURCE:",
+            source_name,
+            "| CHANNEL:", channel or "غير موجود",
+            "| COMMENTATOR:", commentator or "غير موجود"
+        )
+
+    # لا نعتمد نتيجة منفردة عشوائية.
     channel = (
-        max(channel_votes, key=channel_votes.get)
-        if channel_votes else ""
+        max(channels, key=channels.get)
+        if channels else ""
     )
 
     commentator = (
-        max(commentator_votes, key=commentator_votes.get)
-        if commentator_votes else ""
+        max(commentators, key=commentators.get)
+        if commentators else ""
     )
 
     return channel, commentator
 
 
-# ==============================
+# =====================================
 # BROADCAST DATA
-# ==============================
+# =====================================
 
 def load_broadcasts():
     data = load_json(BROADCASTS_FILE, {})
@@ -432,7 +506,8 @@ def load_broadcasts():
 
 def get_broadcast(
     item, date, home, away,
-    old_broadcasts, overrides, league
+    league, old_broadcasts,
+    overrides, source_pages
 ):
     key = (
         date,
@@ -443,7 +518,6 @@ def get_broadcast(
     previous = old_broadcasts.get(key, {})
 
     match_id = clean(item.get("id"))
-
     override = overrides.get(match_id, {})
 
     if not isinstance(override, dict):
@@ -465,10 +539,10 @@ def get_broadcast(
     )
 
     if not channel or not commentator:
-        print("  البحث عن القناة والمعلق:", home, "-", away)
-
-        found_channel, found_commentator = search_broadcast(
-            home, away, league, date
+        found_channel, found_commentator = (
+            search_match_broadcast(
+                home, away, league, date, source_pages
+            )
         )
 
         channel = channel or found_channel
@@ -477,11 +551,88 @@ def get_broadcast(
     return channel, commentator
 
 
-# ==============================
-# CONVERT MATCH
-# ==============================
+# =====================================
+# MATCH STATUS AND CONVERSION
+# =====================================
 
-def convert_match(item, streams, old_broadcasts, overrides):
+def team_info(team):
+    if not isinstance(team, dict):
+        return "", ""
+
+    raw = (
+        clean(team.get("nameAr"))
+        or clean(team.get("name_ar"))
+        or clean(team.get("name"))
+        or clean(team.get("shortName"))
+    )
+
+    logo = (
+        clean(team.get("imageUrl"))
+        or clean(team.get("logo"))
+        or clean(team.get("logo_url"))
+    )
+
+    team_id = clean(team.get("id"))
+
+    if not logo and team_id.isdigit():
+        logo = (
+            "https://images.fotmob.com/image_resources/"
+            f"logo/teamlogo/{team_id}.png"
+        )
+
+    return arabic_name(raw), logo
+
+
+def match_status(status):
+    if isinstance(status, dict):
+        if status.get("cancelled") or status.get("finished"):
+            return "ended"
+
+        if status.get("started"):
+            return "live"
+
+        reason = clean(status.get("reason")).lower()
+
+        if reason in ("ft", "aet", "pen", "finished"):
+            return "ended"
+
+        if reason in ("ht", "1h", "2h", "live"):
+            return "live"
+
+    raw = clean(status).lower()
+
+    if raw in ("live", "ht", "1h", "2h"):
+        return "live"
+
+    if raw in ("ft", "aet", "pen", "ended", "finished"):
+        return "ended"
+
+    return "upcoming"
+
+
+def get_score(item, status):
+    if isinstance(status, dict):
+        score = clean(status.get("scoreStr"))
+
+        if score and score not in ("-", "vs"):
+            return score.replace(" ", "")
+
+    home = item.get("home", {})
+    away = item.get("away", {})
+
+    if isinstance(home, dict) and isinstance(away, dict):
+        h, a = home.get("score"), away.get("score")
+
+        if h is not None and a is not None:
+            return f"{h}-{a}"
+
+    return ""
+
+
+def convert_match(
+    item, streams, old_broadcasts,
+    overrides, source_pages
+):
     if not isinstance(item, dict):
         return None
 
@@ -531,7 +682,8 @@ def convert_match(item, streams, old_broadcasts, overrides):
 
     channel, commentator = get_broadcast(
         item, date, home, away,
-        old_broadcasts, overrides, league
+        league, old_broadcasts,
+        overrides, source_pages
     )
 
     return {
@@ -554,13 +706,12 @@ def convert_match(item, streams, old_broadcasts, overrides):
     }
 
 
-# ==============================
+# =====================================
 # FETCH MATCHES
-# ==============================
+# =====================================
 
 def extract_matches(payload):
     if isinstance(payload, dict):
-
         if isinstance(payload.get("matches"), list):
             return payload["matches"]
 
@@ -585,7 +736,7 @@ def extract_matches(payload):
 def fetch_day(date):
     day = date.strftime("%Y%m%d")
 
-    print("جلب مباريات:", day)
+    print("FETCH:", day)
 
     payload = fetch_json(
         "matches",
@@ -599,9 +750,9 @@ def fetch_day(date):
     return extract_matches(payload)
 
 
-# ==============================
-# SAFE SAVE
-# ==============================
+# =====================================
+# SAFE JSON SAVE
+# =====================================
 
 def save_matches(data):
     content = json.dumps(
@@ -630,9 +781,9 @@ def save_matches(data):
             os.remove(temp_path)
 
 
-# ==============================
+# =====================================
 # MAIN
-# ==============================
+# =====================================
 
 def main():
     now = datetime.now(TZ)
@@ -640,6 +791,11 @@ def main():
 
     streams, old_broadcasts = old_data_maps()
     overrides = load_broadcasts()
+
+    print("\nتحميل مصادر النقل...")
+    source_pages = fetch_source_pages()
+
+    print("المصادر المحملة:", len(source_pages))
 
     collected = {}
     errors = {}
@@ -664,13 +820,13 @@ def main():
 
         except Exception as error:
             errors[date_key] = str(error)
-            print("FETCH ERROR:", date_key, error)
+            print("FETCH ERROR:", error)
 
     today_key = today_date.isoformat()
 
     if today_key in errors:
         raise RuntimeError(
-            "تعذر جلب مباريات اليوم؛ الملف القديم محفوظ."
+            "فشل جلب مباريات اليوم. الملف القديم محفوظ."
         )
 
     if not collected:
@@ -680,15 +836,19 @@ def main():
 
     for index, item in enumerate(collected.values(), 1):
         print(
-            f"\n[{index}/{len(collected)}] معالجة المباراة"
+            f"\n[{index}/{len(collected)}] "
+            "معالجة المباراة"
         )
 
         match = convert_match(
-            item, streams, old_broadcasts, overrides
+            item, streams, old_broadcasts,
+            overrides, source_pages
         )
 
         if match:
             converted.append(match)
+
+        time.sleep(DELAY)
 
     yesterday_key = (
         today_date - timedelta(days=1)
@@ -746,7 +906,7 @@ def main():
 
     if not today:
         raise RuntimeError(
-            "لا توجد مباريات اليوم؛ الملف القديم محفوظ."
+            "لا توجد مباريات اليوم. الملف القديم محفوظ."
         )
 
     output = {
@@ -765,12 +925,14 @@ def main():
 
     save_matches(output)
 
-    print("\n===== YALLA KORA SEARCH ENGINE V5 =====")
-    print("توقيت العراق:", TZ.key)
+    print("\n================================")
+    print("YALLA KORA MULTI SEARCH V6")
+    print("================================")
+    print("مصادر النقل:", len(source_pages))
     print("مباريات اليوم:", len(today))
     print("مباريات الأمس:", len(yesterday))
     print("مباريات الغد:", len(tomorrow))
-    print("الإجمالي:", len(matches))
+    print("إجمالي المباريات:", len(matches))
 
     print(
         "المباريات مع قناة:",
@@ -782,18 +944,14 @@ def main():
         sum(bool(m["commentator"]) for m in matches)
     )
 
-    print(
-        "روابط البث المحفوظة:",
-        sum(bool(m["streamUrl"]) for m in matches)
-    )
-
     print("أخطاء الجلب:", errors or "لا يوجد")
-    print("=======================================")
+    print("تم حفظ matches.json")
+    print("================================")
 
 
 if __name__ == "__main__":
     try:
         main()
     except Exception as error:
-        print("فشل التحديث:", error)
+        print("\nUPDATE FAILED:", error)
         sys.exit(1)
