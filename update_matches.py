@@ -30,7 +30,7 @@ TZ = ZoneInfo("Asia/Baghdad")
 COUNTRY_CODE = "IRQ"
 
 DAYS = (-1, 0, 1)
-TIMEOUT = 20
+TIMEOUT = 30
 SEARCH_LIMIT = 5
 DELAY = 1.0
 
