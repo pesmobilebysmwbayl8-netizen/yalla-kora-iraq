@@ -1,80 +1,127 @@
+
 import json
 import os
 import re
 import sys
 import tempfile
+import unicodedata
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
 import requests
 
-from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
-from bs4 import BeautifulSoup
-
 # ==========================================
-# YALLA KORA - ADVANCED TIFO MATCHES UPDATER
+# YALLA KORA - MULTI LEAGUE ENGINE
 # ==========================================
 
-API = "https://tifo.elyoxe.com/v1"
-BASE_URL = "https://tifo.elyoxe.com"
-OUTPUT = "matches.json"
+ROOT = Path(__file__).resolve().parent
+OUTPUT = ROOT / "matches.json"
+BROADCASTS_FILE = ROOT / "broadcasts.json"
 
-BAGHDAD = ZoneInfo("Asia/Baghdad")
-DUBAI = ZoneInfo("Asia/Dubai")
+BASE_URL = "https://www.fotmob.com/api/data"
+TZ = ZoneInfo("Asia/Riyadh")
+COUNTRY_CODE = "IRQ"
+
+DAYS = (-1, 0, 1)
+TIMEOUT = 25
 
 session = requests.Session()
-
 session.headers.update({
-    "User-Agent": "Mozilla/5.0 YallaKora-MatchUpdater/3.0",
-    "Accept": "application/json,text/html,*/*",
-    "Accept-Encoding": "gzip, deflate",
+    "User-Agent": "Mozilla/5.0 YallaKoraDataBot/4.0",
+    "Accept": "application/json,text/plain,*/*",
+    "Referer": "https://www.fotmob.com/"
 })
 
 
 # ==========================================
-# TEXT HELPERS
+# HELPERS
 # ==========================================
 
 def clean(value):
     if value is None or isinstance(value, (dict, list)):
         return ""
-
     return re.sub(r"\s+", " ", str(value)).strip()
 
 
 def normalize(value):
-    value = clean(value).casefold()
-    value = value.replace("ـ", "")
-    value = re.sub(r"[\u064B-\u065F\u0670]", "", value)
-    return value
+    value = unicodedata.normalize(
+        "NFKC", clean(value)
+    ).casefold()
+
+    value = re.sub(
+        r"[\u064B-\u065F\u0670ـ]", "", value
+    )
+
+    return re.sub(
+        r"[^a-z0-9\u0600-\u06ff]+", "", value
+    )
 
 
-def fetch_json(path):
+def fetch_json(path, params=None):
     response = session.get(
-        API + path,
-        timeout=30
+        f"{BASE_URL}/{path.lstrip('/')}",
+        params=params or {},
+        timeout=TIMEOUT
     )
 
     response.raise_for_status()
     return response.json()
 
 
-def fetch_page(url):
-    response = session.get(
-        url,
-        timeout=25,
-        headers={
-            "Accept": "text/html,application/xhtml+xml"
+def load_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return default
+    except Exception as error:
+        print("JSON READ ERROR:", error)
+        return default
+
+
+# ==========================================
+# OLD DATA PRESERVATION
+# ==========================================
+
+def old_data_maps():
+
+    old = load_json(OUTPUT, {})
+
+    streams = {}
+    broadcasts = {}
+
+    for match in old.get("matches", []):
+
+        if not isinstance(match, dict):
+            continue
+
+        key = (
+            clean(match.get("date")),
+            normalize(match.get("home")),
+            normalize(match.get("away"))
+        )
+
+        if not key[1] or not key[2]:
+            continue
+
+        if clean(match.get("streamUrl")):
+            streams[key] = match["streamUrl"]
+
+        broadcasts[key] = {
+            "channel": clean(match.get("channel")),
+            "commentator": clean(match.get("commentator"))
         }
-    )
 
-    response.raise_for_status()
-    return response.text
+    return streams, broadcasts
 
 
 # ==========================================
-# DATE AND TIME
+# TIMEZONE
 # ==========================================
 
-def parse_datetime(value, default_tz):
+def parse_utc(value):
+
     value = clean(value)
 
     if not value:
@@ -86,291 +133,225 @@ def parse_datetime(value, default_tz):
         )
 
         if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=default_tz)
+            dt = dt.replace(tzinfo=timezone.utc)
 
-        return dt.astimezone(BAGHDAD)
+        return dt.astimezone(TZ)
 
-    except (ValueError, TypeError):
+    except ValueError:
         return None
 
 
-def get_kickoff(match):
-
-    dt = parse_datetime(
-        match.get("kickoff_utc"),
-        timezone.utc
-    )
-
-    if dt:
-        return dt
-
-    dt = parse_datetime(
-        match.get("kickoff_uae"),
-        DUBAI
-    )
-
-    if dt:
-        return dt
-
-    return None
-
-
 # ==========================================
-# TEAM DATA
+# MATCH DATA
 # ==========================================
 
-def get_team(data):
+def team_info(team):
 
-    if not isinstance(data, dict):
-        return clean(data), ""
+    if not isinstance(team, dict):
+        return "", ""
 
     name = (
-        clean(data.get("name_ar"))
-        or clean(data.get("name"))
-        or clean(data.get("short_name_ar"))
-        or clean(data.get("short_name"))
+        clean(team.get("nameAr"))
+        or clean(team.get("name_ar"))
+        or clean(team.get("name"))
+        or clean(team.get("shortName"))
     )
 
     logo = (
-        clean(data.get("logo"))
-        or clean(data.get("logo_url"))
-        or clean(data.get("image"))
+        clean(team.get("imageUrl"))
+        or clean(team.get("logo"))
+        or clean(team.get("logo_url"))
     )
+
+    team_id = clean(team.get("id"))
+
+    if not logo and team_id.isdigit():
+        logo = (
+            "https://images.fotmob.com/image_resources/"
+            f"logo/teamlogo/{team_id}.png"
+        )
 
     return name, logo
 
 
-# ==========================================
-# MATCH STATUS
-# ==========================================
+def match_status(status):
 
-def get_status(status):
+    if isinstance(status, dict):
 
-    status = clean(status).lower()
+        if status.get("cancelled") or status.get("finished"):
+            return "ended"
 
-    if status in (
-        "live",
-        "ht",
-        "half_time",
-        "in_progress"
-    ):
+        if status.get("started"):
+            return "live"
+
+        reason = clean(
+            status.get("reason")
+        ).lower()
+
+        if reason in ("ft", "aet", "pen", "finished"):
+            return "ended"
+
+        if reason in ("ht", "1h", "2h", "live"):
+            return "live"
+
+    raw = clean(status).lower()
+
+    if raw in ("live", "ht", "1h", "2h"):
         return "live"
 
-    if status in (
-        "finished",
-        "ft",
-        "ended",
-        "completed"
-    ):
+    if raw in ("ft", "aet", "pen", "ended", "finished"):
         return "ended"
 
     return "upcoming"
 
 
-def get_score(match):
+def get_score(item, status):
 
-    score = match.get("score")
+    if isinstance(status, dict):
 
-    if not isinstance(score, dict):
-        return ""
+        score = clean(status.get("scoreStr"))
 
-    home = score.get("home")
-    away = score.get("away")
+        if score and score not in ("-", "vs"):
+            return score.replace(" ", "")
 
-    if home is None or away is None:
-        return ""
+    home = item.get("home", {})
+    away = item.get("away", {})
 
-    return f"{home}-{away}"
+    if isinstance(home, dict) and isinstance(away, dict):
 
+        h = home.get("score")
+        a = away.get("score")
 
-# ==========================================
-# COMMENTATORS AND CHANNELS API
-# ==========================================
+        if h is not None and a is not None:
+            return f"{h}-{a}"
 
-def get_commentators(data):
-
-    result = {}
-
-    if not isinstance(data, dict):
-        return result
-
-    people = data.get("commentators", {})
-
-    if not isinstance(people, dict):
-        return result
-
-    # Next assignments override recent assignments.
-    for section in ("recent", "next"):
-
-        for person in people.values():
-
-            if not isinstance(person, dict):
-                continue
-
-            name = clean(person.get("name"))
-
-            assignments = person.get(section, [])
-
-            if not isinstance(assignments, list):
-                continue
-
-            for assignment in assignments:
-
-                if not isinstance(
-                    assignment,
-                    (list, tuple)
-                ):
-                    continue
-
-                if len(assignment) < 2:
-                    continue
-
-                match_id = clean(assignment[0])
-                channel = clean(assignment[1])
-
-                if match_id and name:
-
-                    result[match_id] = {
-                        "commentator": name,
-                        "channel": channel
-                    }
-
-    return result
+    return ""
 
 
 # ==========================================
-# OLD DATA PRESERVATION
+# BROADCAST INFORMATION
 # ==========================================
 
-def load_old_matches():
+def load_broadcasts():
+    data = load_json(BROADCASTS_FILE, {})
+    return data if isinstance(data, dict) else {}
 
-    streams = {}
-    broadcasts = {}
 
-    if not os.path.exists(OUTPUT):
-        return streams, broadcasts
+def get_broadcast(
+    item, date, home, away,
+    old_broadcasts, overrides
+):
 
-    try:
+    key = (
+        date,
+        normalize(home),
+        normalize(away)
+    )
 
-        with open(
-            OUTPUT,
-            "r",
-            encoding="utf-8"
-        ) as file:
+    previous = old_broadcasts.get(key, {})
 
-            old_data = json.load(file)
+    match_id = clean(item.get("id"))
 
-        for match in old_data.get("matches", []):
+    override = overrides.get(match_id, {})
 
-            if not isinstance(match, dict):
-                continue
+    if not isinstance(override, dict):
+        override = {}
 
-            key = (
-                clean(match.get("date")),
-                normalize(match.get("home")),
-                normalize(match.get("away"))
-            )
+    if not override:
 
-            if not key[1] or not key[2]:
-                continue
-
-            stream = clean(match.get("streamUrl"))
-
-            if stream:
-                streams[key] = stream
-
-            broadcasts[key] = {
-                "channel": clean(match.get("channel")),
-                "commentator": clean(
-                    match.get("commentator")
-                )
-            }
-
-    except Exception as error:
-
-        print(
-            "Old matches could not be read:",
-            error
+        override = overrides.get(
+            "|".join(key), {}
         )
 
-    return streams, broadcasts
+        if not isinstance(override, dict):
+            override = {}
+
+    channel = (
+        clean(override.get("channel"))
+        or clean(previous.get("channel"))
+    )
+
+    commentator = (
+        clean(override.get("commentator"))
+        or clean(previous.get("commentator"))
+    )
+
+    return channel, commentator
 
 
 # ==========================================
-# CONVERT API MATCH
+# CONVERT MATCH
 # ==========================================
 
 def convert_match(
     item,
-    commentators,
-    old_streams,
-    old_broadcasts
+    streams,
+    old_broadcasts,
+    overrides
 ):
 
     if not isinstance(item, dict):
         return None
 
-    match_id = clean(item.get("id"))
-
-    home, home_img = get_team(
+    home, home_img = team_info(
         item.get("home")
     )
 
-    away, away_img = get_team(
+    away, away_img = team_info(
         item.get("away")
     )
 
     if not home or not away:
         return None
 
-    kickoff = get_kickoff(item)
+    status = item.get("status", {})
 
-    if not kickoff:
+    kickoff = parse_utc(
+        status.get("utcTime")
+        if isinstance(status, dict)
+        else item.get("utcTime")
+    )
 
-        print(
-            "Skipped match without kickoff:",
-            match_id
+    if kickoff is None:
+        kickoff = parse_utc(
+            item.get("utcTime")
+            or item.get("startTime")
         )
 
+    if kickoff is None:
+        print("Missing kickoff:", home, away)
         return None
 
-    local_date = kickoff.strftime("%Y-%m-%d")
-    local_hour = kickoff.strftime("%H:%M")
+    date = kickoff.strftime("%Y-%m-%d")
+    hour = kickoff.strftime("%H:%M")
 
     key = (
-        local_date,
+        date,
         normalize(home),
         normalize(away)
     )
 
-    new_broadcast = commentators.get(
-        match_id,
-        {}
-    )
+    league = item.get("league") or {}
 
-    old_broadcast = old_broadcasts.get(
-        key,
-        {}
-    )
+    if isinstance(league, dict):
+        league = (
+            league.get("name")
+            or league.get("localizedName")
+            or ""
+        )
 
-    channel = (
-        clean(new_broadcast.get("channel"))
-        or clean(old_broadcast.get("channel"))
-    )
-
-    commentator = (
-        clean(new_broadcast.get("commentator"))
-        or clean(old_broadcast.get("commentator"))
-    )
-
-    league = (
-        clean(item.get("comp_name_ar"))
-        or clean(item.get("comp_name"))
-        or clean(item.get("competition"))
+    channel, commentator = get_broadcast(
+        item,
+        date,
+        home,
+        away,
+        old_broadcasts,
+        overrides
     )
 
     return {
-        "league": league,
+
+        "league": clean(league),
 
         "home": home,
         "away": away,
@@ -381,234 +362,72 @@ def convert_match(
         "home_img": home_img,
         "away_img": away_img,
 
-        "hour": local_hour,
-        "time": local_hour,
+        "hour": hour,
+        "time": hour,
 
-        "date": local_date,
-        "match_date": local_date,
+        "date": date,
+        "match_date": date,
 
-        "status": get_status(
-            item.get("status")
-        ),
+        "status": match_status(status),
 
-        "score": get_score(item),
+        "score": get_score(item, status),
 
         "channel": channel,
         "commentator": commentator,
 
-        # Preserve the old player URL.
-        "streamUrl": old_streams.get(key, "")
+        "streamUrl": streams.get(key, "")
     }
 
 
 # ==========================================
-# SCHEDULE PAGE ENRICHMENT
+# FETCH MATCHES
 # ==========================================
 
-def extract_schedule_info(text_value):
+def extract_matches(payload):
 
-    text_value = clean(text_value)
+    if isinstance(payload, dict):
 
-    channel = ""
-    commentator = ""
+        if isinstance(payload.get("matches"), list):
+            return payload["matches"]
 
-    # Channel labels and icons.
-    channel_patterns = [
-        r"📺\s*[:：]?\s*(.*?)(?=🎙|المعلق|$)",
-        r"(?:القناة|القنوات)\s*[:：]\s*(.*?)(?=🎙|المعلق|$)"
-    ]
+        rows = []
 
-    # Commentator labels and icons.
-    commentator_patterns = [
-        r"🎙\s*[:：]?\s*(.*?)(?=📺|القناة|$)",
-        r"المعلق\s*[:：]\s*(.*?)(?=📺|القناة|$)"
-    ]
+        for league in payload.get("leagues", []):
 
-    for pattern in channel_patterns:
+            if not isinstance(league, dict):
+                continue
 
-        found = re.search(
-            pattern,
-            text_value,
-            re.IGNORECASE
-        )
+            for match in league.get("matches", []):
 
-        if found:
+                if isinstance(match, dict):
 
-            channel = clean(
-                found.group(1)
-            )
+                    match = dict(match)
+                    match.setdefault("league", league)
 
-            if channel:
-                break
+                    rows.append(match)
 
-    for pattern in commentator_patterns:
+        if rows:
+            return rows
 
-        found = re.search(
-            pattern,
-            text_value,
-            re.IGNORECASE
-        )
-
-        if found:
-
-            commentator = clean(
-                found.group(1)
-            )
-
-            if commentator:
-                break
-
-    return channel, commentator
+    raise ValueError("Invalid matches response")
 
 
-def enrich_from_schedule_pages(matches):
+def fetch_day(date):
 
-    pages = [
-        "/yesterday/",
-        "/today/",
-        "/tomorrow/"
-    ]
+    day = date.strftime("%Y%m%d")
 
-    for page in pages:
+    print("Fetching:", day)
 
-        url = BASE_URL + page
+    payload = fetch_json(
+        "matches",
+        {
+            "date": day,
+            "timezone": TZ.key,
+            "ccode3": COUNTRY_CODE
+        }
+    )
 
-        print(
-            "Reading schedule page:",
-            url
-        )
-
-        try:
-
-            html = fetch_page(url)
-
-            soup = BeautifulSoup(
-                html,
-                "html.parser"
-            )
-
-            for match in matches:
-
-                if (
-                    match.get("channel")
-                    and match.get("commentator")
-                ):
-                    continue
-
-                home = normalize(
-                    match.get("home")
-                )
-
-                away = normalize(
-                    match.get("away")
-                )
-
-                if not home or not away:
-                    continue
-
-                best_text = ""
-
-                # Search small HTML containers first.
-                for node in soup.find_all(
-                    [
-                        "article",
-                        "li",
-                        "tr",
-                        "div",
-                        "section"
-                    ]
-                ):
-
-                    content = clean(
-                        node.get_text(
-                            " ",
-                            strip=True
-                        )
-                    )
-
-                    normalized_content = normalize(
-                        content
-                    )
-
-                    if (
-                        home in normalized_content
-                        and away in normalized_content
-                        and len(content) <= 1800
-                    ):
-
-                        if (
-                            not best_text
-                            or len(content) < len(best_text)
-                        ):
-                            best_text = content
-
-                if not best_text:
-                    continue
-
-                channel, commentator = (
-                    extract_schedule_info(best_text)
-                )
-
-                if (
-                    not match.get("channel")
-                    and channel
-                ):
-                    match["channel"] = channel
-
-                if (
-                    not match.get("commentator")
-                    and commentator
-                ):
-                    match["commentator"] = commentator
-
-        except Exception as error:
-
-            print(
-                "Schedule page error:",
-                url,
-                error
-            )
-
-    return matches
-
-
-# ==========================================
-# OPTIONAL EXTRA DATA
-# ==========================================
-
-def fetch_extra_data():
-
-    data = {}
-
-    endpoints = {
-        "index": "/index.json",
-        "live": "/live.json",
-        "teams": "/teams.json",
-        "streams": "/streams.json"
-    }
-
-    for name, endpoint in endpoints.items():
-
-        try:
-
-            payload = fetch_json(endpoint)
-
-            data[name] = payload
-
-            print(
-                "Extra source loaded:",
-                name
-            )
-
-        except Exception as error:
-
-            print(
-                "Extra source unavailable:",
-                name,
-                error
-            )
-
-    return data
+    return extract_matches(payload)
 
 
 # ==========================================
@@ -630,203 +449,110 @@ def save_matches(data):
         with tempfile.NamedTemporaryFile(
             mode="w",
             encoding="utf-8",
-            dir=".",
+            dir=ROOT,
             delete=False
-        ) as file:
+        ) as f:
 
-            file.write(content)
-            temp_path = file.name
+            f.write(content)
+            temp_path = f.name
 
-        # Validate before replacing existing file.
-        with open(
-            temp_path,
-            "r",
-            encoding="utf-8"
-        ) as file:
+        with open(temp_path, encoding="utf-8") as f:
+            json.load(f)
 
-            json.load(file)
-
-        os.replace(
-            temp_path,
-            OUTPUT
-        )
+        os.replace(temp_path, OUTPUT)
 
     finally:
 
-        if (
-            temp_path
-            and os.path.exists(temp_path)
-        ):
+        if temp_path and os.path.exists(temp_path):
             os.remove(temp_path)
 
 
 # ==========================================
-# MAIN UPDATE
+# MAIN
 # ==========================================
 
 def main():
 
-    now = datetime.now(BAGHDAD)
-
+    now = datetime.now(TZ)
     today_date = now.date()
 
-    yesterday_date = (
-        today_date - timedelta(days=1)
-    )
+    streams, old_broadcasts = old_data_maps()
+    overrides = load_broadcasts()
 
-    tomorrow_date = (
-        today_date + timedelta(days=1)
-    )
+    collected = {}
+    errors = {}
 
-    old_streams, old_broadcasts = (
-        load_old_matches()
-    )
+    for offset in DAYS:
 
-    all_raw_matches = {}
-    failed_days = []
-
-    # ======================================
-    # DOWNLOAD MATCHES
-    # ======================================
-
-    for offset in range(-2, 3):
-
-        target_date = (
-            today_date + timedelta(days=offset)
-        )
-
-        day_key = target_date.strftime(
-            "%Y%m%d"
-        )
-
-        print(
-            "Downloading matches:",
-            day_key
-        )
+        target = today_date + timedelta(days=offset)
+        date_key = target.isoformat()
 
         try:
 
-            payload = fetch_json(
-                f"/day/{day_key}.json"
-            )
+            for item in fetch_day(target):
 
-            rows = payload.get(
-                "matches",
-                []
-            )
+                match_id = clean(item.get("id"))
 
-            if not isinstance(rows, list):
-
-                raise ValueError(
-                    "Invalid matches array"
+                stable_key = (
+                    match_id
+                    or json.dumps(
+                        item,
+                        sort_keys=True,
+                        ensure_ascii=False
+                    )
                 )
 
-            for item in rows:
-
-                if not isinstance(item, dict):
-                    continue
-
-                match_id = clean(
-                    item.get("id")
-                )
-
-                if match_id:
-
-                    all_raw_matches[match_id] = item
+                collected[stable_key] = item
 
         except Exception as error:
 
-            failed_days.append(day_key)
+            errors[date_key] = str(error)
+            print("FETCH ERROR:", date_key, error)
 
-            print(
-                "Download failed:",
-                day_key,
-                error
-            )
+    today_key = today_date.isoformat()
 
-    if not all_raw_matches:
-
+    if today_key in errors:
         raise RuntimeError(
-            "No matches received. Existing matches.json preserved."
+            "Today's feed failed. Old JSON preserved."
         )
 
-    # ======================================
-    # COMMENTATORS API
-    # ======================================
-
-    commentators = {}
-
-    try:
-
-        tv_data = fetch_json(
-            "/tv/commentators.json"
-        )
-
-        commentators = get_commentators(
-            tv_data
-        )
-
-        print(
-            "Commentator mappings:",
-            len(commentators)
-        )
-
-    except Exception as error:
-
-        print(
-            "TV data unavailable:",
-            error
-        )
-
-    # ======================================
-    # OPTIONAL EXTRA SOURCES
-    # ======================================
-
-    extra_data = fetch_extra_data()
-
-    # ======================================
-    # CONVERT MATCHES
-    # ======================================
+    if not collected:
+        raise RuntimeError("No matches received.")
 
     converted = []
 
-    for item in all_raw_matches.values():
+    for item in collected.values():
 
         match = convert_match(
             item,
-            commentators,
-            old_streams,
-            old_broadcasts
+            streams,
+            old_broadcasts,
+            overrides
         )
 
         if match:
             converted.append(match)
 
-    yesterday_key = yesterday_date.isoformat()
-    today_key = today_date.isoformat()
-    tomorrow_key = tomorrow_date.isoformat()
+    yesterday_key = (
+        today_date - timedelta(days=1)
+    ).isoformat()
 
-    # ======================================
-    # FILTER THREE DAYS
-    # ======================================
+    tomorrow_key = (
+        today_date + timedelta(days=1)
+    ).isoformat()
 
-    converted = [
-        match
-        for match in converted
-        if match["date"] in (
-            yesterday_key,
-            today_key,
-            tomorrow_key
-        )
-    ]
-
-    # ======================================
-    # REMOVE DUPLICATES
-    # ======================================
+    allowed = {
+        yesterday_key,
+        today_key,
+        tomorrow_key
+    }
 
     unique = {}
 
     for match in converted:
+
+        if match["date"] not in allowed:
+            continue
 
         key = (
             match["date"],
@@ -836,34 +562,16 @@ def main():
 
         unique[key] = match
 
-    matches = list(
-        unique.values()
-    )
-
-    # ======================================
-    # ENRICH CHANNELS AND COMMENTATORS
-    # ======================================
-
-    matches = enrich_from_schedule_pages(
-        matches
-    )
-
-    # ======================================
-    # SORT MATCHES
-    # ======================================
+    matches = list(unique.values())
 
     matches.sort(
-        key=lambda match: (
-            match["date"],
-            match["hour"],
-            match["league"],
-            match["home"]
+        key=lambda m: (
+            m["date"],
+            m["hour"],
+            m["league"],
+            m["home"]
         )
     )
-
-    # ======================================
-    # SPLIT DAYS
-    # ======================================
 
     yesterday = [
         m for m in matches
@@ -880,35 +588,18 @@ def main():
         if m["date"] == tomorrow_key
     ]
 
-    # ======================================
-    # SAFETY CHECKS
-    # ======================================
-
-    if today_key.replace("-", "") in failed_days:
-
-        raise RuntimeError(
-            "Today's feed failed. Existing JSON preserved."
-        )
-
     if not today:
-
         raise RuntimeError(
-            "No matches found for today. Existing JSON preserved."
+            "No matches today. Old JSON preserved."
         )
-
-    # ======================================
-    # FINAL JSON
-    # ======================================
 
     output = {
 
         "success": True,
 
-        "updated_at": datetime.now(
-            BAGHDAD
-        ).isoformat(),
+        "updated_at": datetime.now(TZ).isoformat(),
 
-        "timezone": "Asia/Baghdad",
+        "timezone": TZ.key,
 
         "count": len(matches),
 
@@ -929,84 +620,42 @@ def main():
 
     save_matches(output)
 
-    # ======================================
-    # REPORT
-    # ======================================
+    print("\n===== YALLA KORA UPDATE =====")
 
-    print("")
-    print("========== UPDATE COMPLETE ==========")
+    print("Timezone:", TZ.key)
 
-    print(
-        "Today:",
-        len(today)
-    )
+    print("Today:", len(today))
+    print("Yesterday:", len(yesterday))
+    print("Tomorrow:", len(tomorrow))
 
-    print(
-        "Yesterday:",
-        len(yesterday)
-    )
-
-    print(
-        "Tomorrow:",
-        len(tomorrow)
-    )
-
-    print(
-        "Total:",
-        len(matches)
-    )
+    print("Total:", len(matches))
 
     print(
         "Channels:",
-        sum(
-            bool(m["channel"])
-            for m in matches
-        )
+        sum(bool(m["channel"]) for m in matches)
     )
 
     print(
         "Commentators:",
-        sum(
-            bool(m["commentator"])
-            for m in matches
-        )
+        sum(bool(m["commentator"]) for m in matches)
     )
 
     print(
-        "Preserved stream URLs:",
-        sum(
-            bool(m["streamUrl"])
-            for m in matches
-        )
+        "Stream URLs:",
+        sum(bool(m["streamUrl"]) for m in matches)
     )
 
-    print(
-        "Extra sources:",
-        ", ".join(extra_data.keys())
-    )
+    print("Errors:", errors or "None")
 
-    print(
-        "Source: https://tifo.elyoxe.com"
-    )
+    print("=============================")
 
-    print("=====================================")
-
-
-# ==========================================
-# RUN
-# ==========================================
 
 if __name__ == "__main__":
 
     try:
-
         main()
 
     except Exception as error:
 
-        print(
-            "UPDATE FAILED:",
-            error
-        )
-
+        print("UPDATE FAILED:", error)
         sys.exit(1)
