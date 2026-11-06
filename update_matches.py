@@ -1,6 +1,6 @@
 
 # -*- coding: utf-8 -*-
-# YALLA KORA V9 - MATCHES + BROADCAST SEARCH
+# YALLA KORA V10
 # Requirements: requests beautifulsoup4
 
 import json
@@ -15,12 +15,16 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
-from urllib.parse import urlparse, quote
+from urllib.parse import urlparse
 from collections import defaultdict
 
 import requests
 from bs4 import BeautifulSoup
 
+
+# =========================================================
+# SETTINGS
+# =========================================================
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "matches.json"
@@ -31,13 +35,13 @@ BASE_URL = "https://www.fotmob.com/api/data"
 
 DAYS = (-1, 0, 1)
 
-TIMEOUT = 15
+TIMEOUT = 18
 RETRIES = 2
-SEARCH_LIMIT = 5
+SEARCH_LIMIT = 7
 MAX_PAGES_PER_MATCH = 5
 
-# حد البحث حتى لا تتجاوز دورة GitHub Actions وقت التشغيل
-MAX_BROADCAST_SEARCHES = 35
+# الحد الأعلى للبحث عن القنوات والمعلقين في كل تشغيل
+MAX_BROADCAST_SEARCHES = 60
 
 COUNTRY_CODE = "IRQ"
 
@@ -52,9 +56,12 @@ session.headers.update({
 
 SEARCH_CACHE = {}
 PAGE_CACHE = {}
-
 STATS = defaultdict(int)
 
+
+# =========================================================
+# TEAM TRANSLATIONS
+# =========================================================
 
 TEAM_AR = {
     "manchester city": "مانشستر سيتي",
@@ -68,12 +75,10 @@ TEAM_AR = {
     "barcelona": "برشلونة",
     "atletico madrid": "أتلتيكو مدريد",
     "sevilla": "إشبيلية",
-    "alaves": "ألافيس",
-    "deportivo alaves": "ألافيس",
     "bayern munich": "بايرن ميونخ",
     "borussia dortmund": "بوروسيا دورتموند",
-    "psg": "باريس سان جيرمان",
     "paris saint-germain": "باريس سان جيرمان",
+    "psg": "باريس سان جيرمان",
     "inter milan": "إنتر ميلان",
     "ac milan": "ميلان",
     "juventus": "يوفنتوس",
@@ -102,6 +107,10 @@ TEAM_AR = {
     "afc champions league": "دوري أبطال آسيا",
 }
 
+
+# =========================================================
+# CHANNEL NAMES
+# =========================================================
 
 CHANNELS = {
     "bein sports": "بي إن سبورتس",
@@ -153,30 +162,246 @@ BROADCAST_WORDS = (
 )
 
 
+# =========================================================
+# COMPETITION FILTER
+# =========================================================
+
+# أسماء البطولات المسموح بها.
+# المطابقة تتم على اسم البطولة نفسه، وليس كلمات عامة مثل Cup فقط.
+
+ALLOWED_LEAGUE_TERMS = (
+    # أوروبا - الدوريات
+    "premier league",
+    "english premier league",
+    "la liga",
+    "serie a",
+    "bundesliga",
+    "ligue 1",
+    "eredivisie",
+    "primeira liga",
+    "scottish premiership",
+    "belgian pro league",
+    "turkish super lig",
+    "greek super league",
+
+    # أوروبا - الكؤوس والبطولات
+    "uefa champions league",
+    "champions league",
+    "uefa europa league",
+    "europa league",
+    "conference league",
+    "uefa conference league",
+    "fa cup",
+    "efl cup",
+    "carabao cup",
+    "copa del rey",
+    "supercopa de espana",
+    "copa italia",
+    "coppa italia",
+    "dfb pokal",
+    "coupe de france",
+    "uefa nations league",
+    "european championship",
+    "euro qualification",
+    "european qualifiers",
+
+    # السعودية والخليج والعراق
+    "saudi pro league",
+    "saudi league",
+    "roshn",
+    "saudi first division",
+    "iraqi stars league",
+    "iraq stars league",
+    "iraqi premier league",
+    "iraqi league",
+    "qatar stars league",
+    "qatar league",
+    "uae pro league",
+    "uae league",
+    "kuwait premier league",
+    "oman league",
+    "jordanian pro league",
+    "bahrain premier league",
+
+    # آسيا
+    "afc champions league",
+    "afc champions league elite",
+    "afc champions league two",
+    "afc cup",
+    "asian cup",
+    "asia cup qualification",
+    "world cup qualification asia",
+    "world cup qualifiers",
+    "gulf cup",
+    "arab cup",
+    "gcc champions league",
+
+    # أفريقيا
+    "caf champions league",
+    "caf confederation cup",
+    "africa cup of nations",
+    "african cup of nations",
+    "afcon",
+    "egyptian premier league",
+    "egyptian league",
+    "botola",
+
+    # بطولات دولية
+    "fifa world cup",
+    "world cup",
+    "fifa club world cup",
+    "club world cup",
+    "international friendly",
+    "international friendlies",
+    "friendlies",
+    "olympic football",
+    "copa america",
+    "concacaf gold cup",
+    "gold cup",
+)
+
+ARABIC_ALLOWED_TERMS = (
+    "الدوري الانجليزي الممتاز",
+    "الدوري الاسباني",
+    "الدوري الايطالي",
+    "الدوري الالماني",
+    "الدوري الفرنسي",
+    "الدوري الهولندي",
+    "الدوري البرتغالي",
+    "دوري ابطال اوروبا",
+    "الدوري الاوروبي",
+    "دوري المؤتمر الاوروبي",
+    "كاس الاتحاد الانجليزي",
+    "كاس الرابطه الانجليزي",
+    "كاس ملك اسبانيا",
+    "كاس ايطاليا",
+    "دوري الامم الاوروبيه",
+    "كاس اوروبا",
+    "دوري روشن السعودي",
+    "الدوري السعودي",
+    "دوري نجوم العراق",
+    "الدوري العراقي",
+    "دوري نجوم قطر",
+    "الدوري القطري",
+    "الدوري الاماراتي",
+    "الدوري الكويتي",
+    "الدوري العماني",
+    "دوري ابطال اسيا",
+    "دوري ابطال اسيا للنخبه",
+    "دوري ابطال اسيا 2",
+    "كاس اسيا",
+    "كاس الخليج",
+    "كاس العرب",
+    "كاس العالم",
+    "تصفيات كاس العالم",
+    "كاس امم افريقيا",
+    "كاس افريقيا",
+    "دوري ابطال افريقيا",
+    "كاس الكونفدراليه الافريقيه",
+    "كوبا امريكا",
+    "كاس الذهب",
+    "مباريات دوليه وديه",
+)
+
+# استبعاد هذه البطولات حتى لو احتوى الاسم على كلمة مسموحة
+REJECT_LEAGUE_TERMS = (
+    "women",
+    "womens",
+    "women's",
+    "femenil",
+    "feminine",
+    "u21",
+    "u20",
+    "u19",
+    "u18",
+    "u17",
+    "u16",
+    "youth",
+    "reserve",
+    "reserves",
+    "under 21",
+    "under 20",
+    "under 19",
+    "under 18",
+    "under 17",
+    "segunda division",
+    "third division",
+    "fourth division",
+)
+
+
+def league_is_allowed(name):
+    name = clean(name)
+
+    if not name:
+        return False
+
+    normalized = normalize(name)
+
+    for term in REJECT_LEAGUE_TERMS:
+        if normalize(term) in normalized:
+            return False
+
+    for term in ALLOWED_LEAGUE_TERMS:
+        if normalize(term) in normalized:
+            return True
+
+    for term in ARABIC_ALLOWED_TERMS:
+        if normalize(term) in normalized:
+            return True
+
+    return False
+
+
+# =========================================================
+# GENERAL FUNCTIONS
+# =========================================================
+
 def clean(value):
     if value is None:
         return ""
+
     return re.sub(
-        r"\s+", " ",
+        r"\s+",
+        " ",
         html.unescape(str(value))
     ).strip()
 
 
 def normalize(value):
-    value = unicodedata.normalize("NFKC", clean(value)).casefold()
-    value = re.sub(r"[\u064B-\u065F\u0670ـ]", "", value)
-    value = value.replace("أ", "ا").replace("إ", "ا")
-    value = value.replace("آ", "ا").replace("ى", "ي")
+    value = unicodedata.normalize(
+        "NFKC",
+        clean(value)
+    ).casefold()
+
+    value = re.sub(
+        r"[\u064B-\u065F\u0670ـ]",
+        "",
+        value
+    )
+
+    value = value.replace("أ", "ا")
+    value = value.replace("إ", "ا")
+    value = value.replace("آ", "ا")
+    value = value.replace("ى", "ي")
     value = value.replace("ة", "ه")
-    return re.sub(r"[^a-z0-9\u0600-\u06ff]", "", value)
+
+    return re.sub(
+        r"[^a-z0-9\u0600-\u06ff]",
+        "",
+        value
+    )
 
 
 def arabic_name(value):
     value = clean(value)
+
     if not value:
         return ""
+
     if re.search(r"[\u0600-\u06ff]", value):
         return value
+
     return TEAM_AR.get(value.casefold(), value)
 
 
@@ -190,6 +415,7 @@ def fetch(url, params=None):
                 params=params,
                 timeout=TIMEOUT
             )
+
             response.raise_for_status()
             return response
 
@@ -252,6 +478,10 @@ def parse_date(value):
         return None
 
 
+# =========================================================
+# MATCH DATA
+# =========================================================
+
 def get_team(team):
     if not isinstance(team, dict):
         return "", ""
@@ -283,13 +513,16 @@ def get_team(team):
 
 def match_status(status):
     if isinstance(status, dict):
+
         if status.get("cancelled") or status.get("finished"):
             return "ended"
 
         if status.get("started"):
             return "live"
 
-        reason = clean(status.get("reason")).lower()
+        reason = clean(
+            status.get("reason")
+        ).lower()
 
         if reason in ("ft", "aet", "pen", "finished"):
             return "ended"
@@ -319,6 +552,10 @@ def get_score(item, status):
 
     return ""
 
+
+# =========================================================
+# SEARCH FUNCTIONS
+# =========================================================
 
 def match_names_present(text, home, away):
     value = normalize(text)
@@ -397,7 +634,10 @@ def bing_search(query):
             }
         )
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
 
         for item in soup.select("li.b_algo")[:SEARCH_LIMIT]:
             title = item.select_one("h2")
@@ -408,9 +648,12 @@ def bing_search(query):
                 continue
 
             results.append({
-                "title": clean(title.get_text(" ", strip=True)),
+                "title": clean(
+                    title.get_text(" ", strip=True)
+                ),
                 "description": clean(
-                    desc.get_text(" ", strip=True) if desc else ""
+                    desc.get_text(" ", strip=True)
+                    if desc else ""
                 ),
                 "link": clean(link.get("href")),
             })
@@ -432,7 +675,10 @@ def page_text(url):
     try:
         response = fetch(url)
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
 
         for tag in soup(
             ["script", "style", "noscript", "svg", "iframe"]
@@ -441,7 +687,6 @@ def page_text(url):
 
         rows = []
 
-        # نحافظ على كل صف في الجدول كوحدة منفصلة
         for tr in soup.find_all("tr"):
             cells = [
                 clean(cell.get_text(" ", strip=True))
@@ -471,10 +716,13 @@ def page_text(url):
         return ""
 
 
+# =========================================================
+# CHANNEL EXTRACTION
+# =========================================================
+
 def extract_channel(text):
     text = clean(text)
 
-    # أولاً: البحث قرب عبارات النقل
     patterns = [
         r"(?:القناة الناقلة|القنوات الناقلة|القناة|"
         r"تنقل على|يذاع على|على قناة|broadcast(?:ing)? on|"
@@ -504,10 +752,10 @@ def extract_channel(text):
                     number = re.search(r"\d+", value)
 
                     return (
-                        arabic + (" " + number.group() if number else "")
+                        arabic
+                        + (" " + number.group() if number else "")
                     )
 
-    # ثانياً: مطابقة اسم قناة مع دليل نقل في نفس النص
     if has_broadcast_words(text):
         for key, arabic in sorted(
             CHANNELS.items(),
@@ -522,11 +770,16 @@ def extract_channel(text):
                 )
 
                 return (
-                    arabic + (" " + number.group(1) if number else "")
+                    arabic
+                    + (" " + number.group(1) if number else "")
                 )
 
     return ""
 
+
+# =========================================================
+# COMMENTATOR EXTRACTION
+# =========================================================
 
 def extract_commentator(text):
     text = clean(text)
@@ -557,15 +810,28 @@ def extract_commentator(text):
 
         if 3 <= len(name) <= 45 and not re.search(r"\d", name):
             if normalize(name) not in (
-                "match", "live", "sports", "football", "مباراه"
+                "match",
+                "live",
+                "sports",
+                "football",
+                "مباراه",
             ):
                 return name
 
     return ""
 
 
+# =========================================================
+# BROADCAST SEARCH ENGINE
+# =========================================================
+
 def search_broadcast(home, away, league, date):
-    print("  BROADCAST SEARCH:", home, "-", away)
+    print(
+        "  BROADCAST SEARCH:",
+        home,
+        "-",
+        away
+    )
 
     query_ar = (
         f'"{home}" "{away}" '
@@ -577,14 +843,26 @@ def search_broadcast(home, away, league, date):
         f'{league} TV channel commentator broadcast {date}'
     )
 
-    queries = [query_ar, query_en]
+    query_channels = (
+        f'"{home}" "{away}" '
+        f'{league} channel TV broadcast {date}'
+    )
+
+    queries = [
+        query_ar,
+        query_en,
+        query_channels,
+    ]
 
     candidates = []
     seen = set()
     opened = 0
 
     for query in queries:
-        results = google_search(query) + bing_search(query)
+        results = (
+            google_search(query)
+            + bing_search(query)
+        )
 
         for result in results:
             title = clean(result.get("title"))
@@ -593,8 +871,11 @@ def search_broadcast(home, away, league, date):
 
             preview = title + " " + desc
 
-            # لا نفتح إلا النتائج التي لها علاقة واضحة بالمباراة
-            if not match_names_present(preview, home, away):
+            if not match_names_present(
+                preview,
+                home,
+                away
+            ):
                 continue
 
             if not link.startswith(("http://", "https://")):
@@ -611,14 +892,12 @@ def search_broadcast(home, away, league, date):
                 opened += 1
                 text += " " + page_text(link)
 
-            # نسمح باستخراج القناة والمعلق كل على حدة
             if match_names_present(text, home, away):
                 candidates.append({
                     "text": text,
                     "domain": urlparse(link).netloc,
                 })
 
-    # جمع الأدلة المستقلة
     channel_sources = defaultdict(set)
     commentator_sources = defaultdict(set)
 
@@ -636,12 +915,14 @@ def search_broadcast(home, away, league, date):
             commentator_sources[commentator].add(domain)
 
         print(
-            "  SOURCE:", domain,
-            "| CHANNEL:", channel or "-",
-            "| COMMENTATOR:", commentator or "-"
+            "  SOURCE:",
+            domain,
+            "| CHANNEL:",
+            channel or "-",
+            "| COMMENTATOR:",
+            commentator or "-"
         )
 
-    # الأفضلية للمعلومة التي ظهرت في أكثر من نطاق مستقل
     channel = ""
     commentator = ""
 
@@ -665,6 +946,10 @@ def search_broadcast(home, away, league, date):
 
     return channel, commentator
 
+
+# =========================================================
+# OLD DATA AND MANUAL BROADCAST OVERRIDES
+# =========================================================
 
 def old_data_maps():
     old = load_json(OUTPUT, {})
@@ -708,7 +993,15 @@ def load_overrides():
     return {}
 
 
-def get_broadcast(item, date, home, away, league, old, overrides):
+def get_broadcast(
+    item,
+    date,
+    home,
+    away,
+    league,
+    old,
+    overrides
+):
     key = (
         date,
         normalize(home),
@@ -743,18 +1036,19 @@ def get_broadcast(item, date, home, away, league, old, overrides):
         or clean(previous.get("commentator"))
     )
 
-    # لا نبحث من جديد عن البيانات المحفوظة بالكامل
     if channel and commentator:
         return channel, commentator
 
-    # البحث محدود بعدد مباريات محدد لكل تشغيل
     if STATS["matches_searched"] >= MAX_BROADCAST_SEARCHES:
         return channel, commentator
 
     STATS["matches_searched"] += 1
 
     found_channel, found_commentator = search_broadcast(
-        home, away, league, date
+        home,
+        away,
+        league,
+        date
     )
 
     return (
@@ -763,8 +1057,13 @@ def get_broadcast(item, date, home, away, league, old, overrides):
     )
 
 
+# =========================================================
+# FOTMOB DATA
+# =========================================================
+
 def extract_matches(payload):
     if isinstance(payload, dict):
+
         if isinstance(payload.get("matches"), list):
             return payload["matches"]
 
@@ -802,6 +1101,10 @@ def fetch_day(date):
 
     return extract_matches(response.json())
 
+
+# =========================================================
+# MATCH CONVERSION
+# =========================================================
 
 def convert_match(item, streams, old, overrides):
     if not isinstance(item, dict):
@@ -848,7 +1151,16 @@ def convert_match(item, streams, old, overrides):
     else:
         league_raw = league_obj
 
+    league_raw = clean(league_raw)
+
+    # فلترة البطولات قبل البحث عن بيانات النقل
+    if not league_is_allowed(league_raw):
+        STATS["filtered_out"] += 1
+        return None
+
     league = arabic_name(league_raw)
+
+    STATS["allowed_matches"] += 1
 
     channel, commentator = get_broadcast(
         item,
@@ -880,6 +1192,10 @@ def convert_match(item, streams, old, overrides):
     }
 
 
+# =========================================================
+# MAIN
+# =========================================================
+
 def main():
     today_date = datetime.now(TZ).date()
 
@@ -889,9 +1205,11 @@ def main():
     collected = {}
     errors = {}
 
-    print("\n========== YALLA KORA V9 ==========")
+    print("\n========== YALLA KORA V10 ==========")
     print("TIMEZONE:", TZ.key)
+    print("BROADCAST SEARCH LIMIT:", MAX_BROADCAST_SEARCHES)
 
+    # جلب مباريات أمس واليوم والغد
     for offset in DAYS:
         target = today_date + timedelta(days=offset)
         date_key = target.isoformat()
@@ -910,7 +1228,11 @@ def main():
 
         except Exception as exc:
             errors[date_key] = str(exc)
-            print("FETCH ERROR:", date_key, str(exc)[:150])
+            print(
+                "FETCH ERROR:",
+                date_key,
+                str(exc)[:150]
+            )
 
     today_key = today_date.isoformat()
 
@@ -926,7 +1248,6 @@ def main():
 
     converted = []
 
-    # نعطي الأولوية لمباريات اليوم ثم الغد
     items = list(collected.values())
 
     def sort_key(item):
@@ -972,7 +1293,7 @@ def main():
         today_date + timedelta(days=1)
     ).isoformat()
 
-    allowed = {
+    allowed_dates = {
         yesterday_key,
         today_key,
         tomorrow_key,
@@ -981,7 +1302,7 @@ def main():
     unique = {}
 
     for match in converted:
-        if match["date"] not in allowed:
+        if match["date"] not in allowed_dates:
             continue
 
         key = (
@@ -1020,12 +1341,13 @@ def main():
 
     if not today:
         raise RuntimeError(
-            "لا توجد مباريات اليوم؛ الملف القديم لم يتغير."
+            "لا توجد مباريات اليوم بعد الفلترة؛ الملف القديم لم يتغير."
         )
 
+    # التحقق من عدم وجود ملف فارغ أو بيانات غير صالحة
     output = {
         "success": True,
-        "version": "V9",
+        "version": "V10",
         "updated_at": datetime.now(TZ).isoformat(),
         "timezone": TZ.key,
         "count": len(matches),
@@ -1056,18 +1378,23 @@ def main():
         sum(bool(m["commentator"]) for m in matches)
     )
 
+    print("\n========== FILTER DIAGNOSTICS ==========")
+    print("ALLOWED MATCHES:", STATS["allowed_matches"])
+    print("FILTERED OUT:", STATS["filtered_out"])
+
     print("\n========== SEARCH DIAGNOSTICS ==========")
 
     for key, value in STATS.items():
         print(key, "=", value)
 
     print("FETCH ERRORS:", errors or "NONE")
-    print("V9 FINISHED SUCCESSFULLY")
+    print("V10 FINISHED SUCCESSFULLY")
 
 
 if __name__ == "__main__":
     try:
         main()
+
     except Exception as exc:
         print("\nUPDATE FAILED:", repr(exc))
         raise
