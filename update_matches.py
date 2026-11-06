@@ -1,1400 +1,954 @@
 
-# -*- coding: utf-8 -*-
-# YALLA KORA V10
-# Requirements: requests beautifulsoup4
-
-import json
-import re
-import html
-import time
-import os
-import tempfile
-import unicodedata
-import xml.etree.ElementTree as ET
-
-from pathlib import Path
-from datetime import datetime, timedelta, timezone
-from zoneinfo import ZoneInfo
-from urllib.parse import urlparse
-from collections import defaultdict
+# ============================================================
+# YALLA KORA V11
+# Multi-source football matches + Arabic broadcasters
+# Timezone: Asia/Baghdad
+# Output: matches.json
+# ============================================================
 
 import requests
+import json
+import re
+import os
+import html
+import time
+import unicodedata
+
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin
 
-
-# =========================================================
-# SETTINGS
-# =========================================================
-
-ROOT = Path(__file__).resolve().parent
-OUTPUT = ROOT / "matches.json"
-BROADCASTS_FILE = ROOT / "broadcasts.json"
+# ---------------- CONFIG ----------------
 
 TZ = ZoneInfo("Asia/Baghdad")
-BASE_URL = "https://www.fotmob.com/api/data"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-DAYS = (-1, 0, 1)
+OUTPUT_FILE = os.path.join(BASE_DIR, "matches.json")
+BROADCAST_FILE = os.path.join(BASE_DIR, "broadcasts.json")
 
-TIMEOUT = 18
-RETRIES = 2
-SEARCH_LIMIT = 7
-MAX_PAGES_PER_MATCH = 5
+AS_GOAL = "https://as-goal.net/commentators-channels/"
+TALK_NOW = "https://talknow.online/"
+FILGOAL = "https://www.filgoal.com/"
+ORIGINAL = "https://originalpro.online/"
+ALMASHHAD = (
+    "https://www.almashhad.com/amp/article/"
+    "218257510540304-sports/"
+    "563101227576063-%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D9%88%D8%A7%D8%B9%D9%8A%D8%AF-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-06112026-%D9%85%D8%B9-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86"
+)
 
-# الحد الأعلى للبحث عن القنوات والمعلقين في كل تشغيل
-MAX_BROADCAST_SEARCHES = 60
+FOTMOB = "https://www.fotmob.com/api/data/matches"
 
-COUNTRY_CODE = "IRQ"
-
-session = requests.Session()
-session.headers.update({
+HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 Chrome/124.0 Safari/537.36"
+        "Mozilla/5.0 (Linux; Android 10) "
+        "AppleWebKit/537.36 Chrome/130.0 Mobile Safari/537.36"
     ),
     "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-})
-
-SEARCH_CACHE = {}
-PAGE_CACHE = {}
-STATS = defaultdict(int)
-
-
-# =========================================================
-# TEAM TRANSLATIONS
-# =========================================================
-
-TEAM_AR = {
-    "manchester city": "مانشستر سيتي",
-    "manchester united": "مانشستر يونايتد",
-    "liverpool": "ليفربول",
-    "arsenal": "أرسنال",
-    "chelsea": "تشيلسي",
-    "tottenham": "توتنهام",
-    "newcastle": "نيوكاسل",
-    "real madrid": "ريال مدريد",
-    "barcelona": "برشلونة",
-    "atletico madrid": "أتلتيكو مدريد",
-    "sevilla": "إشبيلية",
-    "bayern munich": "بايرن ميونخ",
-    "borussia dortmund": "بوروسيا دورتموند",
-    "paris saint-germain": "باريس سان جيرمان",
-    "psg": "باريس سان جيرمان",
-    "inter milan": "إنتر ميلان",
-    "ac milan": "ميلان",
-    "juventus": "يوفنتوس",
-    "napoli": "نابولي",
-    "roma": "روما",
-    "lazio": "لاتسيو",
-    "al hilal": "الهلال",
-    "al nassr": "النصر",
-    "al ittihad": "الاتحاد",
-    "al ahli": "الأهلي",
-    "al shabab": "الشباب",
-    "al sadd": "السد",
-    "al duhail": "الدحيل",
-    "al shorta": "الشرطة",
-    "al quwa al jawiya": "القوة الجوية",
-    "al zawraa": "الزوراء",
-    "iraqi stars league": "دوري نجوم العراق",
-    "saudi pro league": "دوري روشن السعودي",
-    "premier league": "الدوري الإنجليزي الممتاز",
-    "la liga": "الدوري الإسباني",
-    "serie a": "الدوري الإيطالي",
-    "bundesliga": "الدوري الألماني",
-    "ligue 1": "الدوري الفرنسي",
-    "champions league": "دوري أبطال أوروبا",
-    "europa league": "الدوري الأوروبي",
-    "afc champions league": "دوري أبطال آسيا",
 }
 
+TIMEOUT = 25
+DAYS = [-1, 0, 1]
 
-# =========================================================
-# CHANNEL NAMES
-# =========================================================
+session = requests.Session()
+session.headers.update(HEADERS)
 
-CHANNELS = {
-    "bein sports": "بي إن سبورتس",
-    "beinsports": "بي إن سبورتس",
-    "bein": "بي إن سبورتس",
-    "ssc": "إس إس سي",
-    "alkass": "قنوات الكأس",
-    "al kass": "قنوات الكأس",
-    "abu dhabi sports": "أبوظبي الرياضية",
-    "iraqia sport": "العراقية الرياضية",
-    "iraqia sports": "العراقية الرياضية",
-    "al rabiaa": "الرابعة الرياضية",
-    "alrabiaa": "الرابعة الرياضية",
-    "thmanyah": "ثمانية",
-    "al thmanyah": "ثمانية",
-    "dubai sports": "دبي الرياضية",
-    "kuwait sports": "الكويت الرياضية",
-    "oman sports": "عُمان الرياضية",
-    "on time sports": "أون تايم سبورتس",
-    "on sports": "أون سبورت",
-    "shahid": "شاهد",
-    "dazn": "DAZN",
-    "espn": "ESPN",
-    "sky sports": "سكاي سبورتس",
-    "canal+": "كانال بلس",
-    "sport tv": "سبورت تي في",
-    "fox sports": "فوكس سبورتس",
-    "premier sports": "بريمير سبورتس",
+stats = {
+    "fotmob": 0,
+    "as_goal": 0,
+    "talknow": 0,
+    "filgoal": 0,
+    "original": 0,
+    "almashhad": 0,
+    "errors": 0,
 }
 
+# ---------------- HELPERS ----------------
 
-BROADCAST_WORDS = (
-    "القناة الناقلة",
-    "القنوات الناقلة",
-    "على قناة",
-    "تنقل على",
-    "يذاع على",
-    "النقل التلفزيوني",
-    "معلق المباراة",
-    "المعلق",
-    "broadcast",
-    "tv channel",
-    "watch live",
-    "where to watch",
-    "commentator",
-    "coverage",
-    "live on",
-    "streaming on",
-)
+def log(message):
+    print(message, flush=True)
 
 
-# =========================================================
-# COMPETITION FILTER
-# =========================================================
+def get_page(url):
+    try:
+        response = session.get(url, timeout=TIMEOUT)
+        response.raise_for_status()
 
-# أسماء البطولات المسموح بها.
-# المطابقة تتم على اسم البطولة نفسه، وليس كلمات عامة مثل Cup فقط.
+        if not response.encoding or response.encoding == "ISO-8859-1":
+            response.encoding = response.apparent_encoding
 
-ALLOWED_LEAGUE_TERMS = (
-    # أوروبا - الدوريات
-    "premier league",
-    "english premier league",
-    "la liga",
-    "serie a",
-    "bundesliga",
-    "ligue 1",
-    "eredivisie",
-    "primeira liga",
-    "scottish premiership",
-    "belgian pro league",
-    "turkish super lig",
-    "greek super league",
+        return response.text
 
-    # أوروبا - الكؤوس والبطولات
-    "uefa champions league",
-    "champions league",
-    "uefa europa league",
-    "europa league",
-    "conference league",
-    "uefa conference league",
-    "fa cup",
-    "efl cup",
-    "carabao cup",
-    "copa del rey",
-    "supercopa de espana",
-    "copa italia",
-    "coppa italia",
-    "dfb pokal",
-    "coupe de france",
-    "uefa nations league",
-    "european championship",
-    "euro qualification",
-    "european qualifiers",
-
-    # السعودية والخليج والعراق
-    "saudi pro league",
-    "saudi league",
-    "roshn",
-    "saudi first division",
-    "iraqi stars league",
-    "iraq stars league",
-    "iraqi premier league",
-    "iraqi league",
-    "qatar stars league",
-    "qatar league",
-    "uae pro league",
-    "uae league",
-    "kuwait premier league",
-    "oman league",
-    "jordanian pro league",
-    "bahrain premier league",
-
-    # آسيا
-    "afc champions league",
-    "afc champions league elite",
-    "afc champions league two",
-    "afc cup",
-    "asian cup",
-    "asia cup qualification",
-    "world cup qualification asia",
-    "world cup qualifiers",
-    "gulf cup",
-    "arab cup",
-    "gcc champions league",
-
-    # أفريقيا
-    "caf champions league",
-    "caf confederation cup",
-    "africa cup of nations",
-    "african cup of nations",
-    "afcon",
-    "egyptian premier league",
-    "egyptian league",
-    "botola",
-
-    # بطولات دولية
-    "fifa world cup",
-    "world cup",
-    "fifa club world cup",
-    "club world cup",
-    "international friendly",
-    "international friendlies",
-    "friendlies",
-    "olympic football",
-    "copa america",
-    "concacaf gold cup",
-    "gold cup",
-)
-
-ARABIC_ALLOWED_TERMS = (
-    "الدوري الانجليزي الممتاز",
-    "الدوري الاسباني",
-    "الدوري الايطالي",
-    "الدوري الالماني",
-    "الدوري الفرنسي",
-    "الدوري الهولندي",
-    "الدوري البرتغالي",
-    "دوري ابطال اوروبا",
-    "الدوري الاوروبي",
-    "دوري المؤتمر الاوروبي",
-    "كاس الاتحاد الانجليزي",
-    "كاس الرابطه الانجليزي",
-    "كاس ملك اسبانيا",
-    "كاس ايطاليا",
-    "دوري الامم الاوروبيه",
-    "كاس اوروبا",
-    "دوري روشن السعودي",
-    "الدوري السعودي",
-    "دوري نجوم العراق",
-    "الدوري العراقي",
-    "دوري نجوم قطر",
-    "الدوري القطري",
-    "الدوري الاماراتي",
-    "الدوري الكويتي",
-    "الدوري العماني",
-    "دوري ابطال اسيا",
-    "دوري ابطال اسيا للنخبه",
-    "دوري ابطال اسيا 2",
-    "كاس اسيا",
-    "كاس الخليج",
-    "كاس العرب",
-    "كاس العالم",
-    "تصفيات كاس العالم",
-    "كاس امم افريقيا",
-    "كاس افريقيا",
-    "دوري ابطال افريقيا",
-    "كاس الكونفدراليه الافريقيه",
-    "كوبا امريكا",
-    "كاس الذهب",
-    "مباريات دوليه وديه",
-)
-
-# استبعاد هذه البطولات حتى لو احتوى الاسم على كلمة مسموحة
-REJECT_LEAGUE_TERMS = (
-    "women",
-    "womens",
-    "women's",
-    "femenil",
-    "feminine",
-    "u21",
-    "u20",
-    "u19",
-    "u18",
-    "u17",
-    "u16",
-    "youth",
-    "reserve",
-    "reserves",
-    "under 21",
-    "under 20",
-    "under 19",
-    "under 18",
-    "under 17",
-    "segunda division",
-    "third division",
-    "fourth division",
-)
-
-
-def league_is_allowed(name):
-    name = clean(name)
-
-    if not name:
-        return False
-
-    normalized = normalize(name)
-
-    for term in REJECT_LEAGUE_TERMS:
-        if normalize(term) in normalized:
-            return False
-
-    for term in ALLOWED_LEAGUE_TERMS:
-        if normalize(term) in normalized:
-            return True
-
-    for term in ARABIC_ALLOWED_TERMS:
-        if normalize(term) in normalized:
-            return True
-
-    return False
-
-
-# =========================================================
-# GENERAL FUNCTIONS
-# =========================================================
-
-def clean(value):
-    if value is None:
+    except Exception as e:
+        stats["errors"] += 1
+        log(f"FETCH ERROR: {url} | {e}")
         return ""
-
-    return re.sub(
-        r"\s+",
-        " ",
-        html.unescape(str(value))
-    ).strip()
 
 
 def normalize(value):
-    value = unicodedata.normalize(
-        "NFKC",
-        clean(value)
-    ).casefold()
-
-    value = re.sub(
-        r"[\u064B-\u065F\u0670ـ]",
-        "",
-        value
-    )
-
-    value = value.replace("أ", "ا")
-    value = value.replace("إ", "ا")
-    value = value.replace("آ", "ا")
-    value = value.replace("ى", "ي")
-    value = value.replace("ة", "ه")
-
-    return re.sub(
-        r"[^a-z0-9\u0600-\u06ff]",
-        "",
-        value
-    )
+    value = html.unescape(str(value or ""))
+    value = unicodedata.normalize("NFKC", value)
+    value = value.replace("ـ", "")
+    value = re.sub(r"\s+", " ", value)
+    return value.strip()
 
 
-def arabic_name(value):
-    value = clean(value)
-
-    if not value:
-        return ""
-
-    if re.search(r"[\u0600-\u06ff]", value):
-        return value
-
-    return TEAM_AR.get(value.casefold(), value)
+def clean_name(value):
+    value = normalize(value)
+    value = re.sub(r"\s+", " ", value)
+    return value.strip(" -|،")
 
 
-def fetch(url, params=None):
-    error = None
+def team_key(value):
+    value = normalize(value).lower()
 
-    for attempt in range(RETRIES):
-        try:
-            response = session.get(
-                url,
-                params=params,
-                timeout=TIMEOUT
-            )
+    replacements = {
+        "أ": "ا", "إ": "ا", "آ": "ا",
+        "ى": "ي", "ة": "ه",
+        "ي": "ي",
+    }
 
-            response.raise_for_status()
-            return response
+    for a, b in replacements.items():
+        value = value.replace(a, b)
 
-        except requests.RequestException as exc:
-            error = exc
-            time.sleep(1)
-
-    raise error
+    value = re.sub(r"[^a-z0-9\u0600-\u06ff]", "", value)
+    return value
 
 
-def load_json(path, default):
+def get_json(url, params=None):
     try:
-        with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return default
-
-
-def save_json(path, data):
-    content = json.dumps(
-        data,
-        ensure_ascii=False,
-        indent=2
-    ) + "\n"
-
-    temp = None
-
-    try:
-        with tempfile.NamedTemporaryFile(
-            mode="w",
-            encoding="utf-8",
-            dir=ROOT,
-            delete=False
-        ) as f:
-            f.write(content)
-            temp = f.name
-
-        with open(temp, encoding="utf-8") as f:
-            json.load(f)
-
-        os.replace(temp, path)
-
-    finally:
-        if temp and os.path.exists(temp):
-            os.remove(temp)
-
-
-def parse_date(value):
-    try:
-        dt = datetime.fromisoformat(
-            clean(value).replace("Z", "+00:00")
+        response = session.get(
+            url,
+            params=params,
+            timeout=TIMEOUT
         )
+        response.raise_for_status()
+        return response.json()
 
-        if dt.tzinfo is None:
-            dt = dt.replace(tzinfo=timezone.utc)
-
-        return dt.astimezone(TZ)
-
-    except Exception:
-        return None
+    except Exception as e:
+        stats["errors"] += 1
+        log(f"JSON ERROR: {e}")
+        return {}
 
 
-# =========================================================
-# MATCH DATA
-# =========================================================
+def empty_match():
+    return {
+        "league": "",
+        "home": "",
+        "away": "",
+        "team1": "",
+        "team2": "",
+        "home_img": "",
+        "away_img": "",
+        "hour": "",
+        "time": "",
+        "date": "",
+        "match_date": "",
+        "status": "upcoming",
+        "score": "",
+        "channel": "",
+        "commentator": "",
+        "streamUrl": "",
+    }
 
-def get_team(team):
-    if not isinstance(team, dict):
-        return "", ""
 
-    name = (
-        team.get("nameAr")
-        or team.get("name_ar")
-        or team.get("name")
-        or team.get("shortName")
+# ---------------- MATCH ID ----------------
+
+def match_id(match):
+    return (
+        team_key(match.get("home", "")),
+        team_key(match.get("away", "")),
+        match.get("date", "")
     )
 
-    logo = (
-        team.get("imageUrl")
-        or team.get("logo")
-        or team.get("logo_url")
-        or ""
-    )
 
-    team_id = clean(team.get("id"))
-
-    if not logo and team_id.isdigit():
-        logo = (
-            "https://images.fotmob.com/image_resources/"
-            f"logo/teamlogo/{team_id}.png"
-        )
-
-    return arabic_name(name), clean(logo)
-
-
-def match_status(status):
-    if isinstance(status, dict):
-
-        if status.get("cancelled") or status.get("finished"):
-            return "ended"
-
-        if status.get("started"):
-            return "live"
-
-        reason = clean(
-            status.get("reason")
-        ).lower()
-
-        if reason in ("ft", "aet", "pen", "finished"):
-            return "ended"
-
-        if reason in ("ht", "1h", "2h", "live"):
-            return "live"
-
-    return "upcoming"
-
-
-def get_score(item, status):
-    if isinstance(status, dict):
-        score = clean(status.get("scoreStr"))
-
-        if score and score not in ("-", "vs"):
-            return score.replace(" ", "")
-
-    home = item.get("home", {})
-    away = item.get("away", {})
-
-    if isinstance(home, dict) and isinstance(away, dict):
-        h = home.get("score")
-        a = away.get("score")
-
-        if h is not None and a is not None:
-            return f"{h}-{a}"
-
-    return ""
-
-
-# =========================================================
-# SEARCH FUNCTIONS
-# =========================================================
-
-def match_names_present(text, home, away):
-    value = normalize(text)
-    h = normalize(home)
-    a = normalize(away)
-
-    if not h or not a:
+def same_match(a, b):
+    if not a or not b:
         return False
 
-    return h in value and a in value
+    if a.get("date") != b.get("date"):
+        return False
 
+    ah = team_key(a.get("home"))
+    aa = team_key(a.get("away"))
+    bh = team_key(b.get("home"))
+    ba = team_key(b.get("away"))
 
-def has_broadcast_words(text):
-    value = normalize(text)
+    if not all([ah, aa, bh, ba]):
+        return False
 
-    return any(
-        normalize(word) in value
-        for word in BROADCAST_WORDS
+    direct = (
+        ah in bh or bh in ah
+    ) and (
+        aa in ba or ba in aa
     )
 
+    reverse = (
+        ah in ba or ba in ah
+    ) and (
+        aa in bh or bh in aa
+    )
 
-def google_search(query):
-    key = ("google", query)
+    return direct or reverse
 
-    if key in SEARCH_CACHE:
-        return SEARCH_CACHE[key]
 
-    STATS["google_searches"] += 1
+# ---------------- FOTMOB ----------------
+
+def fotmob_matches():
     results = []
 
-    try:
-        response = fetch(
-            "https://news.google.com/rss/search",
-            {
-                "q": query,
-                "hl": "ar",
-                "gl": "IQ",
-                "ceid": "IQ:ar",
+    for offset in DAYS:
+        day = datetime.now(TZ).date() + timedelta(days=offset)
+        date_string = day.strftime("%Y%m%d")
+
+        log(f"FOTMOB FETCH: {date_string}")
+
+        data = get_json(
+            FOTMOB,
+            params={
+                "date": date_string,
+                "timezone": "Asia/Baghdad",
+                "ccode3": "IRQ",
             }
         )
 
-        root = ET.fromstring(response.content)
+        leagues = data.get("leagues", [])
 
-        for item in root.findall(".//item")[:SEARCH_LIMIT]:
-            results.append({
-                "title": clean(item.findtext("title")),
-                "description": clean(item.findtext("description")),
-                "link": clean(item.findtext("link")),
-            })
+        for league in leagues:
+            league_name = league.get("name", "")
 
-    except Exception as exc:
-        print("GOOGLE ERROR:", str(exc)[:120])
+            for item in league.get("matches", []):
+                try:
+                    home_data = item.get("home", {})
+                    away_data = item.get("away", {})
 
-    SEARCH_CACHE[key] = results
-    STATS["search_results"] += len(results)
-
-    return results
-
-
-def bing_search(query):
-    key = ("bing", query)
-
-    if key in SEARCH_CACHE:
-        return SEARCH_CACHE[key]
-
-    STATS["bing_searches"] += 1
-    results = []
-
-    try:
-        response = fetch(
-            "https://www.bing.com/search",
-            {
-                "q": query,
-                "count": SEARCH_LIMIT,
-                "setlang": "ar",
-            }
-        )
-
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser"
-        )
-
-        for item in soup.select("li.b_algo")[:SEARCH_LIMIT]:
-            title = item.select_one("h2")
-            link = title.find("a") if title else None
-            desc = item.select_one("p")
-
-            if not link:
-                continue
-
-            results.append({
-                "title": clean(
-                    title.get_text(" ", strip=True)
-                ),
-                "description": clean(
-                    desc.get_text(" ", strip=True)
-                    if desc else ""
-                ),
-                "link": clean(link.get("href")),
-            })
-
-    except Exception as exc:
-        print("BING ERROR:", str(exc)[:120])
-
-    SEARCH_CACHE[key] = results
-    STATS["search_results"] += len(results)
-
-    return results
-
-
-def page_text(url):
-    if url in PAGE_CACHE:
-        STATS["page_cache_hits"] += 1
-        return PAGE_CACHE[url]
-
-    try:
-        response = fetch(url)
-
-        soup = BeautifulSoup(
-            response.text,
-            "html.parser"
-        )
-
-        for tag in soup(
-            ["script", "style", "noscript", "svg", "iframe"]
-        ):
-            tag.decompose()
-
-        rows = []
-
-        for tr in soup.find_all("tr"):
-            cells = [
-                clean(cell.get_text(" ", strip=True))
-                for cell in tr.find_all(["td", "th"])
-            ]
-
-            cells = [x for x in cells if x]
-
-            if cells:
-                rows.append(" | ".join(cells))
-
-        text = soup.get_text(" | ", strip=True)
-
-        if rows:
-            text += " | " + " || ".join(rows)
-
-        text = clean(text)[:50000]
-
-        PAGE_CACHE[url] = text
-        STATS["pages_opened"] += 1
-
-        return text
-
-    except Exception as exc:
-        STATS["page_errors"] += 1
-        print("PAGE ERROR:", str(exc)[:100])
-        return ""
-
-
-# =========================================================
-# CHANNEL EXTRACTION
-# =========================================================
-
-def extract_channel(text):
-    text = clean(text)
-
-    patterns = [
-        r"(?:القناة الناقلة|القنوات الناقلة|القناة|"
-        r"تنقل على|يذاع على|على قناة|broadcast(?:ing)? on|"
-        r"tv channel|where to watch|available on)"
-        r"\s*[:：\-]?\s*([^|؛،.!؟]{2,90})",
-
-        r"(?:channel)\s*[:：\-]\s*([^|؛،.!?]{2,90})",
-    ]
-
-    for pattern in patterns:
-        for found in re.finditer(pattern, text, re.I):
-            value = clean(found.group(1))
-
-            value = re.split(
-                r"المعلق|معلق المباراة|موعد المباراة|"
-                r"توقيت المباراة|commentator|kick.?off",
-                value,
-                flags=re.I
-            )[0]
-
-            for key, arabic in sorted(
-                CHANNELS.items(),
-                key=lambda x: len(x[0]),
-                reverse=True
-            ):
-                if key in value.casefold():
-                    number = re.search(r"\d+", value)
-
-                    return (
-                        arabic
-                        + (" " + number.group() if number else "")
+                    home = clean_name(
+                        home_data.get("name", "")
                     )
 
-    if has_broadcast_words(text):
-        for key, arabic in sorted(
-            CHANNELS.items(),
-            key=lambda x: len(x[0]),
-            reverse=True
-        ):
-            if key in text.casefold():
-                number = re.search(
-                    re.escape(key) + r"\s*(\d+)",
-                    text,
-                    re.I
-                )
+                    away = clean_name(
+                        away_data.get("name", "")
+                    )
 
-                return (
-                    arabic
-                    + (" " + number.group(1) if number else "")
-                )
+                    if not home or not away:
+                        continue
+
+                    match = empty_match()
+
+                    match["league"] = clean_name(league_name)
+                    match["home"] = home
+                    match["away"] = away
+                    match["team1"] = home
+                    match["team2"] = away
+
+                    match["home_img"] = (
+                        home_data.get("imageUrl", "")
+                        or home_data.get("logo", "")
+                    )
+
+                    match["away_img"] = (
+                        away_data.get("imageUrl", "")
+                        or away_data.get("logo", "")
+                    )
+
+                    match["date"] = day.isoformat()
+                    match["match_date"] = day.isoformat()
+
+                    status_data = item.get("status", {})
+                    status_text = normalize(
+                        status_data.get("reason", "")
+                    ).lower()
+
+                    if item.get("status", {}).get("started"):
+                        match["status"] = "live"
+                    elif item.get("status", {}).get("finished"):
+                        match["status"] = "ended"
+                    else:
+                        match["status"] = "upcoming"
+
+                    score_home = home_data.get("score")
+                    score_away = away_data.get("score")
+
+                    if score_home is not None and score_away is not None:
+                        match["score"] = (
+                            f"{score_home}-{score_away}"
+                        )
+
+                    timestamp = (
+                        item.get("status", {}).get("utcTime")
+                        or item.get("status", {}).get("startTime")
+                        or item.get("utcTime")
+                    )
+
+                    if timestamp:
+                        try:
+                            dt = datetime.fromisoformat(
+                                str(timestamp).replace("Z", "+00:00")
+                            ).astimezone(TZ)
+
+                            match["hour"] = dt.strftime("%H:%M")
+                            match["time"] = match["hour"]
+                            match["date"] = dt.date().isoformat()
+                            match["match_date"] = match["date"]
+
+                        except Exception:
+                            pass
+
+                    results.append(match)
+
+                except Exception as e:
+                    log(f"FOTMOB MATCH ERROR: {e}")
+
+    stats["fotmob"] = len(results)
+    return results
+
+
+# ---------------- AS GOAL ----------------
+
+CHANNEL_WORDS = [
+    "بي إن سبورت",
+    "beIN SPORTS",
+    "beIN Sport",
+    "اون سبورت",
+    "أون سبورت",
+    "ON Sport",
+    "الكأس",
+    "Al-Kass",
+    "SSC",
+    "اس اس سي",
+    "STARZPLAY",
+    "ستارز بلاي",
+    "MBC",
+    "شاهد",
+    "دبي الرياضية",
+    "أبوظبي الرياضية",
+    "AD Sports",
+    "القنوات الرياضية",
+    "الرياضية المغربية",
+    "الكويت الرياضية",
+    "العراقية الرياضية",
+    "عمان الرياضية",
+    "قناة الرابعة",
+]
+
+def find_channel(text):
+    low = normalize(text).lower()
+
+    for channel in CHANNEL_WORDS:
+        if channel.lower() in low:
+            return channel
 
     return ""
 
 
-# =========================================================
-# COMMENTATOR EXTRACTION
-# =========================================================
+def parse_as_goal():
+    results = []
 
-def extract_commentator(text):
-    text = clean(text)
+    page = get_page(AS_GOAL)
+    if not page:
+        return results
+
+    soup = BeautifulSoup(page, "html.parser")
+
+    for anchor in soup.find_all("a"):
+        text = clean_name(anchor.get_text(" ", strip=True))
+
+        if len(text) < 15:
+            continue
+
+        time_match = re.search(
+            r"\b([01]?\d|2[0-3]):[0-5]\d\b",
+            text
+        )
+
+        if not time_match:
+            continue
+
+        channel = find_channel(text)
+        if not channel:
+            continue
+
+        before = text[:time_match.start()].strip()
+        after = text[time_match.end():].strip()
+
+        # Remove possible competition prefix if present.
+        before = re.sub(
+            r"^(مباريات اليوم|مباريات الغد)\s*",
+            "",
+            before
+        )
+
+        # Find channel position in remaining text.
+        lower_after = after.lower()
+        positions = []
+
+        for word in CHANNEL_WORDS:
+            pos = lower_after.find(word.lower())
+            if pos >= 0:
+                positions.append(pos)
+
+        if not positions:
+            continue
+
+        channel_pos = min(positions)
+        away = clean_name(after[:channel_pos])
+
+        channel_and_commentator = after[channel_pos:]
+
+        channel_match = None
+        for word in CHANNEL_WORDS:
+            found = re.search(
+                re.escape(word),
+                channel_and_commentator,
+                re.I
+            )
+            if found:
+                channel_match = found
+                break
+
+        if not channel_match:
+            continue
+
+        commentator = clean_name(
+            channel_and_commentator[channel_match.end():]
+        )
+
+        # Remove English duplicate names when possible.
+        commentator = re.sub(
+            r"\b[A-Z][A-Za-z .'-]{3,}$",
+            "",
+            commentator
+        ).strip()
+
+        home = clean_name(before)
+
+        if not home or not away:
+            continue
+
+        match = empty_match()
+
+        match["home"] = home
+        match["away"] = away
+        match["team1"] = home
+        match["team2"] = away
+        match["channel"] = channel
+        match["commentator"] = commentator
+
+        match["hour"] = time_match.group()
+        match["time"] = match["hour"]
+
+        # Determine date by section heading.
+        match["date"] = datetime.now(TZ).date().isoformat()
+        match["match_date"] = match["date"]
+
+        results.append(match)
+
+    stats["as_goal"] = len(results)
+    log(f"AS GOAL MATCHES: {len(results)}")
+
+    return results
+
+
+# ---------------- TALK NOW ----------------
+
+def parse_talknow():
+    results = []
+
+    page = get_page(TALK_NOW)
+    if not page:
+        return results
+
+    soup = BeautifulSoup(page, "html.parser")
+
+    for node in soup.find_all(["article", "div", "li"]):
+        text = clean_name(node.get_text(" ", strip=True))
+
+        if len(text) < 20 or len(text) > 1200:
+            continue
+
+        # A card must contain a time and two teams.
+        tm = re.search(
+            r"\b([01]?\d|2[0-3]):[0-5]\d\b",
+            text
+        )
+
+        if not tm:
+            continue
+
+        channel = find_channel(text)
+        if not channel:
+            continue
+
+        commentator = ""
+
+        for word in CHANNEL_WORDS:
+            pos = text.lower().find(word.lower())
+            if pos >= 0:
+                remainder = text[pos + len(word):]
+                parts = remainder.split()
+                if parts:
+                    commentator = clean_name(
+                        " ".join(parts[:5])
+                    )
+                break
+
+        # Use a conservative card parser.
+        parts = re.split(
+            r"\b([01]?\d|2[0-3]):[0-5]\d\b",
+            text,
+            maxsplit=1
+        )
+
+        if len(parts) < 3:
+            continue
+
+        left = clean_name(parts[0])
+        right = clean_name(parts[2])
+
+        # Avoid accepting large page containers.
+        if len(left) > 100 or len(right) > 250:
+            continue
+
+        match = empty_match()
+        match["home"] = left
+        match["away"] = right.split(channel)[0].strip()
+        match["team1"] = match["home"]
+        match["team2"] = match["away"]
+        match["channel"] = channel
+        match["commentator"] = commentator
+        match["hour"] = tm.group()
+        match["time"] = match["hour"]
+        match["date"] = datetime.now(TZ).date().isoformat()
+        match["match_date"] = match["date"]
+
+        if match["home"] and match["away"]:
+            results.append(match)
+
+    # Remove duplicate cards.
+    unique = {}
+    for match in results:
+        key = (
+            team_key(match["home"]),
+            team_key(match["away"]),
+            match["hour"]
+        )
+        unique[key] = match
+
+    results = list(unique.values())
+    stats["talknow"] = len(results)
+
+    log(f"TALKNOW MATCHES: {len(results)}")
+    return results
+
+
+# ---------------- FILGOAL ----------------
+
+def parse_filgoal():
+    results = []
+
+    page = get_page(FILGOAL)
+    if not page:
+        return results
+
+    soup = BeautifulSoup(page, "html.parser")
+
+    links = []
+
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+
+        if "/matches/" in href and "/overview/" in href:
+            full_url = urljoin(FILGOAL, href)
+
+            if full_url not in links:
+                links.append(full_url)
+
+    log(f"FILGOAL MATCH LINKS: {len(links)}")
+
+    for url in links[:100]:
+        detail = get_page(url)
+        if not detail:
+            continue
+
+        detail_soup = BeautifulSoup(detail, "html.parser")
+        text = clean_name(
+            detail_soup.get_text(" ", strip=True)
+        )
+
+        # Extract the two team names from page title/headings.
+        title = detail_soup.title.get_text(
+            " ", strip=True
+        ) if detail_soup.title else ""
+
+        match = empty_match()
+
+        # FilGoal detail pages expose channel/commentator
+        # in the match information text.
+        channel = find_channel(text)
+
+        if not channel:
+            continue
+
+        match["channel"] = channel
+
+        channel_pos = text.lower().find(channel.lower())
+        if channel_pos >= 0:
+            tail = text[channel_pos + len(channel):]
+            words = tail.split()
+
+            if words:
+                commentator = clean_name(
+                    " ".join(words[:5])
+                )
+                match["commentator"] = commentator
+
+        # Extract team names from the page title when available.
+        found = re.search(
+            r"مباراة فريقي\s+(.+?)\s+و\s+(.+?)\s+في بطولة",
+            title
+        )
+
+        if found:
+            match["home"] = clean_name(found.group(1))
+            match["away"] = clean_name(found.group(2))
+            match["team1"] = match["home"]
+            match["team2"] = match["away"]
+
+        # Extract competition.
+        competition = re.search(
+            r"(الدوري|كأس|دوري أبطال)[^،|]{2,70}",
+            text
+        )
+
+        if competition:
+            match["league"] = clean_name(
+                competition.group()
+            )
+
+        # Extract date/time.
+        date_match = re.search(
+            r"(\d{1,2})\s+(يناير|فبراير|مارس|أبريل|مايو|يونيو|يوليو|أغسطس|سبتمبر|أكتوبر|نوفمبر|ديسمبر)\s+(\d{4})\s+(\d{1,2}:\d{2})",
+            text
+        )
+
+        if date_match:
+            match["hour"] = date_match.group(4)
+            match["time"] = match["hour"]
+
+        if match["home"] and match["away"]:
+            results.append(match)
+
+        time.sleep(0.2)
+
+    stats["filgoal"] = len(results)
+    log(f"FILGOAL DETAILS: {len(results)}")
+
+    return results
+
+
+# ---------------- ORIGINAL TV ----------------
+
+def parse_original():
+    results = []
+
+    # The supplied URL is a single match page.
+    # Do not guess other match IDs.
+    page = get_page(
+        urljoin(ORIGINAL, "live?match=27094")
+    )
+
+    if not page:
+        return results
+
+    soup = BeautifulSoup(page, "html.parser")
+    text = clean_name(soup.get_text(" ", strip=True))
+
+    channel = find_channel(text)
+
+    if not channel:
+        return results
+
+    commentator = ""
 
     patterns = [
-        r"(?:المعلق|معلق المباراة|التعليق|بصوت|"
-        r"المعلق الصوتي)\s*[:：\-]?\s*"
-        r"([\u0600-\u06ffA-Za-z .'-]{3,45})",
-
-        r"(?:commentator|commentary by|voice)"
-        r"\s*[:：\-]?\s*([A-Za-z .'-]{3,45})",
+        r"🎙️?\s*([^🏆📺🎙️]{3,50})",
+        r"معلق\s*[:：]?\s*([^،|]{3,50})",
     ]
 
     for pattern in patterns:
-        found = re.search(pattern, text, re.I)
+        found = re.search(pattern, text)
+        if found:
+            commentator = clean_name(found.group(1))
+            break
 
-        if not found:
+    match = empty_match()
+    match["channel"] = channel
+    match["commentator"] = commentator
+
+    stats["original"] = 1
+    results.append(match)
+
+    log("ORIGINAL: extracted supplied match page")
+    return results
+
+
+# ---------------- ALMASHHAD ----------------
+
+def parse_almashhad():
+    results = []
+
+    # This is a dated article, not a daily fixture endpoint.
+    # It is retained as an optional source and must not be
+    # treated as current after its publication date.
+    page = get_page(ALMASHHAD)
+
+    if not page:
+        return results
+
+    soup = BeautifulSoup(page, "html.parser")
+    text = clean_name(soup.get_text(" ", strip=True))
+
+    if not text:
+        return results
+
+    # The article may contain multiple match rows.
+    # Only accept rows with a channel and a commentator.
+    for line in soup.find_all(["tr", "li", "p"]):
+        row = clean_name(line.get_text(" ", strip=True))
+
+        if len(row) < 20:
             continue
 
-        name = clean(found.group(1))
-
-        name = re.split(
-            r"القناة|القنوات|موعد|توقيت|الملعب|"
-            r"بطولة|channel|broadcast|kick.?off",
-            name,
-            flags=re.I
-        )[0].strip(" :-")
-
-        if 3 <= len(name) <= 45 and not re.search(r"\d", name):
-            if normalize(name) not in (
-                "match",
-                "live",
-                "sports",
-                "football",
-                "مباراه",
-            ):
-                return name
-
-    return ""
-
-
-# =========================================================
-# BROADCAST SEARCH ENGINE
-# =========================================================
-
-def search_broadcast(home, away, league, date):
-    print(
-        "  BROADCAST SEARCH:",
-        home,
-        "-",
-        away
-    )
-
-    query_ar = (
-        f'"{home}" "{away}" '
-        f'{league} القناة الناقلة المعلق {date}'
-    )
-
-    query_en = (
-        f'"{home}" "{away}" '
-        f'{league} TV channel commentator broadcast {date}'
-    )
-
-    query_channels = (
-        f'"{home}" "{away}" '
-        f'{league} channel TV broadcast {date}'
-    )
-
-    queries = [
-        query_ar,
-        query_en,
-        query_channels,
-    ]
-
-    candidates = []
-    seen = set()
-    opened = 0
-
-    for query in queries:
-        results = (
-            google_search(query)
-            + bing_search(query)
-        )
-
-        for result in results:
-            title = clean(result.get("title"))
-            desc = clean(result.get("description"))
-            link = clean(result.get("link"))
-
-            preview = title + " " + desc
-
-            if not match_names_present(
-                preview,
-                home,
-                away
-            ):
-                continue
-
-            if not link.startswith(("http://", "https://")):
-                continue
-
-            if link in seen:
-                continue
-
-            seen.add(link)
-
-            text = preview
-
-            if opened < MAX_PAGES_PER_MATCH:
-                opened += 1
-                text += " " + page_text(link)
-
-            if match_names_present(text, home, away):
-                candidates.append({
-                    "text": text,
-                    "domain": urlparse(link).netloc,
-                })
-
-    channel_sources = defaultdict(set)
-    commentator_sources = defaultdict(set)
-
-    for candidate in candidates:
-        text = candidate["text"]
-        domain = candidate["domain"]
-
-        channel = extract_channel(text)
-        commentator = extract_commentator(text)
-
-        if channel:
-            channel_sources[channel].add(domain)
-
-        if commentator:
-            commentator_sources[commentator].add(domain)
-
-        print(
-            "  SOURCE:",
-            domain,
-            "| CHANNEL:",
-            channel or "-",
-            "| COMMENTATOR:",
-            commentator or "-"
-        )
-
-    channel = ""
-    commentator = ""
-
-    if channel_sources:
-        channel = max(
-            channel_sources,
-            key=lambda x: len(channel_sources[x])
-        )
-
-    if commentator_sources:
-        commentator = max(
-            commentator_sources,
-            key=lambda x: len(commentator_sources[x])
-        )
-
-    if channel:
-        STATS["channels_found"] += 1
-
-    if commentator:
-        STATS["commentators_found"] += 1
-
-    return channel, commentator
-
-
-# =========================================================
-# OLD DATA AND MANUAL BROADCAST OVERRIDES
-# =========================================================
-
-def old_data_maps():
-    old = load_json(OUTPUT, {})
-
-    streams = {}
-    broadcasts = {}
-
-    if not isinstance(old, dict):
-        return streams, broadcasts
-
-    for match in old.get("matches", []):
-        if not isinstance(match, dict):
+        channel = find_channel(row)
+        if not channel:
             continue
 
-        key = (
-            clean(match.get("date")),
-            normalize(match.get("home")),
-            normalize(match.get("away")),
-        )
+        results.append({
+            "raw": row,
+            "channel": channel
+        })
 
-        if not key[1] or not key[2]:
+    stats["almashhad"] = len(results)
+    log(f"ALMASHHAD ROWS: {len(results)}")
+
+    return results
+
+
+# ---------------- MERGE ----------------
+
+def merge_matches(base, extra):
+    for item in extra:
+        if not item.get("home") or not item.get("away"):
             continue
 
-        if match.get("streamUrl"):
-            streams[key] = match["streamUrl"]
-
-        broadcasts[key] = {
-            "channel": clean(match.get("channel")),
-            "commentator": clean(match.get("commentator")),
-        }
-
-    return streams, broadcasts
-
-
-def load_overrides():
-    data = load_json(BROADCASTS_FILE, {})
-
-    if isinstance(data, dict):
-        return data
-
-    return {}
-
-
-def get_broadcast(
-    item,
-    date,
-    home,
-    away,
-    league,
-    old,
-    overrides
-):
-    key = (
-        date,
-        normalize(home),
-        normalize(away),
-    )
-
-    previous = old.get(key, {})
-
-    match_id = clean(item.get("id"))
-
-    override = {}
-
-    if match_id:
-        override = overrides.get(match_id, {})
-
-    if not isinstance(override, dict):
-        override = {}
-
-    if not override:
-        override = overrides.get("|".join(key), {})
-
-    if not isinstance(override, dict):
-        override = {}
-
-    channel = (
-        clean(override.get("channel"))
-        or clean(previous.get("channel"))
-    )
-
-    commentator = (
-        clean(override.get("commentator"))
-        or clean(previous.get("commentator"))
-    )
-
-    if channel and commentator:
-        return channel, commentator
-
-    if STATS["matches_searched"] >= MAX_BROADCAST_SEARCHES:
-        return channel, commentator
-
-    STATS["matches_searched"] += 1
-
-    found_channel, found_commentator = search_broadcast(
-        home,
-        away,
-        league,
-        date
-    )
-
-    return (
-        channel or found_channel,
-        commentator or found_commentator,
-    )
-
-
-# =========================================================
-# FOTMOB DATA
-# =========================================================
-
-def extract_matches(payload):
-    if isinstance(payload, dict):
-
-        if isinstance(payload.get("matches"), list):
-            return payload["matches"]
-
-        rows = []
-
-        for league in payload.get("leagues", []):
-            if not isinstance(league, dict):
-                continue
-
-            for match in league.get("matches", []):
-                if isinstance(match, dict):
-                    match = dict(match)
-                    match.setdefault("league", league)
-                    rows.append(match)
-
-        if rows:
-            return rows
-
-    raise ValueError("Invalid FotMob matches response")
-
-
-def fetch_day(date):
-    day = date.strftime("%Y%m%d")
-
-    print("FETCH:", day)
-
-    response = fetch(
-        BASE_URL + "/matches",
-        {
-            "date": day,
-            "timezone": TZ.key,
-            "ccode3": COUNTRY_CODE,
-        }
-    )
-
-    return extract_matches(response.json())
-
-
-# =========================================================
-# MATCH CONVERSION
-# =========================================================
-
-def convert_match(item, streams, old, overrides):
-    if not isinstance(item, dict):
-        return None
-
-    home, home_img = get_team(item.get("home"))
-    away, away_img = get_team(item.get("away"))
-
-    if not home or not away:
-        return None
-
-    status = item.get("status", {})
-
-    kickoff = None
-
-    if isinstance(status, dict):
-        kickoff = parse_date(status.get("utcTime"))
-
-    if kickoff is None:
-        kickoff = parse_date(
-            item.get("utcTime") or item.get("startTime")
-        )
-
-    if kickoff is None:
-        return None
-
-    date = kickoff.strftime("%Y-%m-%d")
-    hour = kickoff.strftime("%H:%M")
-
-    key = (
-        date,
-        normalize(home),
-        normalize(away),
-    )
-
-    league_obj = item.get("league") or {}
-
-    if isinstance(league_obj, dict):
-        league_raw = (
-            league_obj.get("name")
-            or league_obj.get("localizedName")
-            or ""
-        )
-    else:
-        league_raw = league_obj
-
-    league_raw = clean(league_raw)
-
-    # فلترة البطولات قبل البحث عن بيانات النقل
-    if not league_is_allowed(league_raw):
-        STATS["filtered_out"] += 1
-        return None
-
-    league = arabic_name(league_raw)
-
-    STATS["allowed_matches"] += 1
-
-    channel, commentator = get_broadcast(
-        item,
-        date,
-        home,
-        away,
-        league,
-        old,
-        overrides
-    )
-
-    return {
-        "league": league,
-        "home": home,
-        "away": away,
-        "team1": home,
-        "team2": away,
-        "home_img": home_img,
-        "away_img": away_img,
-        "hour": hour,
-        "time": hour,
-        "date": date,
-        "match_date": date,
-        "status": match_status(status),
-        "score": get_score(item, status),
-        "channel": channel,
-        "commentator": commentator,
-        "streamUrl": streams.get(key, ""),
-    }
-
-
-# =========================================================
-# MAIN
-# =========================================================
-
-def main():
-    today_date = datetime.now(TZ).date()
-
-    streams, old = old_data_maps()
-    overrides = load_overrides()
-
-    collected = {}
-    errors = {}
-
-    print("\n========== YALLA KORA V10 ==========")
-    print("TIMEZONE:", TZ.key)
-    print("BROADCAST SEARCH LIMIT:", MAX_BROADCAST_SEARCHES)
-
-    # جلب مباريات أمس واليوم والغد
-    for offset in DAYS:
-        target = today_date + timedelta(days=offset)
-        date_key = target.isoformat()
-
-        try:
-            for item in fetch_day(target):
-                match_id = clean(item.get("id"))
-
-                stable_key = match_id or json.dumps(
-                    item,
-                    sort_keys=True,
-                    ensure_ascii=False
-                )
-
-                collected[stable_key] = item
-
-        except Exception as exc:
-            errors[date_key] = str(exc)
-            print(
-                "FETCH ERROR:",
-                date_key,
-                str(exc)[:150]
-            )
-
-    today_key = today_date.isoformat()
-
-    if today_key in errors:
-        raise RuntimeError(
-            "فشل جلب مباريات اليوم؛ الملف القديم لم يتغير."
-        )
-
-    if not collected:
-        raise RuntimeError(
-            "لم تصل أي مباريات؛ الملف القديم لم يتغير."
-        )
-
-    converted = []
-
-    items = list(collected.values())
-
-    def sort_key(item):
-        status = item.get("status", {})
-
-        dt = None
-
-        if isinstance(status, dict):
-            dt = parse_date(status.get("utcTime"))
-
-        if dt is None:
-            dt = parse_date(
-                item.get("utcTime") or item.get("startTime")
-            )
-
-        if dt is None:
-            return datetime.max.replace(tzinfo=TZ)
-
-        return dt
-
-    items.sort(key=sort_key)
-
-    for index, item in enumerate(items, 1):
-        print(f"\n[{index}/{len(items)}]")
-
-        match = convert_match(
-            item,
-            streams,
-            old,
-            overrides
-        )
-
-        if match:
-            converted.append(match)
-
-        time.sleep(0.05)
-
-    yesterday_key = (
-        today_date - timedelta(days=1)
-    ).isoformat()
-
-    tomorrow_key = (
-        today_date + timedelta(days=1)
-    ).isoformat()
-
-    allowed_dates = {
-        yesterday_key,
-        today_key,
-        tomorrow_key,
-    }
-
+        found = None
+
+        for current in base:
+            if same_match(current, item):
+                found = current
+                break
+
+        if found:
+            for field in [
+                "league", "home_img", "away_img",
+                "channel", "commentator", "streamUrl"
+            ]:
+                if item.get(field) and not found.get(field):
+                    found[field] = item[field]
+
+            if item.get("hour"):
+                found["hour"] = item["hour"]
+                found["time"] = item["hour"]
+
+        else:
+            base.append(item)
+
+    return base
+
+
+def apply_broadcasts(matches):
+    if not os.path.exists(BROADCAST_FILE):
+        return
+
+    try:
+        with open(
+            BROADCAST_FILE,
+            "r",
+            encoding="utf-8"
+        ) as f:
+            data = json.load(f)
+
+        records = data if isinstance(data, list) else data.get("matches", [])
+
+        for item in matches:
+            for manual in records:
+                if same_match(item, manual):
+                    for field in [
+                        "channel",
+                        "commentator",
+                        "streamUrl"
+                    ]:
+                        if manual.get(field):
+                            item[field] = manual[field]
+
+    except Exception as e:
+        log(f"BROADCAST FILE ERROR: {e}")
+
+
+# ---------------- FINALIZE ----------------
+
+def finalize(matches):
     unique = {}
 
-    for match in converted:
-        if match["date"] not in allowed_dates:
+    for item in matches:
+        if not item.get("home") or not item.get("away"):
             continue
 
-        key = (
-            match["date"],
-            normalize(match["home"]),
-            normalize(match["away"]),
-        )
+        if not item.get("date"):
+            item["date"] = datetime.now(TZ).date().isoformat()
 
-        unique[key] = match
+        if not item.get("match_date"):
+            item["match_date"] = item["date"]
 
-    matches = list(unique.values())
+        if not item.get("team1"):
+            item["team1"] = item["home"]
 
-    matches.sort(
-        key=lambda m: (
-            m["date"],
-            m["hour"],
-            m["league"],
-            m["home"]
-        )
+        if not item.get("team2"):
+            item["team2"] = item["away"]
+
+        if not item.get("time"):
+            item["time"] = item.get("hour", "")
+
+        key = match_id(item)
+
+        if key not in unique:
+            unique[key] = item
+        else:
+            old = unique[key]
+
+            for field in [
+                "channel", "commentator",
+                "streamUrl", "home_img", "away_img"
+            ]:
+                if item.get(field) and not old.get(field):
+                    old[field] = item[field]
+
+    return list(unique.values())
+
+
+def main():
+    start = datetime.now(TZ)
+
+    log("=" * 55)
+    log("YALLA KORA V11 START")
+    log(f"TIME: {start.isoformat()}")
+    log("=" * 55)
+
+    # 1. Main match database.
+    matches = fotmob_matches()
+
+    # 2. Broadcast source.
+    as_goal = parse_as_goal()
+
+    # 3. Additional match cards.
+    talknow = parse_talknow()
+
+    # 4. Match detail pages.
+    filgoal = parse_filgoal()
+
+    # 5. Supplied Original TV page.
+    original = parse_original()
+
+    # 6. Dated article.
+    almashhad = parse_almashhad()
+
+    # Merge only records with identifiable teams.
+    matches = merge_matches(matches, as_goal)
+    matches = merge_matches(matches, talknow)
+    matches = merge_matches(matches, filgoal)
+
+    # Original TV supplied page has no reliable team names
+    # in the indexed page, so do not attach it to random games.
+
+    apply_broadcasts(matches)
+
+    matches = finalize(matches)
+
+    today = datetime.now(TZ).date()
+    yesterday = today - timedelta(days=1)
+    tomorrow = today + timedelta(days=1)
+
+    today_matches = [
+        m for m in matches
+        if m.get("date") == today.isoformat()
+    ]
+
+    yesterday_matches = [
+        m for m in matches
+        if m.get("date") == yesterday.isoformat()
+    ]
+
+    tomorrow_matches = [
+        m for m in matches
+        if m.get("date") == tomorrow.isoformat()
+    ]
+
+    with_channel = sum(
+        1 for m in matches if m.get("channel")
     )
 
-    yesterday = [
-        m for m in matches
-        if m["date"] == yesterday_key
-    ]
+    with_commentator = sum(
+        1 for m in matches if m.get("commentator")
+    )
 
-    today = [
-        m for m in matches
-        if m["date"] == today_key
-    ]
-
-    tomorrow = [
-        m for m in matches
-        if m["date"] == tomorrow_key
-    ]
-
-    if not today:
-        raise RuntimeError(
-            "لا توجد مباريات اليوم بعد الفلترة؛ الملف القديم لم يتغير."
-        )
-
-    # التحقق من عدم وجود ملف فارغ أو بيانات غير صالحة
     output = {
-        "success": True,
-        "version": "V10",
+        "version": "V11",
         "updated_at": datetime.now(TZ).isoformat(),
-        "timezone": TZ.key,
-        "count": len(matches),
-        "today_count": len(today),
-        "yesterday_count": len(yesterday),
-        "tomorrow_count": len(tomorrow),
+        "timezone": "Asia/Baghdad",
+        "source": "Yalla Kora Multi Source Engine",
         "matches": matches,
-        "today": today,
-        "yesterday": yesterday,
-        "tomorrow": tomorrow,
+        "today": today_matches,
+        "yesterday": yesterday_matches,
+        "tomorrow": tomorrow_matches,
+        "counts": {
+            "total": len(matches),
+            "today": len(today_matches),
+            "yesterday": len(yesterday_matches),
+            "tomorrow": len(tomorrow_matches),
+            "with_channel": with_channel,
+            "with_commentator": with_commentator,
+        },
+        "sources": stats,
     }
 
-    save_json(OUTPUT, output)
+    temp_file = OUTPUT_FILE + ".tmp"
 
-    print("\n========== RESULTS ==========")
-    print("TODAY:", len(today))
-    print("YESTERDAY:", len(yesterday))
-    print("TOMORROW:", len(tomorrow))
-    print("TOTAL:", len(matches))
+    with open(
+        temp_file,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        json.dump(
+            output,
+            f,
+            ensure_ascii=False,
+            indent=2
+        )
 
-    print(
-        "WITH CHANNEL:",
-        sum(bool(m["channel"]) for m in matches)
-    )
+    os.replace(temp_file, OUTPUT_FILE)
 
-    print(
-        "WITH COMMENTATOR:",
-        sum(bool(m["commentator"]) for m in matches)
-    )
-
-    print("\n========== FILTER DIAGNOSTICS ==========")
-    print("ALLOWED MATCHES:", STATS["allowed_matches"])
-    print("FILTERED OUT:", STATS["filtered_out"])
-
-    print("\n========== SEARCH DIAGNOSTICS ==========")
-
-    for key, value in STATS.items():
-        print(key, "=", value)
-
-    print("FETCH ERRORS:", errors or "NONE")
-    print("V10 FINISHED SUCCESSFULLY")
+    log("=" * 55)
+    log("V11 FINISHED")
+    log(f"TODAY: {len(today_matches)}")
+    log(f"YESTERDAY: {len(yesterday_matches)}")
+    log(f"TOMORROW: {len(tomorrow_matches)}")
+    log(f"TOTAL: {len(matches)}")
+    log(f"WITH CHANNEL: {with_channel}")
+    log(f"WITH COMMENTATOR: {with_commentator}")
+    log(f"SOURCE STATS: {json.dumps(stats, ensure_ascii=False)}")
+    log(f"OUTPUT: {OUTPUT_FILE}")
+    log("=" * 55)
 
 
 if __name__ == "__main__":
-    try:
-        main()
-
-    except Exception as exc:
-        print("\nUPDATE FAILED:", repr(exc))
-        raise
+    main()
