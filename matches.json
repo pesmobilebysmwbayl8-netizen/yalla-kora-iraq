@@ -1,26 +1,8 @@
 {
   "version": "V11-FIVE-SOURCES",
-  "updated_at": "2026-11-06T19:13:31.000764+03:00",
+  "updated_at": "2026-11-06T20:00:03.947479+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
-    {
-      "league": "",
-      "home": "الوكرة",
-      "away": "الشحانية",
-      "team1": "الوكرة",
-      "team2": "الشحانية",
-      "home_img": "",
-      "away_img": "",
-      "hour": "18:30",
-      "time": "18:30",
-      "date": "2026-11-06",
-      "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
-      "channel": "الكأس",
-      "commentator": "سمير اليعقوبي",
-      "streamUrl": ""
-    },
     {
       "league": "",
       "home": "غازي عنتاب",
@@ -725,24 +707,6 @@
     }
   ],
   "today": [
-    {
-      "league": "",
-      "home": "الوكرة",
-      "away": "الشحانية",
-      "team1": "الوكرة",
-      "team2": "الشحانية",
-      "home_img": "",
-      "away_img": "",
-      "hour": "18:30",
-      "time": "18:30",
-      "date": "2026-11-06",
-      "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
-      "channel": "الكأس",
-      "commentator": "سمير اليعقوبي",
-      "streamUrl": ""
-    },
     {
       "league": "",
       "home": "غازي عنتاب",
@@ -1450,21 +1414,21 @@
     }
   ],
   "counts": {
-    "total": 40,
-    "today": 8,
+    "total": 39,
+    "today": 7,
     "yesterday": 0,
     "tomorrow": 32,
-    "with_channel": 40,
-    "with_commentator": 40
+    "with_channel": 39,
+    "with_commentator": 39
   },
   "sources": {
     "talknow": 4,
-    "asgoal": 40,
+    "asgoal": 39,
     "filgoal": 1,
     "original": 0,
     "almashhad": 0,
-    "channels": 40,
-    "commentators": 40,
+    "channels": 39,
+    "commentators": 39,
     "errors": 0
   }
 }
