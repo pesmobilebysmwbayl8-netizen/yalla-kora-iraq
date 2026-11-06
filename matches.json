@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-07T00:08:17.339746+03:00",
+  "updated_at": "2026-11-07T00:45:16.139899+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -123,7 +123,7 @@
       "time": "21:30",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
+      "status": "ended",
       "score": "3 - 1",
       "channel": "إم بي سي شاهد",
       "commentator": "فهد الدريبي",
@@ -141,8 +141,8 @@
       "time": "21:45",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
-      "score": "2 - 0",
+      "status": "ended",
+      "score": "3 - 1",
       "channel": "بي إن سبورت 4",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -159,8 +159,8 @@
       "time": "21:45",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
-      "score": "1 - 1",
+      "status": "ended",
+      "score": "2 - 1",
       "channel": "ستارز بلاي",
       "commentator": "حازم عبدالسلام",
       "streamUrl": ""
@@ -196,7 +196,7 @@
       "date": "2026-11-06",
       "match_date": "2026-11-06",
       "status": "live",
-      "score": "0 - 0",
+      "score": "3 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -1495,7 +1495,7 @@
       "time": "21:30",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
+      "status": "ended",
       "score": "3 - 1",
       "channel": "إم بي سي شاهد",
       "commentator": "فهد الدريبي",
@@ -1513,8 +1513,8 @@
       "time": "21:45",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
-      "score": "2 - 0",
+      "status": "ended",
+      "score": "3 - 1",
       "channel": "بي إن سبورت 4",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -1531,8 +1531,8 @@
       "time": "21:45",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "live",
-      "score": "1 - 1",
+      "status": "ended",
+      "score": "2 - 1",
       "channel": "ستارز بلاي",
       "commentator": "حازم عبدالسلام",
       "streamUrl": ""
@@ -1568,7 +1568,7 @@
       "date": "2026-11-06",
       "match_date": "2026-11-06",
       "status": "live",
-      "score": "0 - 0",
+      "score": "3 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
