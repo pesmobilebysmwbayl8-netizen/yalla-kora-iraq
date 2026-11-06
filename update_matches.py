@@ -226,7 +226,7 @@ def parse_asgoal_detail(url):
     away_img = image_for_team(soup, away)
     score = ""
     if status in ("live", "ended"):
-        sm = re.search(r"\b(\d{1,2})\s*[-–:]\s*(\d{1,2})\b", text)
+        sm = re.search(r"\b(\d{1,2})\s*[-–]\s*(\d{1,2})\b", text)
         if sm:
             score = f"{sm.group(1)} - {sm.group(2)}"
     return new_match(home, away, date, hour, league, channel, commentator, home_img, away_img, status, score)
