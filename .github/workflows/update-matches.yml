@@ -1,4 +1,3 @@
-
 name: Update matches
 
 on:
@@ -32,7 +31,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-  run: python -m pip install --disable-pip-version-check requests beautifulsoup4
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4
 
       - name: Fetch and parse matches
         run: python update_matches.py
@@ -48,4 +47,3 @@ jobs:
             git commit -m "Update matches data"
             git push
           fi
-          
