@@ -1,32 +1,14 @@
 {
   "version": "V11-FIVE-SOURCES",
-  "updated_at": "2026-11-06T20:00:03.947479+03:00",
+  "updated_at": "2026-11-06T20:43:47.470104+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
-      "league": "",
-      "home": "غازي عنتاب",
-      "away": "قاسم باشا",
-      "team1": "غازي عنتاب",
-      "team2": "قاسم باشا",
-      "home_img": "",
-      "away_img": "",
-      "hour": "19:00",
-      "time": "19:00",
-      "date": "2026-11-06",
-      "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
-      "channel": "بي إن سبورت",
-      "commentator": "تركي",
-      "streamUrl": ""
-    },
-    {
       "league": "كأس مصر",
       "home": "جدول المباريات مباريات الأمس مباريات اليوم مباريات الغد الزمالك",
-      "away": "مصر للتأمين",
+      "away": "بعد قليل مصر للتأمين",
       "team1": "جدول المباريات مباريات الأمس مباريات اليوم مباريات الغد الزمالك",
-      "team2": "مصر للتأمين",
+      "team2": "بعد قليل مصر للتأمين",
       "home_img": "",
       "away_img": "",
       "hour": "20:00",
@@ -708,29 +690,11 @@
   ],
   "today": [
     {
-      "league": "",
-      "home": "غازي عنتاب",
-      "away": "قاسم باشا",
-      "team1": "غازي عنتاب",
-      "team2": "قاسم باشا",
-      "home_img": "",
-      "away_img": "",
-      "hour": "19:00",
-      "time": "19:00",
-      "date": "2026-11-06",
-      "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
-      "channel": "بي إن سبورت",
-      "commentator": "تركي",
-      "streamUrl": ""
-    },
-    {
       "league": "كأس مصر",
       "home": "جدول المباريات مباريات الأمس مباريات اليوم مباريات الغد الزمالك",
-      "away": "مصر للتأمين",
+      "away": "بعد قليل مصر للتأمين",
       "team1": "جدول المباريات مباريات الأمس مباريات اليوم مباريات الغد الزمالك",
-      "team2": "مصر للتأمين",
+      "team2": "بعد قليل مصر للتأمين",
       "home_img": "",
       "away_img": "",
       "hour": "20:00",
@@ -1414,21 +1378,21 @@
     }
   ],
   "counts": {
-    "total": 39,
-    "today": 7,
+    "total": 38,
+    "today": 6,
     "yesterday": 0,
     "tomorrow": 32,
-    "with_channel": 39,
-    "with_commentator": 39
+    "with_channel": 38,
+    "with_commentator": 38
   },
   "sources": {
     "talknow": 4,
-    "asgoal": 39,
+    "asgoal": 38,
     "filgoal": 1,
     "original": 0,
     "almashhad": 0,
-    "channels": 39,
-    "commentators": 39,
+    "channels": 38,
+    "commentators": 38,
     "errors": 0
   }
 }
