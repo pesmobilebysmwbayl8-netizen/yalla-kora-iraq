@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-06T22:24:30.519538+03:00",
+  "updated_at": "2026-11-06T22:34:33.430155+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -123,8 +123,8 @@
       "time": "21:30",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "فهد الدريبي",
       "streamUrl": ""
@@ -899,8 +899,8 @@
       "time": "21:30",
       "date": "2026-11-06",
       "match_date": "2026-11-06",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "فهد الدريبي",
       "streamUrl": ""
