@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-07T02:04:37.660980+03:00",
+  "updated_at": "2026-11-07T02:42:41.709564+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -126,7 +126,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "أحمد الخير",
       "streamUrl": ""
     },
     {
@@ -144,7 +144,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "حازم عبدالسلام",
       "streamUrl": ""
     },
     {
@@ -180,7 +180,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "عائد العصيمي",
       "streamUrl": ""
     },
     {
@@ -198,7 +198,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "فهد عريشي",
       "streamUrl": ""
     },
     {
@@ -216,7 +216,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "محمد الخامسي",
       "streamUrl": ""
     },
     {
@@ -234,7 +234,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "أحمد النفيسة",
       "streamUrl": ""
     },
     {
@@ -395,7 +395,7 @@
       "match_date": "2026-11-07",
       "status": "upcoming",
       "score": "",
-      "channel": "بي إن سبورت",
+      "channel": "بي إن سبورت 4",
       "commentator": "أحمد عبده",
       "streamUrl": ""
     },
@@ -432,7 +432,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "عيسي الحربين",
       "streamUrl": ""
     },
     {
@@ -468,7 +468,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "محمد حسين",
       "streamUrl": ""
     },
     {
@@ -558,7 +558,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "فيصل الهندي",
       "streamUrl": ""
     },
     {
@@ -846,24 +846,6 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
-      "streamUrl": ""
-    },
-    {
-      "league": "كأس مصر",
-      "home": "مودرن سبورت",
-      "away": "القناة",
-      "team1": "مودرن سبورت",
-      "team2": "القناة",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/9856453333.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-13822-1d5741.png",
-      "hour": "17:00",
-      "time": "17:00",
-      "date": "2026-11-08",
-      "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
-      "channel": "أون سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
     },
@@ -1298,7 +1280,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "أحمد الخير",
       "streamUrl": ""
     },
     {
@@ -1316,7 +1298,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "حازم عبدالسلام",
       "streamUrl": ""
     },
     {
@@ -1352,7 +1334,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "عائد العصيمي",
       "streamUrl": ""
     },
     {
@@ -1370,7 +1352,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "فهد عريشي",
       "streamUrl": ""
     },
     {
@@ -1388,7 +1370,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "محمد الخامسي",
       "streamUrl": ""
     },
     {
@@ -1406,7 +1388,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "أحمد النفيسة",
       "streamUrl": ""
     },
     {
@@ -1567,7 +1549,7 @@
       "match_date": "2026-11-07",
       "status": "upcoming",
       "score": "",
-      "channel": "بي إن سبورت",
+      "channel": "بي إن سبورت 4",
       "commentator": "أحمد عبده",
       "streamUrl": ""
     },
@@ -1604,7 +1586,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "عيسي الحربين",
       "streamUrl": ""
     },
     {
@@ -1640,7 +1622,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "محمد حسين",
       "streamUrl": ""
     },
     {
@@ -1730,7 +1712,7 @@
       "status": "upcoming",
       "score": "",
       "channel": "ستارز بلاي",
-      "commentator": "يحدد لاحقاً",
+      "commentator": "فيصل الهندي",
       "streamUrl": ""
     },
     {
@@ -2040,24 +2022,6 @@
       "status": "upcoming",
       "score": "",
       "channel": "إم بي سي شاهد",
-      "commentator": "يحدد لاحقاً",
-      "streamUrl": ""
-    },
-    {
-      "league": "كأس مصر",
-      "home": "مودرن سبورت",
-      "away": "القناة",
-      "team1": "مودرن سبورت",
-      "team2": "القناة",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/9856453333.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-13822-1d5741.png",
-      "hour": "17:00",
-      "time": "17:00",
-      "date": "2026-11-08",
-      "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
-      "channel": "أون سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
     },
@@ -2387,25 +2351,25 @@
     }
   ],
   "counts": {
-    "total": 66,
+    "total": 65,
     "today": 32,
     "yesterday": 1,
-    "tomorrow": 33,
-    "with_channel": 66,
-    "with_commentator": 65,
-    "with_home_image": 66,
-    "with_away_image": 66
+    "tomorrow": 32,
+    "with_channel": 65,
+    "with_commentator": 64,
+    "with_home_image": 65,
+    "with_away_image": 65
   },
   "sources": {
     "talknow": 0,
     "filgoal": 1,
-    "asgoal": 65,
+    "asgoal": 64,
     "original": 0,
     "almashhad": 0,
-    "channels": 66,
-    "commentators": 65,
-    "with_home_image": 66,
-    "with_away_image": 66,
+    "channels": 65,
+    "commentators": 64,
+    "with_home_image": 65,
+    "with_away_image": 65,
     "errors": 0,
     "rejected_cards": 0
   }
