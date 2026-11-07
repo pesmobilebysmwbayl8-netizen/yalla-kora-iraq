@@ -1,26 +1,8 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T01:58:32.970367+03:00",
+  "updated_at": "2026-11-08T02:27:14.614044+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
-    {
-      "league": "الدوري التركي",
-      "home": "ريزا سبور",
-      "away": "ارضروم",
-      "team1": "ريزا سبور",
-      "team2": "ارضروم",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1007-431e13.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1009-929b77.png",
-      "hour": "12:30",
-      "time": "12:30",
-      "date": "2026-11-08",
-      "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
-      "channel": "بي إن سبورت",
-      "commentator": "تعليق تركي",
-      "streamUrl": ""
-    },
     {
       "league": "الدوري الايطالي",
       "home": "نابولي",
@@ -707,24 +689,6 @@
     }
   ],
   "today": [
-    {
-      "league": "الدوري التركي",
-      "home": "ريزا سبور",
-      "away": "ارضروم",
-      "team1": "ريزا سبور",
-      "team2": "ارضروم",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1007-431e13.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1009-929b77.png",
-      "hour": "12:30",
-      "time": "12:30",
-      "date": "2026-11-08",
-      "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
-      "channel": "بي إن سبورت",
-      "commentator": "تعليق تركي",
-      "streamUrl": ""
-    },
     {
       "league": "الدوري الايطالي",
       "home": "نابولي",
@@ -1414,25 +1378,25 @@
     }
   ],
   "counts": {
-    "total": 39,
-    "today": 37,
+    "total": 38,
+    "today": 36,
     "yesterday": 0,
     "tomorrow": 2,
-    "with_channel": 39,
-    "with_commentator": 39,
-    "with_home_image": 39,
-    "with_away_image": 39
+    "with_channel": 38,
+    "with_commentator": 38,
+    "with_home_image": 38,
+    "with_away_image": 38
   },
   "sources": {
     "talknow": 0,
     "filgoal": 1,
-    "asgoal": 39,
+    "asgoal": 38,
     "original": 0,
     "almashhad": 0,
-    "channels": 39,
-    "commentators": 39,
-    "with_home_image": 39,
-    "with_away_image": 39,
+    "channels": 38,
+    "commentators": 38,
+    "with_home_image": 38,
+    "with_away_image": 38,
     "errors": 0,
     "rejected_cards": 0
   }
