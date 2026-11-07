@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-07T22:13:38.954255+03:00",
+  "updated_at": "2026-11-07T22:49:44.935835+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -447,8 +447,8 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 3",
       "commentator": "علي محمد علي",
       "streamUrl": ""
@@ -465,7 +465,7 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "1 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "محمد حسين",
@@ -483,7 +483,7 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "3 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "أحمد البلوشي",
@@ -502,7 +502,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "2 - 0",
+      "score": "3 - 0",
       "channel": "أون سبورت 1",
       "commentator": "مؤمن حسن",
       "streamUrl": ""
@@ -520,7 +520,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 0",
+      "score": "0 - 1",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد المبروكي",
       "streamUrl": ""
@@ -538,7 +538,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "أون سبورت",
       "commentator": "أيمن الكاشف",
       "streamUrl": ""
@@ -555,8 +555,8 @@
       "time": "21:45",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "فيصل الهندي",
       "streamUrl": ""
@@ -1601,8 +1601,8 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 3",
       "commentator": "علي محمد علي",
       "streamUrl": ""
@@ -1619,7 +1619,7 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "1 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "محمد حسين",
@@ -1637,7 +1637,7 @@
       "time": "19:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "3 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "أحمد البلوشي",
@@ -1656,7 +1656,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "2 - 0",
+      "score": "3 - 0",
       "channel": "أون سبورت 1",
       "commentator": "مؤمن حسن",
       "streamUrl": ""
@@ -1674,7 +1674,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 0",
+      "score": "0 - 1",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد المبروكي",
       "streamUrl": ""
@@ -1692,7 +1692,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "أون سبورت",
       "commentator": "أيمن الكاشف",
       "streamUrl": ""
@@ -1709,8 +1709,8 @@
       "time": "21:45",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "فيصل الهندي",
       "streamUrl": ""
