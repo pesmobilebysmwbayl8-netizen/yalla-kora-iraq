@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-07T15:19:43.724552+03:00",
+  "updated_at": "2026-11-07T16:20:14.568252+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -33,7 +33,7 @@
       "time": "12:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
@@ -51,8 +51,8 @@
       "time": "14:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 1",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
@@ -69,8 +69,8 @@
       "time": "14:55",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "دبي الرياضية",
       "commentator": "عمر الطنيجي",
       "streamUrl": ""
@@ -87,8 +87,8 @@
       "time": "15:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -105,8 +105,8 @@
       "time": "15:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -1187,7 +1187,7 @@
       "time": "12:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
@@ -1205,8 +1205,8 @@
       "time": "14:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 1",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
@@ -1223,8 +1223,8 @@
       "time": "14:55",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "دبي الرياضية",
       "commentator": "عمر الطنيجي",
       "streamUrl": ""
@@ -1241,8 +1241,8 @@
       "time": "15:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -1259,8 +1259,8 @@
       "time": "15:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
