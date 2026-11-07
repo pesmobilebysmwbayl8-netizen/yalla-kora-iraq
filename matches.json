@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-07T19:30:55.644338+03:00",
+  "updated_at": "2026-11-07T20:15:00.882752+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -249,8 +249,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 1",
       "commentator": "عصام الشوالي",
       "streamUrl": ""
@@ -267,8 +267,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "1 - 1",
+      "status": "ended",
+      "score": "2 - 1",
       "channel": "أون سبورت",
       "commentator": "عصام عبده",
       "streamUrl": ""
@@ -285,8 +285,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "2 - 2",
+      "status": "ended",
+      "score": "3 - 2",
       "channel": "أون سبورت",
       "commentator": "محمد الغياتي",
       "streamUrl": ""
@@ -303,8 +303,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -321,7 +321,7 @@
       "time": "17:15",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
@@ -340,7 +340,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 0",
       "channel": "دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
       "streamUrl": ""
@@ -358,7 +358,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "دبي الرياضية",
       "commentator": "محمد البدواوي",
       "streamUrl": ""
@@ -394,7 +394,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 4",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -411,8 +411,8 @@
       "time": "18:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 1",
       "channel": "الكأس 6",
       "commentator": "خالد الحدي",
       "streamUrl": ""
@@ -429,8 +429,8 @@
       "time": "19:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "عيسي الحربين",
       "streamUrl": ""
@@ -1403,8 +1403,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 1",
       "commentator": "عصام الشوالي",
       "streamUrl": ""
@@ -1421,8 +1421,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "1 - 1",
+      "status": "ended",
+      "score": "2 - 1",
       "channel": "أون سبورت",
       "commentator": "عصام عبده",
       "streamUrl": ""
@@ -1439,8 +1439,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "2 - 2",
+      "status": "ended",
+      "score": "3 - 2",
       "channel": "أون سبورت",
       "commentator": "محمد الغياتي",
       "streamUrl": ""
@@ -1457,8 +1457,8 @@
       "time": "17:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
-      "score": "0 - 0",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -1475,7 +1475,7 @@
       "time": "17:15",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
@@ -1494,7 +1494,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 0",
       "channel": "دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
       "streamUrl": ""
@@ -1512,7 +1512,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "دبي الرياضية",
       "commentator": "محمد البدواوي",
       "streamUrl": ""
@@ -1548,7 +1548,7 @@
       "date": "2026-11-07",
       "match_date": "2026-11-07",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 4",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -1565,8 +1565,8 @@
       "time": "18:30",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 1",
       "channel": "الكأس 6",
       "commentator": "خالد الحدي",
       "streamUrl": ""
@@ -1583,8 +1583,8 @@
       "time": "19:00",
       "date": "2026-11-07",
       "match_date": "2026-11-07",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "عيسي الحربين",
       "streamUrl": ""
