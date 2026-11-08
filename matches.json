@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T17:44:51.467437+03:00",
+  "updated_at": "2026-11-08T18:17:55.837039+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -33,8 +33,8 @@
       "time": "14:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "أون سبورت 1",
       "commentator": "زياد الدكروري",
       "streamUrl": ""
@@ -51,7 +51,7 @@
       "time": "14:55",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 1",
       "channel": "دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
@@ -69,8 +69,8 @@
       "time": "14:55",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "3 - 1",
+      "status": "ended",
+      "score": "4 - 1",
       "channel": "دبي الرياضية",
       "commentator": "أحمد العبيدلي",
       "streamUrl": ""
@@ -87,8 +87,8 @@
       "time": "15:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 8",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -105,7 +105,7 @@
       "time": "15:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 5",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد السعدي",
@@ -124,7 +124,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 2",
+      "score": "1 - 3",
       "channel": "بي إن سبورت 2",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -142,7 +142,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "محمد نضال",
       "streamUrl": ""
@@ -232,7 +232,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 1",
       "commentator": "علي الكعبي",
       "streamUrl": ""
@@ -250,7 +250,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 0",
+      "score": "0 - 1",
       "channel": "ستارز بلاي",
       "commentator": "أحمد الخير",
       "streamUrl": ""
@@ -268,7 +268,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 0",
+      "score": "1 - 1",
       "channel": "الكأس 5",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -303,8 +303,8 @@
       "time": "17:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت",
       "commentator": "محمد عفيفي",
       "streamUrl": ""
@@ -755,8 +755,8 @@
       "time": "14:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "أون سبورت 1",
       "commentator": "زياد الدكروري",
       "streamUrl": ""
@@ -773,7 +773,7 @@
       "time": "14:55",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 1",
       "channel": "دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
@@ -791,8 +791,8 @@
       "time": "14:55",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "3 - 1",
+      "status": "ended",
+      "score": "4 - 1",
       "channel": "دبي الرياضية",
       "commentator": "أحمد العبيدلي",
       "streamUrl": ""
@@ -809,8 +809,8 @@
       "time": "15:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 8",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -827,7 +827,7 @@
       "time": "15:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 5",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد السعدي",
@@ -846,7 +846,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 2",
+      "score": "1 - 3",
       "channel": "بي إن سبورت 2",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -864,7 +864,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "محمد نضال",
       "streamUrl": ""
@@ -954,7 +954,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 1",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 1",
       "commentator": "علي الكعبي",
       "streamUrl": ""
@@ -972,7 +972,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "0 - 0",
+      "score": "0 - 1",
       "channel": "ستارز بلاي",
       "commentator": "أحمد الخير",
       "streamUrl": ""
@@ -990,7 +990,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 0",
+      "score": "1 - 1",
       "channel": "الكأس 5",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -1025,8 +1025,8 @@
       "time": "17:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت",
       "commentator": "محمد عفيفي",
       "streamUrl": ""
