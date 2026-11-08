@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T14:06:59.775068+03:00",
+  "updated_at": "2026-11-08T14:44:15.339646+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -15,8 +15,8 @@
       "time": "13:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "عيسي الحربين",
       "streamUrl": ""
@@ -109,6 +109,24 @@
       "score": "",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد السعدي",
+      "streamUrl": ""
+    },
+    {
+      "league": "كأس السوبر الافريقي",
+      "home": "صنداونز",
+      "away": "اتحاد العاصمة",
+      "team1": "صنداونز",
+      "team2": "اتحاد العاصمة",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-2699-95026a.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-910-fbd6a4.png",
+      "hour": "15:00",
+      "time": "15:00",
+      "date": "2026-11-08",
+      "match_date": "2026-11-08",
+      "status": "upcoming",
+      "score": "",
+      "channel": "بي إن سبورت 2",
+      "commentator": "حفيظ دراجي",
       "streamUrl": ""
     },
     {
@@ -686,6 +704,24 @@
       "channel": "أون سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
+    },
+    {
+      "league": "كأس الاتحاد الإنجليزي",
+      "home": "بليموث باركواي",
+      "away": "بيركهامستيد",
+      "team1": "بليموث باركواي",
+      "team2": "بيركهامستيد",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-8899-f1336e.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-7214-d022ce.png",
+      "hour": "21:30",
+      "time": "21:30",
+      "date": "2026-11-09",
+      "match_date": "2026-11-09",
+      "status": "upcoming",
+      "score": "",
+      "channel": "بي إن سبورت",
+      "commentator": "يحدد لاحقاً",
+      "streamUrl": ""
     }
   ],
   "today": [
@@ -701,8 +737,8 @@
       "time": "13:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "عيسي الحربين",
       "streamUrl": ""
@@ -795,6 +831,24 @@
       "score": "",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد السعدي",
+      "streamUrl": ""
+    },
+    {
+      "league": "كأس السوبر الافريقي",
+      "home": "صنداونز",
+      "away": "اتحاد العاصمة",
+      "team1": "صنداونز",
+      "team2": "اتحاد العاصمة",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-2699-95026a.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-910-fbd6a4.png",
+      "hour": "15:00",
+      "time": "15:00",
+      "date": "2026-11-08",
+      "match_date": "2026-11-08",
+      "status": "upcoming",
+      "score": "",
+      "channel": "بي إن سبورت 2",
+      "commentator": "حفيظ دراجي",
       "streamUrl": ""
     },
     {
@@ -1375,28 +1429,46 @@
       "channel": "أون سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
+    },
+    {
+      "league": "كأس الاتحاد الإنجليزي",
+      "home": "بليموث باركواي",
+      "away": "بيركهامستيد",
+      "team1": "بليموث باركواي",
+      "team2": "بيركهامستيد",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-8899-f1336e.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-7214-d022ce.png",
+      "hour": "21:30",
+      "time": "21:30",
+      "date": "2026-11-09",
+      "match_date": "2026-11-09",
+      "status": "upcoming",
+      "score": "",
+      "channel": "بي إن سبورت",
+      "commentator": "يحدد لاحقاً",
+      "streamUrl": ""
     }
   ],
   "counts": {
-    "total": 38,
-    "today": 36,
+    "total": 40,
+    "today": 37,
     "yesterday": 0,
-    "tomorrow": 2,
-    "with_channel": 38,
-    "with_commentator": 38,
-    "with_home_image": 38,
-    "with_away_image": 38
+    "tomorrow": 3,
+    "with_channel": 40,
+    "with_commentator": 40,
+    "with_home_image": 40,
+    "with_away_image": 40
   },
   "sources": {
     "talknow": 0,
     "filgoal": 1,
-    "asgoal": 38,
+    "asgoal": 40,
     "original": 0,
     "almashhad": 0,
-    "channels": 38,
-    "commentators": 38,
-    "with_home_image": 38,
-    "with_away_image": 38,
+    "channels": 40,
+    "commentators": 40,
+    "with_home_image": 40,
+    "with_away_image": 40,
     "errors": 0,
     "rejected_cards": 0
   }
