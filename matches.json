@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T23:23:31.785905+03:00",
+  "updated_at": "2026-11-08T23:59:42.260719+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -609,7 +609,7 @@
       "time": "20:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 1",
       "channel": "إم بي سي شاهد",
       "commentator": "عصام عبده",
@@ -664,7 +664,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -1331,7 +1331,7 @@
       "time": "20:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 1",
       "channel": "إم بي سي شاهد",
       "commentator": "عصام عبده",
@@ -1386,7 +1386,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "1 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
