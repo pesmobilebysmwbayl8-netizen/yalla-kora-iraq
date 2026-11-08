@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T20:45:49.440615+03:00",
+  "updated_at": "2026-11-08T21:25:29.850880+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -393,8 +393,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 4",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -411,8 +411,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 2",
       "commentator": "أحمد البلوشي",
       "streamUrl": ""
@@ -429,8 +429,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -447,8 +447,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -466,7 +466,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 4",
+      "score": "3 - 4",
       "channel": "الكأس 6",
       "commentator": "أحمد الطيب",
       "streamUrl": ""
@@ -483,8 +483,8 @@
       "time": "18:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "عبدالعزيز السبر",
       "streamUrl": ""
@@ -502,7 +502,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 4",
+      "score": "3 - 4",
       "channel": "بي إن سبورت 1",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
@@ -573,8 +573,8 @@
       "time": "20:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -591,8 +591,8 @@
       "time": "20:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت 1",
       "commentator": "طارق حسن",
       "streamUrl": ""
@@ -1115,8 +1115,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت 4",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -1133,8 +1133,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 2",
       "commentator": "أحمد البلوشي",
       "streamUrl": ""
@@ -1151,8 +1151,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -1169,8 +1169,8 @@
       "time": "18:15",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "0 - 1",
+      "status": "ended",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -1188,7 +1188,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 4",
+      "score": "3 - 4",
       "channel": "الكأس 6",
       "commentator": "أحمد الطيب",
       "streamUrl": ""
@@ -1205,8 +1205,8 @@
       "time": "18:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "إم بي سي شاهد",
       "commentator": "عبدالعزيز السبر",
       "streamUrl": ""
@@ -1224,7 +1224,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 4",
+      "score": "3 - 4",
       "channel": "بي إن سبورت 1",
       "commentator": "خليل البلوشي",
       "streamUrl": ""
@@ -1295,8 +1295,8 @@
       "time": "20:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -1313,8 +1313,8 @@
       "time": "20:00",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت 1",
       "commentator": "طارق حسن",
       "streamUrl": ""
