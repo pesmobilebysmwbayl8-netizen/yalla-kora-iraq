@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T07:24:50.552826+03:00",
+  "updated_at": "2026-11-08T08:15:56.817307+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -1397,7 +1397,7 @@
     "commentators": 38,
     "with_home_image": 38,
     "with_away_image": 38,
-    "errors": 0,
+    "errors": 1,
     "rejected_cards": 0
   }
 }
