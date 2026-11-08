@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-08T22:13:50.452959+03:00",
+  "updated_at": "2026-11-08T22:52:09.551777+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -537,7 +537,7 @@
       "time": "19:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "سمير اليعقوبي",
@@ -555,8 +555,8 @@
       "time": "19:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 6",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -574,7 +574,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 0",
+      "score": "3 - 0",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -627,8 +627,8 @@
       "time": "21:45",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "حازم عبدالسلام",
       "streamUrl": ""
@@ -645,8 +645,8 @@
       "time": "21:45",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "نوفل الباشي",
       "streamUrl": ""
@@ -1259,7 +1259,7 @@
       "time": "19:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
+      "status": "ended",
       "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "سمير اليعقوبي",
@@ -1277,8 +1277,8 @@
       "time": "19:30",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "live",
-      "score": "1 - 0",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 6",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -1296,7 +1296,7 @@
       "date": "2026-11-08",
       "match_date": "2026-11-08",
       "status": "live",
-      "score": "2 - 0",
+      "score": "3 - 0",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -1349,8 +1349,8 @@
       "time": "21:45",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "ستارز بلاي",
       "commentator": "حازم عبدالسلام",
       "streamUrl": ""
@@ -1367,8 +1367,8 @@
       "time": "21:45",
       "date": "2026-11-08",
       "match_date": "2026-11-08",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "نوفل الباشي",
       "streamUrl": ""
