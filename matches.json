@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-10T01:08:55.731867+03:00",
+  "updated_at": "2026-11-10T01:50:12.117429+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -37,6 +37,24 @@
       "score": "",
       "channel": "إم بي سي شاهد",
       "commentator": "نور الدين علي",
+      "streamUrl": ""
+    },
+    {
+      "league": "مباريات ودية منتخبات",
+      "home": "فيتنام",
+      "away": "تاييه الصينية",
+      "team1": "فيتنام",
+      "team2": "تاييه الصينية",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1542-50fc2d.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1557-cc3963.png",
+      "hour": "14:00",
+      "time": "14:00",
+      "date": "2026-11-11",
+      "match_date": "2026-11-11",
+      "status": "upcoming",
+      "score": "",
+      "channel": "تطبيق",
+      "commentator": "تعليق أجنبي",
       "streamUrl": ""
     }
   ],
@@ -79,27 +97,46 @@
     }
   ],
   "yesterday": [],
-  "tomorrow": [],
+  "tomorrow": [
+    {
+      "league": "مباريات ودية منتخبات",
+      "home": "فيتنام",
+      "away": "تاييه الصينية",
+      "team1": "فيتنام",
+      "team2": "تاييه الصينية",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1542-50fc2d.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1557-cc3963.png",
+      "hour": "14:00",
+      "time": "14:00",
+      "date": "2026-11-11",
+      "match_date": "2026-11-11",
+      "status": "upcoming",
+      "score": "",
+      "channel": "تطبيق",
+      "commentator": "تعليق أجنبي",
+      "streamUrl": ""
+    }
+  ],
   "counts": {
-    "total": 2,
+    "total": 3,
     "today": 2,
     "yesterday": 0,
-    "tomorrow": 0,
-    "with_channel": 2,
-    "with_commentator": 2,
-    "with_home_image": 2,
-    "with_away_image": 2
+    "tomorrow": 1,
+    "with_channel": 3,
+    "with_commentator": 3,
+    "with_home_image": 3,
+    "with_away_image": 3
   },
   "sources": {
     "talknow": 0,
     "filgoal": 1,
-    "asgoal": 2,
+    "asgoal": 3,
     "original": 0,
     "almashhad": 0,
-    "channels": 2,
-    "commentators": 2,
-    "with_home_image": 2,
-    "with_away_image": 2,
+    "channels": 3,
+    "commentators": 3,
+    "with_home_image": 3,
+    "with_away_image": 3,
     "errors": 0,
     "rejected_cards": 0
   }
