@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-09T23:18:18.644644+03:00",
+  "updated_at": "2026-11-10T00:15:16.497198+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -52,7 +52,7 @@
       "date": "2026-11-09",
       "match_date": "2026-11-09",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -95,6 +95,44 @@
     }
   ],
   "today": [
+    {
+      "league": "كأس مصر",
+      "home": "المقاولون",
+      "away": "وي اتصالات",
+      "team1": "المقاولون",
+      "team2": "وي اتصالات",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1575-08641d.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/10/dlh-club-18032-d1479a.png",
+      "hour": "17:00",
+      "time": "17:00",
+      "date": "2026-11-10",
+      "match_date": "2026-11-10",
+      "status": "upcoming",
+      "score": "",
+      "channel": "أون سبورت 1",
+      "commentator": "طارق الأدور",
+      "streamUrl": ""
+    },
+    {
+      "league": "كاس ملك اسبانيا",
+      "home": "تافيرنيس",
+      "away": "فالنسيا",
+      "team1": "تافيرنيس",
+      "team2": "فالنسيا",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/10/dlh-club-28415-020306.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/10/097686778.png",
+      "hour": "22:00",
+      "time": "22:00",
+      "date": "2026-11-10",
+      "match_date": "2026-11-10",
+      "status": "upcoming",
+      "score": "",
+      "channel": "إم بي سي شاهد",
+      "commentator": "نور الدين علي",
+      "streamUrl": ""
+    }
+  ],
+  "yesterday": [
     {
       "league": "كأس مصر",
       "home": "وادي دجلة",
@@ -144,56 +182,18 @@
       "date": "2026-11-09",
       "match_date": "2026-11-09",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
     }
   ],
-  "yesterday": [],
-  "tomorrow": [
-    {
-      "league": "كأس مصر",
-      "home": "المقاولون",
-      "away": "وي اتصالات",
-      "team1": "المقاولون",
-      "team2": "وي اتصالات",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1575-08641d.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/10/dlh-club-18032-d1479a.png",
-      "hour": "17:00",
-      "time": "17:00",
-      "date": "2026-11-10",
-      "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
-      "channel": "أون سبورت 1",
-      "commentator": "طارق الأدور",
-      "streamUrl": ""
-    },
-    {
-      "league": "كاس ملك اسبانيا",
-      "home": "تافيرنيس",
-      "away": "فالنسيا",
-      "team1": "تافيرنيس",
-      "team2": "فالنسيا",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/10/dlh-club-28415-020306.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/10/097686778.png",
-      "hour": "22:00",
-      "time": "22:00",
-      "date": "2026-11-10",
-      "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
-      "channel": "إم بي سي شاهد",
-      "commentator": "نور الدين علي",
-      "streamUrl": ""
-    }
-  ],
+  "tomorrow": [],
   "counts": {
     "total": 5,
-    "today": 3,
-    "yesterday": 0,
-    "tomorrow": 2,
+    "today": 2,
+    "yesterday": 3,
+    "tomorrow": 0,
     "with_channel": 5,
     "with_commentator": 5,
     "with_home_image": 5,
