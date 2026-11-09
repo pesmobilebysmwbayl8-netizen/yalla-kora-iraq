@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-09T22:26:09.773535+03:00",
+  "updated_at": "2026-11-09T23:18:18.644644+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -51,8 +51,8 @@
       "time": "21:30",
       "date": "2026-11-09",
       "match_date": "2026-11-09",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -143,8 +143,8 @@
       "time": "21:30",
       "date": "2026-11-09",
       "match_date": "2026-11-09",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
