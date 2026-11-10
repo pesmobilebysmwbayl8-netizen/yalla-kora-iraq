@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-10T17:30:48.842234+03:00",
+  "updated_at": "2026-11-10T18:24:59.548818+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -15,8 +15,8 @@
       "time": "17:00",
       "date": "2026-11-10",
       "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت 1",
       "commentator": "طارق الأدور",
       "streamUrl": ""
@@ -71,8 +71,8 @@
       "time": "17:00",
       "date": "2026-11-10",
       "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "أون سبورت 1",
       "commentator": "طارق الأدور",
       "streamUrl": ""
