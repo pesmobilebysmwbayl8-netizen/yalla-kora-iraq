@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-10T22:40:59.449918+03:00",
+  "updated_at": "2026-11-10T23:26:46.092602+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -33,8 +33,8 @@
       "time": "22:00",
       "date": "2026-11-10",
       "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 4",
       "channel": "إم بي سي شاهد",
       "commentator": "نور الدين علي",
       "streamUrl": ""
@@ -89,8 +89,8 @@
       "time": "22:00",
       "date": "2026-11-10",
       "match_date": "2026-11-10",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 4",
       "channel": "إم بي سي شاهد",
       "commentator": "نور الدين علي",
       "streamUrl": ""
