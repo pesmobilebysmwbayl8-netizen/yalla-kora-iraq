@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-11T23:04:10.344638+03:00",
+  "updated_at": "2026-11-12T00:40:25.573043+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -348,27 +348,6 @@
   ],
   "today": [
     {
-      "league": "مباريات ودية منتخبات",
-      "home": "فيتنام",
-      "away": "تاييه الصينية",
-      "team1": "فيتنام",
-      "team2": "تاييه الصينية",
-      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1542-50fc2d.png",
-      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1557-cc3963.png",
-      "hour": "14:00",
-      "time": "14:00",
-      "date": "2026-11-11",
-      "match_date": "2026-11-11",
-      "status": "ended",
-      "score": "2 - 0",
-      "channel": "تطبيق",
-      "commentator": "تعليق أجنبي",
-      "streamUrl": ""
-    }
-  ],
-  "yesterday": [],
-  "tomorrow": [
-    {
       "league": "تصفيات كأس امم افريقيا",
       "home": "غانا",
       "away": "الصومال",
@@ -693,11 +672,32 @@
       "streamUrl": ""
     }
   ],
+  "yesterday": [
+    {
+      "league": "مباريات ودية منتخبات",
+      "home": "فيتنام",
+      "away": "تاييه الصينية",
+      "team1": "فيتنام",
+      "team2": "تاييه الصينية",
+      "home_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1542-50fc2d.png",
+      "away_img": "https://as-goal.net/wp-content/uploads/2026/11/dlh-club-1557-cc3963.png",
+      "hour": "14:00",
+      "time": "14:00",
+      "date": "2026-11-11",
+      "match_date": "2026-11-11",
+      "status": "ended",
+      "score": "2 - 0",
+      "channel": "تطبيق",
+      "commentator": "تعليق أجنبي",
+      "streamUrl": ""
+    }
+  ],
+  "tomorrow": [],
   "counts": {
     "total": 19,
-    "today": 1,
-    "yesterday": 0,
-    "tomorrow": 18,
+    "today": 18,
+    "yesterday": 1,
+    "tomorrow": 0,
     "with_channel": 19,
     "with_commentator": 19,
     "with_home_image": 19,
