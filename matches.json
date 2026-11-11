@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-11T16:53:10.748198+03:00",
+  "updated_at": "2026-11-11T17:41:51.167324+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -15,7 +15,7 @@
       "time": "14:00",
       "date": "2026-11-11",
       "match_date": "2026-11-11",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 0",
       "channel": "تطبيق",
       "commentator": "تعليق أجنبي",
@@ -359,7 +359,7 @@
       "time": "14:00",
       "date": "2026-11-11",
       "match_date": "2026-11-11",
-      "status": "live",
+      "status": "ended",
       "score": "2 - 0",
       "channel": "تطبيق",
       "commentator": "تعليق أجنبي",
