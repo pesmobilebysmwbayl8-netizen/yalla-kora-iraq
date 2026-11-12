@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-12T22:26:10.301429+03:00",
+  "updated_at": "2026-11-12T23:16:19.535224+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -142,7 +142,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 1",
+      "score": "2 - 3",
       "channel": "إم بي سي شاهد",
       "commentator": "عبدالعزيز السبر",
       "streamUrl": ""
@@ -160,7 +160,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -178,7 +178,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 6",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -196,7 +196,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 1",
+      "score": "3 - 1",
       "channel": "بي إن سبورت",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -214,7 +214,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "2 - 0",
+      "score": "2 - 1",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -231,8 +231,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -249,8 +249,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 4",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -267,8 +267,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 8",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -285,8 +285,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -303,8 +303,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "علي الكعبي",
       "streamUrl": ""
@@ -321,8 +321,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "محمد السعدي",
       "streamUrl": ""
@@ -900,7 +900,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 1",
+      "score": "2 - 3",
       "channel": "إم بي سي شاهد",
       "commentator": "عبدالعزيز السبر",
       "streamUrl": ""
@@ -918,7 +918,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "0 - 0",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 2",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
@@ -936,7 +936,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 0",
+      "score": "2 - 0",
       "channel": "بي إن سبورت 6",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -954,7 +954,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "1 - 1",
+      "score": "3 - 1",
       "channel": "بي إن سبورت",
       "commentator": "جواد بدة",
       "streamUrl": ""
@@ -972,7 +972,7 @@
       "date": "2026-11-12",
       "match_date": "2026-11-12",
       "status": "live",
-      "score": "2 - 0",
+      "score": "2 - 1",
       "channel": "بي إن سبورت 5",
       "commentator": "محمد فوزي",
       "streamUrl": ""
@@ -989,8 +989,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت",
       "commentator": "حسن العيدروس",
       "streamUrl": ""
@@ -1007,8 +1007,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 4",
       "commentator": "عامر الخوذيري",
       "streamUrl": ""
@@ -1025,8 +1025,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 0",
       "channel": "بي إن سبورت 8",
       "commentator": "عبدالله الغامدي",
       "streamUrl": ""
@@ -1043,8 +1043,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 0",
       "channel": "بي إن سبورت 3",
       "commentator": "حفيظ دراجي",
       "streamUrl": ""
@@ -1061,8 +1061,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "1 - 1",
       "channel": "بي إن سبورت 1",
       "commentator": "علي الكعبي",
       "streamUrl": ""
@@ -1079,8 +1079,8 @@
       "time": "21:45",
       "date": "2026-11-12",
       "match_date": "2026-11-12",
-      "status": "upcoming",
-      "score": "",
+      "status": "live",
+      "score": "0 - 2",
       "channel": "بي إن سبورت",
       "commentator": "محمد السعدي",
       "streamUrl": ""
