@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-14T01:18:03.547348+03:00",
+  "updated_at": "2026-11-14T05:33:17.902749+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -15,8 +15,8 @@
       "time": "01:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "1 - 2",
       "channel": "أبو ظببي",
       "commentator": "فيصل الهندي",
       "streamUrl": ""
@@ -33,8 +33,8 @@
       "time": "02:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -51,8 +51,8 @@
       "time": "02:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "1 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -251,7 +251,7 @@
       "match_date": "2026-11-14",
       "status": "upcoming",
       "score": "",
-      "channel": "بي إن سبورت 9",
+      "channel": "بي إن سبورت 7",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
     },
@@ -575,8 +575,8 @@
       "time": "01:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "1 - 2",
       "channel": "أبو ظببي",
       "commentator": "فيصل الهندي",
       "streamUrl": ""
@@ -593,8 +593,8 @@
       "time": "02:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "2 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -611,8 +611,8 @@
       "time": "02:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "1 - 0",
       "channel": "بي إن سبورت",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -811,7 +811,7 @@
       "match_date": "2026-11-14",
       "status": "upcoming",
       "score": "",
-      "channel": "بي إن سبورت 9",
+      "channel": "بي إن سبورت 7",
       "commentator": "منتصر الأزهري",
       "streamUrl": ""
     },
@@ -1137,7 +1137,7 @@
   },
   "sources": {
     "talknow": 0,
-    "filgoal": 1,
+    "filgoal": 0,
     "asgoal": 31,
     "original": 0,
     "almashhad": 0,
@@ -1145,7 +1145,7 @@
     "commentators": 31,
     "with_home_image": 31,
     "with_away_image": 31,
-    "errors": 0,
+    "errors": 1,
     "rejected_cards": 0
   }
 }
