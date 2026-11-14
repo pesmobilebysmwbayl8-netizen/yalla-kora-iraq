@@ -1,6 +1,6 @@
 {
   "version": "V12-STRICT-FIVE-SOURCES",
-  "updated_at": "2026-11-14T05:33:17.902749+03:00",
+  "updated_at": "2026-11-14T12:24:03.683501+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -69,8 +69,8 @@
       "time": "08:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "3 - 1",
       "channel": "أبوظبي",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -119,8 +119,8 @@
       "team2": "ايران",
       "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1562-1f34ff.png",
       "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-22-89a337.png",
-      "hour": "17:00",
-      "time": "17:00",
+      "hour": "15:00",
+      "time": "15:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
       "status": "upcoming",
@@ -629,8 +629,8 @@
       "time": "08:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
-      "status": "upcoming",
-      "score": "",
+      "status": "ended",
+      "score": "3 - 1",
       "channel": "أبوظبي",
       "commentator": "يحدد لاحقاً",
       "streamUrl": ""
@@ -679,8 +679,8 @@
       "team2": "ايران",
       "home_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-1562-1f34ff.png",
       "away_img": "https://as-goal.net/wp-content/uploads/2026/09/dlh-club-22-89a337.png",
-      "hour": "17:00",
-      "time": "17:00",
+      "hour": "15:00",
+      "time": "15:00",
       "date": "2026-11-14",
       "match_date": "2026-11-14",
       "status": "upcoming",
@@ -1137,7 +1137,7 @@
   },
   "sources": {
     "talknow": 0,
-    "filgoal": 0,
+    "filgoal": 1,
     "asgoal": 31,
     "original": 0,
     "almashhad": 0,
@@ -1145,7 +1145,7 @@
     "commentators": 31,
     "with_home_image": 31,
     "with_away_image": 31,
-    "errors": 1,
+    "errors": 0,
     "rejected_cards": 0
   }
 }
