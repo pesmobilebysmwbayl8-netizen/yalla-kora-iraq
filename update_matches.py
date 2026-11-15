@@ -118,25 +118,24 @@ def status_value(text):
     return ""
 
 
-def extract_score(text):
-    """Extract a score only when the source explicitly labels it as a result.
-
-    Do not infer scores from numbers near live/finished text: those areas can
-    contain dates, kickoff times, or other page metadata.
-    """
-    raw = clean(text)
-    patterns = (
-        r"(?:نتيجة\s*المباراة|النتيجة|score|result)\s*[:：]?\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})(?!\d)",
-    )
-    for pattern in patterns:
-        m = re.search(pattern, raw, re.I)
-        if not m:
-            continue
-        a, b = int(m.group(1)), int(m.group(2))
-        # Reject impossible football scores and date-like high numbers.
-        if 0 <= a <= 15 and 0 <= b <= 15:
-            return f"{a} - {b}"
+def valid_score(value):
+    """Accept only a clean football score; reject date fragments like 30 - 17."""
+    value = clean(value)
+    m = re.fullmatch(r"(\d{1,2})\s*[-–:]\s*(\d{1,2})", value)
+    if not m:
+        return ""
+    a, b = int(m.group(1)), int(m.group(2))
+    if 0 <= a <= 15 and 0 <= b <= 15:
+        return f"{a} - {b}"
     return ""
+
+
+def extract_score(text):
+    """Read a score only beside an explicit result label, never from page dates."""
+    raw = clean(text)
+    pattern = r"(?:نتيجة\s*المباراة|النتيجة|score|result)\s*[:：]?\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})(?!\d)"
+    m = re.search(pattern, raw, re.I)
+    return valid_score(f"{m.group(1)} - {m.group(2)}") if m else ""
 
 
 def arabic_name(value):
@@ -388,7 +387,7 @@ def parse_structured_events(page):
                     val = c.get("score") if isinstance(c, dict) else None
                     vals.append(str(val) if val is not None else "")
                 if all(v.isdigit() for v in vals):
-                    score = f"{vals[0]} - {vals[1]}"
+                    score = valid_score(f"{vals[0]} - {vals[1]}")
             hn = home.get("name", "") if isinstance(home, dict) else ""
             an = away.get("name", "") if isinstance(away, dict) else ""
             hi = (home.get("image") or home.get("logo") or "") if isinstance(home, dict) else ""
@@ -485,6 +484,7 @@ def main():
                         # Internal flags are deliberately false for old records:
                         # only a fresh explicit source result can change status/score.
                         old = dict(old)
+                        old["score"] = valid_score(old.get("score", ""))
                         old["_status_confirmed"] = False
                         old["_score_confirmed"] = False
                         matches.append(old)
@@ -503,6 +503,10 @@ def main():
     matches = [x for x in matches if x.get("date") in {yesterday, today, tomorrow}]
     matches.sort(key=lambda x: (x.get("date", ""), x.get("hour", ""), norm(x.get("home", ""))))
 
+    # Final sanitation also clears legacy date-as-score values already in matches.json.
+    for match in matches:
+        match["score"] = valid_score(match.get("score", ""))
+
     clean_internal_fields(matches)
     today_list = [x for x in matches if x["date"] == today]
     yesterday_list = [x for x in matches if x["date"] == yesterday]
@@ -514,7 +518,7 @@ def main():
     STATS["with_away_image"] = sum(bool(x.get("away_img")) for x in matches)
 
     output = {
-        "version": "V15-FIVE-SOURCES-SCORE-DATE-FIX",
+        "version": "V16-FIVE-SOURCES-LEGACY-SCORE-CLEANUP",
         "updated_at": datetime.now(TZ).isoformat(),
         "timezone": "Asia/Baghdad",
         "matches": matches,
