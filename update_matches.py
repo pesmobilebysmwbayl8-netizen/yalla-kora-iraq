@@ -503,9 +503,10 @@ def main():
     matches = [x for x in matches if x.get("date") in {yesterday, today, tomorrow}]
     matches.sort(key=lambda x: (x.get("date", ""), x.get("hour", ""), norm(x.get("home", ""))))
 
-    # Final sanitation also clears legacy date-as-score values already in matches.json.
+    # Final sanitation clears legacy date-as-score values. If no verified
+    # football score exists, publish VS so the app shows a matchup separator.
     for match in matches:
-        match["score"] = valid_score(match.get("score", ""))
+        match["score"] = valid_score(match.get("score", "")) or "VS"
 
     clean_internal_fields(matches)
     today_list = [x for x in matches if x["date"] == today]
@@ -518,7 +519,7 @@ def main():
     STATS["with_away_image"] = sum(bool(x.get("away_img")) for x in matches)
 
     output = {
-        "version": "V16-FIVE-SOURCES-LEGACY-SCORE-CLEANUP",
+        "version": "V17-FIVE-SOURCES-SCORE-VS-FALLBACK",
         "updated_at": datetime.now(TZ).isoformat(),
         "timezone": "Asia/Baghdad",
         "matches": matches,
