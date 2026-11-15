@@ -119,19 +119,23 @@ def status_value(text):
 
 
 def extract_score(text):
-    """Extract a score only near an explicit live/finished marker or score label."""
+    """Extract a score only when the source explicitly labels it as a result.
+
+    Do not infer scores from numbers near live/finished text: those areas can
+    contain dates, kickoff times, or other page metadata.
+    """
     raw = clean(text)
-    patterns = [
-        r"(?:النتيجة|نتيجة المباراة|score|result)\s*[:：]?\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})",
-        r"(?:مباشر|انتهت|الشوط الأول|الشوط الثاني|full.?time|live).{0,100}?(\d{1,2})\s*[-–:]\s*(\d{1,2})",
-        r"(\d{1,2})\s*[-–:]\s*(\d{1,2}).{0,60}?(?:مباشر|انتهت|full.?time|live)"
-    ]
+    patterns = (
+        r"(?:نتيجة\s*المباراة|النتيجة|score|result)\s*[:：]?\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})(?!\d)",
+    )
     for pattern in patterns:
         m = re.search(pattern, raw, re.I)
-        if m:
-            a, b = int(m.group(1)), int(m.group(2))
-            if a <= 30 and b <= 30:
-                return f"{a} - {b}"
+        if not m:
+            continue
+        a, b = int(m.group(1)), int(m.group(2))
+        # Reject impossible football scores and date-like high numbers.
+        if 0 <= a <= 15 and 0 <= b <= 15:
+            return f"{a} - {b}"
     return ""
 
 
@@ -510,7 +514,7 @@ def main():
     STATS["with_away_image"] = sum(bool(x.get("away_img")) for x in matches)
 
     output = {
-        "version": "V14-FIVE-SOURCES-STATUS-REFRESH-UAE-CHANNELS",
+        "version": "V15-FIVE-SOURCES-SCORE-DATE-FIX",
         "updated_at": datetime.now(TZ).isoformat(),
         "timezone": "Asia/Baghdad",
         "matches": matches,
