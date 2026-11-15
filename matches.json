@@ -1,6 +1,6 @@
 {
-  "version": "V15-FIVE-SOURCES-SCORE-DATE-FIX",
-  "updated_at": "2026-11-15T20:15:40.819397+03:00",
+  "version": "V16-FIVE-SOURCES-LEGACY-SCORE-CLEANUP",
+  "updated_at": "2026-11-15T20:24:53.122395+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -16,7 +16,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "26 - 20",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "محمد البدواوي",
       "streamUrl": ""
@@ -34,7 +34,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "26 - 20",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "عمر الطنيجي",
       "streamUrl": ""
@@ -52,7 +52,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "16 - 0",
+      "score": "",
       "channel": "بي إن سبورت 2",
       "commentator": "نوفل باشي",
       "streamUrl": ""
@@ -70,7 +70,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "16 - 0",
+      "score": "",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد المبروكي",
       "streamUrl": ""
@@ -88,7 +88,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "17 - 30",
+      "score": "",
       "channel": " 2دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
       "streamUrl": ""
@@ -106,7 +106,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "17 - 30",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "سلطان اليعقوبي",
       "streamUrl": ""
@@ -124,7 +124,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "19 - 0",
+      "score": "",
       "channel": "بي إن سبورت 2",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -142,7 +142,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "19 - 0",
+      "score": "",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
       "streamUrl": ""
@@ -522,7 +522,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "26 - 20",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "محمد البدواوي",
       "streamUrl": ""
@@ -540,7 +540,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "26 - 20",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "عمر الطنيجي",
       "streamUrl": ""
@@ -558,7 +558,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "16 - 0",
+      "score": "",
       "channel": "بي إن سبورت 2",
       "commentator": "نوفل باشي",
       "streamUrl": ""
@@ -576,7 +576,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "ended",
-      "score": "16 - 0",
+      "score": "",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد المبروكي",
       "streamUrl": ""
@@ -594,7 +594,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "17 - 30",
+      "score": "",
       "channel": " 2دبي الرياضية",
       "commentator": "عبدالحميد الجسمي",
       "streamUrl": ""
@@ -612,7 +612,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "17 - 30",
+      "score": "",
       "channel": "دبي الرياضية",
       "commentator": "سلطان اليعقوبي",
       "streamUrl": ""
@@ -630,7 +630,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "19 - 0",
+      "score": "",
       "channel": "بي إن سبورت 2",
       "commentator": "أحمد عبده",
       "streamUrl": ""
@@ -648,7 +648,7 @@
       "date": "2026-11-15",
       "match_date": "2026-11-15",
       "status": "live",
-      "score": "19 - 0",
+      "score": "",
       "channel": "بي إن سبورت 3",
       "commentator": "محمد بركات",
       "streamUrl": ""
