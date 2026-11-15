@@ -1,6 +1,6 @@
 {
-  "version": "V14-FIVE-SOURCES-STATUS-REFRESH-UAE-CHANNELS",
-  "updated_at": "2026-11-15T20:10:21.173447+03:00",
+  "version": "V15-FIVE-SOURCES-SCORE-DATE-FIX",
+  "updated_at": "2026-11-15T20:15:40.819397+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -1039,7 +1039,7 @@
     "with_away_image": 28,
     "errors": 0,
     "rejected_cards": 0,
-    "status_updates": 8,
-    "score_updates": 8
+    "status_updates": 0,
+    "score_updates": 0
   }
 }
