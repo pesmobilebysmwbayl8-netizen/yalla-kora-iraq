@@ -1,6 +1,6 @@
 {
   "version": "V17-FIVE-SOURCES-SCORE-VS-FALLBACK",
-  "updated_at": "2026-11-15T20:32:09.846400+03:00",
+  "updated_at": "2026-11-15T21:12:02.933928+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -1039,7 +1039,7 @@
     "with_away_image": 28,
     "errors": 0,
     "rejected_cards": 0,
-    "status_updates": 2,
+    "status_updates": 0,
     "score_updates": 0
   }
 }
