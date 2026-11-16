@@ -1,8 +1,8 @@
+
 # ============================================================
-# YALLA KORA - FIVE SOURCES DYNAMIC ENGINE
-# Dynamic pages discovery + match refresh
+# YALLA KORA - SMART EXTRACTION ENGINE V19
+# Same 5 sources | Same matches.json structure
 # Timezone: Asia/Baghdad
-# Output: matches.json
 # ============================================================
 
 import json
@@ -23,7 +23,6 @@ NOW = datetime.now(TZ)
 TODAY = NOW.date()
 OUTPUT = "matches.json"
 
-# المصادر الخمسة نفسها، بدون إضافة API
 SOURCES = {
     "asgoal": "https://as-goal.net/",
     "filgoal": "https://www.filgoal.com/",
@@ -34,8 +33,8 @@ SOURCES = {
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (Linux; Android 10) "
-        "AppleWebKit/537.36 Chrome/130.0 Mobile Safari/537.36"
+        "Mozilla/5.0 (Linux; Android 10; Mobile) "
+        "AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36"
     ),
     "Accept-Language": "ar,en-US;q=0.9,en;q=0.8"
 }
@@ -44,11 +43,9 @@ SESSION = requests.Session()
 SESSION.headers.update(HEADERS)
 
 STATS = {
-    "asgoal": 0,
-    "filgoal": 0,
-    "talknow": 0,
-    "original": 0,
-    "almashhad": 0,
+    name: 0 for name in SOURCES
+}
+STATS.update({
     "channels": 0,
     "commentators": 0,
     "with_home_image": 0,
@@ -57,7 +54,7 @@ STATS = {
     "rejected_cards": 0,
     "status_updates": 0,
     "score_updates": 0
-}
+})
 
 MONTHS = {
     "يناير": 1, "فبراير": 2, "مارس": 3,
@@ -68,8 +65,8 @@ MONTHS = {
 }
 
 
-def log(text):
-    print(text, flush=True)
+def log(message):
+    print(message, flush=True)
 
 
 def clean(value):
@@ -103,135 +100,221 @@ def fetch(url):
 
     except Exception as exc:
         STATS["errors"] += 1
-        log(f"FETCH ERROR: {url} | {exc}")
+        log("FETCH ERROR: " + url + " | " + str(exc))
         return ""
 
 
-def parse_date(text, default=None):
-    text = clean(text)
+def parse_date(value, default=None):
+    text = clean(value)
 
     patterns = [
-        r"\b(\d{1,2})[/-](\d{1,2})[/-](\d{4})\b",
-        r"\b(\d{4})[/-](\d{1,2})[/-](\d{1,2})\b"
+        (r"\b(\d{1,2})[/-](\d{1,2})[/-](\d{4})\b", "dmy"),
+        (r"\b(\d{4})[/-](\d{1,2})[/-](\d{1,2})\b", "ymd")
     ]
 
-    m = re.search(patterns[0], text)
+    for pattern, mode in patterns:
+        match = re.search(pattern, text)
 
-    if m:
-        try:
-            return datetime(
-                int(m.group(3)),
-                int(m.group(2)),
-                int(m.group(1))
-            ).date().isoformat()
-        except ValueError:
-            pass
+        if match:
+            try:
+                if mode == "dmy":
+                    result = datetime(
+                        int(match.group(3)),
+                        int(match.group(2)),
+                        int(match.group(1))
+                    )
+                else:
+                    result = datetime(
+                        int(match.group(1)),
+                        int(match.group(2)),
+                        int(match.group(3))
+                    )
 
-    m = re.search(patterns[1], text)
+                return result.date().isoformat()
+            except ValueError:
+                pass
 
-    if m:
-        try:
-            return datetime(
-                int(m.group(1)),
-                int(m.group(2)),
-                int(m.group(3))
-            ).date().isoformat()
-        except ValueError:
-            pass
-
-    m = re.search(
+    month_pattern = (
         r"(\d{1,2})\s+("
-        + "|".join(MONTHS.keys())
-        + r")\s+(\d{4})",
-        text
+        + "|".join(MONTHS)
+        + r")\s+(\d{4})"
     )
 
-    if m:
+    match = re.search(month_pattern, text)
+
+    if match:
         try:
             return datetime(
-                int(m.group(3)),
-                MONTHS[m.group(2)],
-                int(m.group(1))
+                int(match.group(3)),
+                MONTHS[match.group(2)],
+                int(match.group(1))
             ).date().isoformat()
         except ValueError:
             pass
 
-    return default.isoformat() if hasattr(default, "isoformat") else (
-        default or ""
-    )
+    if hasattr(default, "isoformat"):
+        return default.isoformat()
+
+    return default or ""
 
 
-def parse_time(text):
-    m = re.search(
+def parse_time(value):
+    match = re.search(
         r"(?<!\d)([01]?\d|2[0-3]):([0-5]\d)(?!\d)",
-        clean(text)
+        clean(value)
     )
 
-    if m:
-        return f"{int(m.group(1)):02d}:{m.group(2)}"
-
-    return ""
-
-
-def status_value(text):
-    t = norm(text)
-
-    if any(x in t for x in (
-        "مباشر", "live", "جاريهالان",
-        "الشوطالاول", "الشوطالثاني", "استراحه"
-    )):
-        return "live"
-
-    if any(x in t for x in (
-        "انتهت", "نهايهالمباراه",
-        "fulltime", "finished", "ended"
-    )):
-        return "ended"
-
-    if any(x in t for x in (
-        "تاجلت", "مؤجله", "postponed",
-        "cancelled", "ملغاه"
-    )):
-        return "postponed"
-
-    if any(x in t for x in (
-        "لمتبدا", "لمتبدأ", "لم تبدأ",
-        "upcoming", "scheduled"
-    )):
-        return "upcoming"
+    if match:
+        return f"{int(match.group(1)):02d}:{match.group(2)}"
 
     return ""
 
 
 def valid_score(value):
-    value = clean(value)
-
-    m = re.fullmatch(
-        r"(\d{1,2})\s*[-–:]\s*(\d{1,2})",
-        value
+    match = re.fullmatch(
+        r"\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})\s*",
+        clean(value)
     )
 
-    if not m:
+    if not match:
         return ""
 
-    a, b = int(m.group(1)), int(m.group(2))
+    a, b = int(match.group(1)), int(match.group(2))
 
-    if 0 <= a <= 15 and 0 <= b <= 15:
+    if a <= 15 and b <= 15:
         return f"{a} - {b}"
 
     return ""
 
 
 def extract_score(text):
-    m = re.search(
-        r"(?:نتيجة المباراة|النتيجة|score|result)"
+    patterns = [
+        r"(?:النتيجة|نتيجة المباراة|score|result)"
         r"\s*[:：]?\s*(\d{1,2})\s*[-–:]\s*(\d{1,2})",
-        clean(text),
-        re.I
-    )
+        r"\b(\d{1,2})\s*[-–]\s*(\d{1,2})\b"
+    ]
 
-    if m:
-        return valid_score(m.group(1) + " - " + m.group(2))
+    for pattern in patterns:
+        match = re.search(pattern, clean(text), re.I)
+
+        if match:
+            score = valid_score(
+                match.group(1) + "-" + match.group(2)
+            )
+            if score:
+                return score
+
+    return ""
+
+
+def status_value(value):
+    text = norm(value)
+
+    if any(x in text for x in (
+        "مباشر", "live", "جاريهالان",
+        "الشوطالاول", "الشوطالثاني",
+        "استراحه", "firsthalf", "secondhalf"
+    )):
+        return "live"
+
+    if any(x in text for x in (
+        "انتهت", "نهايهالمباراه",
+        "fulltime", "finished", "ended"
+    )):
+        return "ended"
+
+    if any(x in text for x in (
+        "تاجلت", "مؤجله", "postponed",
+        "cancelled", "ملغاه"
+    )):
+        return "postponed"
+
+    if any(x in text for x in (
+        "لمتبدا", "لمتبدأ", "upcoming",
+        "scheduled", "لم تبدأ"
+    )):
+        return "upcoming"
+
+    return ""
+
+
+def valid_team(name):
+    name = clean(name)
+    key = norm(name)
+
+    invalid = {
+        "", "جدولالمباريات", "مبارياتاليوم",
+        "مبارياتالامس", "مبارياتالغد",
+        "لمتبدا", "مباشر", "انتهت",
+        "home", "away", "vs", "كرةالقدم"
+    }
+
+    if key in invalid or len(name) < 2 or len(name) > 55:
+        return False
+
+    if re.search(r"\d{1,2}:\d{2}|https?://", name):
+        return False
+
+    return True
+
+
+def image_url(element, base_url):
+    if not element:
+        return ""
+
+    if element.name == "img":
+        candidates = [
+            element.get("data-src"),
+            element.get("data-lazy-src"),
+            element.get("data-original"),
+            element.get("data-image"),
+            element.get("src")
+        ]
+
+        srcset = element.get("srcset")
+
+        if srcset:
+            candidates.insert(
+                0,
+                srcset.split(",")[0].strip().split(" ")[0]
+            )
+
+        for src in candidates:
+            if src and not src.startswith("data:"):
+                return urljoin(base_url, src)
+
+    for img in element.find_all("img"):
+        result = image_url(img, base_url)
+
+        if result:
+            return result
+
+    return ""
+
+
+def find_team_image(card, team_element, team_name, base_url):
+    # الصورة المرتبطة بعنصر الفريق نفسه أولاً
+    result = image_url(team_element, base_url)
+
+    if result:
+        return result
+
+    # البحث عن صورة تحمل اسم الفريق في alt أو title
+    target = norm(team_name)
+
+    for img in card.find_all("img"):
+        label = norm(
+            img.get("alt", "") + " " +
+            img.get("title", "")
+        )
+
+        if target and (
+            target in label or label in target
+        ):
+            result = image_url(img, base_url)
+
+            if result:
+                return result
 
     return ""
 
@@ -254,19 +337,16 @@ def arabic_name(value):
          "إس إس سي"),
         (r"(?i)al[- ]?kass\s*(\d+)?",
          "الكأس"),
-        (r"(?i)mbc\s*shahid",
-         "إم بي سي شاهد"),
-        (r"(?i)shahid",
-         "شاهد"),
-        (r"(?i)starz\s*play",
-         "ستارز بلاي")
+        (r"(?i)mbc\s*shahid", "إم بي سي شاهد"),
+        (r"(?i)shahid", "شاهد"),
+        (r"(?i)starz\s*play", "ستارز بلاي")
     ]
 
     for pattern, arabic in aliases:
-        m = re.search(pattern, value)
+        match = re.search(pattern, value)
 
-        if m:
-            number = m.group(1) if m.lastindex else ""
+        if match:
+            number = match.group(1) if match.lastindex else ""
             return clean(arabic + (" " + number if number else ""))
 
     chunks = re.findall(
@@ -277,30 +357,7 @@ def arabic_name(value):
     return clean(chunks[0]) if chunks else ""
 
 
-def valid_team(name):
-    name = clean(name)
-    key = norm(name)
-
-    invalid = {
-        "", "مصر", "جدولالمباريات",
-        "مبارياتاليوم", "مبارياتالامس",
-        "مبارياتالغد", "لمتبدا",
-        "مباشر", "انتهت", "home", "away", "vs"
-    }
-
-    if key in invalid:
-        return False
-
-    if len(name) < 2 or len(name) > 55:
-        return False
-
-    if re.search(r"(?:\d{1,2}:\d{2}|https?://)", name):
-        return False
-
-    return True
-
-
-def new_match(
+def make_match(
     home, away, date, hour="",
     league="", channel="", commentator="",
     home_img="", away_img="",
@@ -316,8 +373,10 @@ def new_match(
     if norm(home) == norm(away):
         return None
 
+    date = date or TODAY.isoformat()
+
     return {
-        "league": clean(league),
+        "league": clean(league) or "كرة القدم",
         "home": home,
         "away": away,
         "team1": home,
@@ -326,8 +385,8 @@ def new_match(
         "away_img": away_img or "",
         "hour": hour or "",
         "time": hour or "",
-        "date": date or TODAY.isoformat(),
-        "match_date": date or TODAY.isoformat(),
+        "date": date,
+        "match_date": date,
         "status": status or "upcoming",
         "score": score or "",
         "channel": clean(channel),
@@ -338,302 +397,394 @@ def new_match(
     }
 
 
-# ------------------------------------------------------------
-# اكتشاف الصفحات المتجددة من كل موقع
-# ------------------------------------------------------------
-
-def discover_pages(source_name, homepage):
+def discover_pages(homepage):
     pages = [homepage]
+    root = urlparse(homepage)
+    domain = root.netloc
 
-    base = urlparse(homepage)
-    root = f"{base.scheme}://{base.netloc}"
+    for path in ("/sitemap.xml", "/sitemap_index.xml"):
+        data = fetch(urljoin(homepage, path))
 
-    sitemap_urls = [
-        root + "/sitemap.xml",
-        root + "/sitemap_index.xml"
-    ]
-
-    for sitemap in sitemap_urls:
-        xml = fetch(sitemap)
-
-        if not xml:
+        if not data:
             continue
 
-        soup = BeautifulSoup(xml, "xml")
+        soup = BeautifulSoup(data, "xml")
 
         for loc in soup.find_all("loc"):
             url = clean(loc.get_text())
 
-            if url.startswith("http"):
+            if url.startswith("http") and urlparse(url).netloc == domain:
                 if url not in pages:
                     pages.append(url)
 
-            if len(pages) >= 30:
+            if len(pages) >= 25:
                 break
 
-        if len(pages) >= 30:
+        if len(pages) >= 25:
             break
 
-    # استخراج روابط صفحات المباريات من الصفحة الرئيسية
-    home_html = fetch(homepage)
+    page = fetch(homepage)
 
-    if home_html:
-        soup = BeautifulSoup(home_html, "html.parser")
+    if page:
+        soup = BeautifulSoup(page, "html.parser")
 
-        for a in soup.find_all("a", href=True):
-            url = urljoin(homepage, a["href"])
+        for link in soup.find_all("a", href=True):
+            url = urljoin(homepage, link["href"])
             parsed = urlparse(url)
 
-            if parsed.netloc != base.netloc:
+            if parsed.netloc != domain:
                 continue
 
-            text = norm(a.get_text(" ", strip=True))
+            text = norm(link.get_text(" ", strip=True))
             path = norm(parsed.path)
 
-            match_words = (
+            if any(word in path or word in text for word in (
                 "match", "matches", "live",
                 "مباراه", "مباريات", "جدول"
-            )
-
-            if any(x in path or x in text for x in match_words):
+            )):
                 if url not in pages:
                     pages.append(url)
 
             if len(pages) >= 40:
                 break
 
-    log(f"{source_name.upper()} DISCOVERED PAGES: {len(pages)}")
-
     return pages[:40]
 
 
 # ------------------------------------------------------------
-# قراءة المباريات من JSON-LD
+# قراءة البيانات المنظمة والبيانات المضمّنة
 # ------------------------------------------------------------
 
-def parse_json_events(page):
+def walk_json(data):
+    if isinstance(data, list):
+        for item in data:
+            yield from walk_json(item)
+
+    elif isinstance(data, dict):
+        yield data
+
+        for value in data.values():
+            if isinstance(value, (dict, list)):
+                yield from walk_json(value)
+
+
+def json_objects(soup):
+    objects = []
+
+    for script in soup.find_all("script"):
+        script_type = clean(script.get("type", "")).lower()
+        script_id = clean(script.get("id", "")).lower()
+
+        if (
+            "ld+json" in script_type
+            or script_id == "__next_data__"
+            or "application/json" in script_type
+        ):
+            raw = script.string or script.get_text()
+
+            if not raw:
+                continue
+
+            try:
+                data = json.loads(raw)
+                objects.extend(walk_json(data))
+            except Exception:
+                continue
+
+    return objects
+
+
+def team_data(value):
+    if isinstance(value, list):
+        value = value[0] if value else {}
+
+    if isinstance(value, str):
+        return clean(value), ""
+
+    if not isinstance(value, dict):
+        return "", ""
+
+    name = (
+        value.get("name")
+        or value.get("alternateName")
+        or value.get("shortName")
+        or ""
+    )
+
+    logo = value.get("logo") or value.get("image") or ""
+
+    if isinstance(logo, dict):
+        logo = logo.get("url", "")
+
+    if isinstance(logo, list):
+        logo = logo[0] if logo else ""
+
+    if isinstance(logo, dict):
+        logo = logo.get("url", "")
+
+    return clean(name), clean(logo)
+
+
+def parse_structured(page):
     soup = BeautifulSoup(page, "html.parser")
     output = []
 
-    for script in soup.find_all(
-        "script",
-        type="application/ld+json"
-    ):
-        try:
-            data = json.loads(
-                script.string or script.get_text()
-            )
-        except Exception:
+    for obj in json_objects(soup):
+        home_value = (
+            obj.get("homeTeam")
+            or obj.get("home_team")
+            or obj.get("localTeam")
+        )
+
+        away_value = (
+            obj.get("awayTeam")
+            or obj.get("away_team")
+            or obj.get("visitorTeam")
+        )
+
+        if not home_value or not away_value:
             continue
 
-        stack = data if isinstance(data, list) else [data]
+        home, home_logo = team_data(home_value)
+        away, away_logo = team_data(away_value)
 
-        while stack:
-            obj = stack.pop()
+        if not valid_team(home) or not valid_team(away):
+            continue
 
-            if isinstance(obj, list):
-                stack.extend(obj)
-                continue
+        start = clean(
+            obj.get("startDate")
+            or obj.get("start_time")
+            or obj.get("date")
+            or ""
+        )
 
-            if not isinstance(obj, dict):
-                continue
+        date = TODAY.isoformat()
+        hour = ""
 
-            if "@graph" in obj:
-                stack.append(obj["@graph"])
+        if start:
+            try:
+                parsed = datetime.fromisoformat(
+                    start.replace("Z", "+00:00")
+                )
 
-            types = obj.get("@type", [])
+                if parsed.tzinfo:
+                    parsed = parsed.astimezone(TZ)
 
-            if isinstance(types, str):
-                types = [types]
+                date = parsed.date().isoformat()
+                hour = parsed.strftime("%H:%M")
+            except Exception:
+                date = parse_date(start, TODAY)
+                hour = parse_time(start)
 
-            if not any("SportsEvent" in x for x in types):
-                continue
+        state_text = (
+            clean(obj.get("eventStatus", "")) + " " +
+            clean(obj.get("status", "")) + " " +
+            clean(obj.get("description", ""))
+        )
 
-            home = obj.get("homeTeam", {})
-            away = obj.get("awayTeam", {})
+        state = status_value(state_text)
 
-            if isinstance(home, list):
-                home = home[0] if home else {}
+        score = ""
 
-            if isinstance(away, list):
-                away = away[0] if away else {}
+        competitors = obj.get("competitor", [])
 
-            if not isinstance(home, dict) or not isinstance(away, dict):
-                continue
+        if isinstance(competitors, list) and len(competitors) >= 2:
+            values = []
 
-            start = clean(obj.get("startDate", ""))
-            date = TODAY.isoformat()
-            hour = ""
+            for competitor in competitors[:2]:
+                if isinstance(competitor, dict):
+                    values.append(str(competitor.get("score", "")))
+                else:
+                    values.append("")
 
-            if start:
-                try:
-                    parsed = datetime.fromisoformat(
-                        start.replace("Z", "+00:00")
-                    )
+            if all(x.isdigit() for x in values):
+                score = valid_score(values[0] + "-" + values[1])
 
-                    if parsed.tzinfo:
-                        parsed = parsed.astimezone(TZ)
-
-                    date = parsed.date().isoformat()
-                    hour = parsed.strftime("%H:%M")
-
-                except Exception:
-                    pass
-
-            state = status_value(
-                clean(obj.get("eventStatus", "")) + " " +
-                clean(obj.get("description", ""))
+        if not score:
+            score = valid_score(
+                str(obj.get("homeScore", "")) + "-" +
+                str(obj.get("awayScore", ""))
             )
 
-            score = ""
+        league = obj.get("name") or obj.get("sport") or ""
 
-            competitors = obj.get("competitor", [])
+        item = make_match(
+            home, away, date, hour,
+            league=league,
+            home_img=home_logo,
+            away_img=away_logo,
+            status=state,
+            score=score
+        )
 
-            if isinstance(competitors, list) and len(competitors) >= 2:
-                values = []
-
-                for competitor in competitors[:2]:
-                    value = (
-                        competitor.get("score")
-                        if isinstance(competitor, dict)
-                        else None
-                    )
-
-                    values.append(str(value) if value is not None else "")
-
-                if all(x.isdigit() for x in values):
-                    score = valid_score(
-                        values[0] + " - " + values[1]
-                    )
-
-            item = new_match(
-                home.get("name", ""),
-                away.get("name", ""),
-                date,
-                hour,
-                obj.get("sport", ""),
-                status=state,
-                score=score
-            )
-
-            if item:
-                output.append(item)
+        if item:
+            output.append(item)
 
     return output
 
 
 # ------------------------------------------------------------
-# قراءة بطاقات المباريات من HTML
+# استخراج بطاقة المباراة بشكل منفصل
 # ------------------------------------------------------------
 
-def parse_html_cards(page, source_url):
-    soup = BeautifulSoup(page, "html.parser")
-    output = []
+TEAM_SELECTORS = [
+    "[class*='team-name']",
+    "[class*='team_name']",
+    "[class*='participant']",
+    "[class*='club-name']",
+    "[class*='home-team']",
+    "[class*='away-team']",
+    "[class*='team']"
+]
 
-    selectors = [
-        "[class*='match']",
-        "[class*='fixture']",
-        "[class*='event']",
-        "[class*='game']",
-        "[class*='match-card']"
-    ]
+CARD_SELECTORS = [
+    "[class*='match-card']",
+    "[class*='match_item']",
+    "[class*='match-item']",
+    "[class*='fixture']",
+    "[class*='event-card']",
+    "[class*='match']"
+]
 
+
+def extract_team_elements(card):
     found = []
 
-    for selector in selectors:
+    for selector in TEAM_SELECTORS:
         try:
-            found.extend(soup.select(selector))
+            elements = card.select(selector)
         except Exception:
-            pass
+            continue
 
+        for element in elements:
+            name = clean(element.get_text(" ", strip=True))
+
+            if valid_team(name):
+                if not any(
+                    norm(name) == norm(old[0])
+                    for old in found
+                ):
+                    found.append((name, element))
+
+    return found[:2]
+
+
+def extract_vs(text):
+    match = re.search(
+        r"([\u0600-\u06ffA-Za-z0-9 .'-]{2,45}?)"
+        r"\s+(?:vs\.?|ضد)\s+"
+        r"([\u0600-\u06ffA-Za-z0-9 .'-]{2,45})",
+        clean(text),
+        re.I
+    )
+
+    if not match:
+        return "", ""
+
+    home = clean(match.group(1))
+    away = clean(match.group(2))
+
+    if valid_team(home) and valid_team(away):
+        return home, away
+
+    return "", ""
+
+
+def extract_channel(text):
+    patterns = [
+        r"(?:القناة الناقلة|القناة|Channel)"
+        r"\s*[:：]?\s*([^|،]{2,55})",
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, text, re.I)
+
+        if match:
+            return arabic_name(match.group(1))
+
+    return ""
+
+
+def extract_commentator(text):
+    patterns = [
+        r"(?:المعلق|المعلّق|Commentator)"
+        r"\s*[:：]?\s*([^|،]{2,55})"
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, text, re.I)
+
+        if match:
+            return arabic_name(match.group(1))
+
+    return ""
+
+
+def parse_cards(page, source_url):
+    soup = BeautifulSoup(page, "html.parser")
+    output = []
     seen = set()
 
-    for card in found:
+    for selector in CARD_SELECTORS:
         try:
+            cards = soup.select(selector)
+        except Exception:
+            continue
+
+        for card in cards:
             text = clean(card.get_text(" ", strip=True))
 
-            if not text or len(text) > 1500:
+            if not text or len(text) > 1000:
                 continue
 
-            key = norm(text)
+            teams = extract_team_elements(card)
+
+            if len(teams) >= 2:
+                home, home_element = teams[0]
+                away, away_element = teams[1]
+            else:
+                home, away = extract_vs(text)
+                home_element = None
+                away_element = None
+
+            if not valid_team(home) or not valid_team(away):
+                continue
+
+            key = norm(home) + "|" + norm(away) + "|" + text[:100]
 
             if key in seen:
                 continue
 
             seen.add(key)
 
-            # استخراج أسماء الفرق من العناوين أو العناصر
-            team_names = []
-
-            for selector in [
-                "[class*='team-name']",
-                "[class*='team']",
-                "[class*='club']",
-                "[class*='participant']"
-            ]:
-                for element in card.select(selector):
-                    name = clean(element.get_text(" ", strip=True))
-
-                    if valid_team(name) and norm(name) not in [
-                        norm(x) for x in team_names
-                    ]:
-                        team_names.append(name)
-
-            # احتياط: استخراج اسمين من النص عند وجود VS أو ضد
-            if len(team_names) < 2:
-                m = re.search(
-                    r"(.{2,45}?)\s+(?:vs\.?|ضد)\s+(.{2,45})",
-                    text,
-                    re.I
-                )
-
-                if m:
-                    team_names = [
-                        clean(m.group(1)),
-                        clean(m.group(2))
-                    ]
-
-            if len(team_names) < 2:
-                continue
-
             date = parse_date(text, TODAY)
             hour = parse_time(text)
             state = status_value(text)
             score = extract_score(text)
 
-            league = ""
-
             league_element = card.select_one(
-                "[class*='league'], [class*='competition']"
+                "[class*='league'], [class*='competition'], "
+                "[class*='tournament']"
             )
 
-            if league_element:
-                league = clean(
-                    league_element.get_text(" ", strip=True)
-                )
+            league = (
+                clean(league_element.get_text(" ", strip=True))
+                if league_element else "كرة القدم"
+            )
 
-            images = card.find_all("img")
-            image_urls = []
+            home_img = find_team_image(
+                card, home_element, home, source_url
+            )
 
-            for img in images[:2]:
-                src = (
-                    img.get("src") or
-                    img.get("data-src") or
-                    img.get("data-lazy-src")
-                )
+            away_img = find_team_image(
+                card, away_element, away, source_url
+            )
 
-                if src:
-                    image_urls.append(urljoin(source_url, src))
-
-            home_img = image_urls[0] if len(image_urls) > 0 else ""
-            away_img = image_urls[1] if len(image_urls) > 1 else ""
-
-            item = new_match(
-                team_names[0],
-                team_names[1],
-                date,
-                hour,
-                league,
+            item = make_match(
+                home, away, date, hour,
+                league=league,
+                channel=extract_channel(text),
+                commentator=extract_commentator(text),
                 home_img=home_img,
                 away_img=away_img,
                 status=state,
@@ -643,14 +794,11 @@ def parse_html_cards(page, source_url):
             if item:
                 output.append(item)
 
-        except Exception:
-            continue
-
     return output
 
 
 # ------------------------------------------------------------
-# استخراج القناة والمعلق من صفحات AS GOAL
+# AS GOAL: قراءة صفحات تفاصيل المباريات
 # ------------------------------------------------------------
 
 def parse_asgoal_detail(url):
@@ -660,31 +808,22 @@ def parse_asgoal_detail(url):
         return None
 
     soup = BeautifulSoup(page, "html.parser")
+    title = clean(soup.title.get_text(" ", strip=True)) if soup.title else ""
 
-    title = clean(
-        soup.title.get_text(" ", strip=True)
-        if soup.title else ""
-    )
+    heading = soup.find("h1")
+    heading = clean(heading.get_text(" ", strip=True)) if heading else title
 
-    h1 = soup.find("h1")
-
-    heading = clean(
-        h1.get_text(" ", strip=True)
-        if h1 else title
-    )
-
-    patterns = [
+    match = re.search(
         r"مباراة\s+(.+?)\s+ضد\s+(.+?)\s+في\s+(.+)",
-        r"(.+?)\s+vs\.?\s+(.+?)\s*[-|]\s*(.+)"
-    ]
+        heading
+    )
 
-    match = None
-
-    for pattern in patterns:
-        match = re.search(pattern, heading, re.I)
-
-        if match:
-            break
+    if not match:
+        match = re.search(
+            r"(.+?)\s+vs\.?\s+(.+?)\s*[-|]\s*(.+)",
+            heading,
+            re.I
+        )
 
     if not match:
         return None
@@ -695,46 +834,20 @@ def parse_asgoal_detail(url):
     date = parse_date(text, TODAY)
     hour = parse_time(text)
     state = status_value(text)
+    score = extract_score(text)
 
-    score = (
-        extract_score(text)
-        if state in ("live", "ended")
-        else ""
-    )
-
-    channel = ""
-    commentator = ""
-
-    labels = [
-        r"(?:القناة الناقلة|Channel)\s*[:：]?\s*(.{2,60})",
-        r"(?:المعلّق|المعلق|Commentator)\s*[:：]?\s*(.{2,60})"
-    ]
-
-    m = re.search(labels[0], text, re.I)
-
-    if m:
-        channel = arabic_name(m.group(1).split("المعل")[0])
-
-    m = re.search(labels[1], text, re.I)
-
-    if m:
-        commentator = arabic_name(m.group(1).split("ملعب")[0])
-
-    return new_match(
-        home,
-        away,
-        date,
-        hour,
-        league,
-        channel,
-        commentator,
+    return make_match(
+        home, away, date, hour,
+        league=league,
+        channel=extract_channel(text),
+        commentator=extract_commentator(text),
         status=state,
         score=score
     )
 
 
 # ------------------------------------------------------------
-# تشغيل مصدر واحد واكتشاف صفحاته تلقائياً
+# تشغيل المصادر
 # ------------------------------------------------------------
 
 def run_source(name):
@@ -742,70 +855,61 @@ def run_source(name):
     log("SOURCE: " + name.upper())
 
     homepage = SOURCES[name]
-    pages = discover_pages(name, homepage)
+    pages = discover_pages(homepage)
 
     output = []
     detail_urls = []
 
-    for page_url in pages:
+    for index, page_url in enumerate(pages, 1):
+        log(f"{name.upper()} PAGE {index}/{len(pages)}")
+
         page = fetch(page_url)
 
         if not page:
             continue
 
-        # المباريات المنظمة
-        output.extend(parse_json_events(page))
+        output.extend(parse_structured(page))
+        output.extend(parse_cards(page, page_url))
 
-        # بطاقات المباريات
-        output.extend(parse_html_cards(page, page_url))
-
-        # روابط صفحات المباريات
         if name == "asgoal":
             soup = BeautifulSoup(page, "html.parser")
 
-            for a in soup.find_all("a", href=True):
-                url = urljoin(page_url, a["href"])
+            for link in soup.find_all("a", href=True):
+                url = urljoin(page_url, link["href"])
 
                 if urlparse(url).netloc != urlparse(homepage).netloc:
                     continue
 
-                if re.search(
-                    r"/matches/[^/?#]+",
-                    url
-                ):
+                if re.search(r"/matches/[^/?#]+", url):
                     if url not in detail_urls:
                         detail_urls.append(url)
 
     if name == "asgoal":
-        for index, url in enumerate(detail_urls[:60], 1):
-            log(f"ASGOAL DETAIL {index}/{min(len(detail_urls), 60)}")
+        for index, url in enumerate(detail_urls[:50], 1):
+            log(f"ASGOAL DETAIL {index}/{min(len(detail_urls), 50)}")
 
             item = parse_asgoal_detail(url)
 
             if item:
                 output.append(item)
 
-    # إزالة التكرار داخل المصدر
     unique = []
 
     for item in output:
-        if not item:
-            continue
-
-        if not any(matches_same(item, old) for old in unique):
+        if item and not any(
+            matches_same(item, old) for old in unique
+        ):
             unique.append(item)
 
     STATS[name] = len(unique)
 
-    log(
-        f"{name.upper()} MATCHES FOUND: {len(unique)}"
-    )
+    log(f"{name.upper()} MATCHES: {len(unique)}")
 
     return unique
 
 
 # ------------------------------------------------------------
-# دمج المباريات ومنع التكرار
+# مطابقة المباريات ودمج البيانات
 # ------------------------------------------------------------
 
 def matches_same(a, b):
@@ -815,24 +919,23 @@ def matches_same(a, b):
     ah, aa, bh, ba = map(
         norm,
         (
-            a.get("home"),
-            a.get("away"),
-            b.get("home"),
-            b.get("away")
+            a.get("home", ""),
+            a.get("away", ""),
+            b.get("home", ""),
+            b.get("away", "")
         )
     )
 
     if not all((ah, aa, bh, ba)):
         return False
 
-    sim = lambda x, y: (
-        SequenceMatcher(None, x, y).ratio() >= 0.88
-    )
+    def similar(x, y):
+        return SequenceMatcher(None, x, y).ratio() >= 0.86
 
     return (
-        sim(ah, bh) and sim(aa, ba)
+        similar(ah, bh) and similar(aa, ba)
     ) or (
-        sim(ah, ba) and sim(aa, bh)
+        similar(ah, ba) and similar(aa, bh)
     )
 
 
@@ -853,13 +956,22 @@ def merge(records, incoming):
             records.append(item)
             continue
 
+        # المعلومات الناقصة تُستكمل من المصدر الآخر
         for field in (
             "league", "channel", "commentator",
-            "home_img", "away_img", "streamUrl"
+            "home_img", "away_img", "streamUrl",
+            "hour", "time"
         ):
-            if item.get(field) and not existing.get(field):
+            if item.get(field) and (
+                not existing.get(field)
+                or (
+                    field == "league"
+                    and existing.get(field) == "كرة القدم"
+                )
+            ):
                 existing[field] = item[field]
 
+        # لا نستبدل الحالة إلا إذا المصدر أكدها
         if item.get("_status_confirmed"):
             if existing.get("status") != item["status"]:
                 existing["status"] = item["status"]
@@ -870,11 +982,72 @@ def merge(records, incoming):
                 existing["score"] = item["score"]
                 STATS["score_updates"] += 1
 
-        if item.get("hour") and not existing.get("hour"):
-            existing["hour"] = item["hour"]
-            existing["time"] = item["hour"]
-
     return records
+
+
+# ------------------------------------------------------------
+# معالجة الحالات القديمة
+# ------------------------------------------------------------
+
+def fix_old_status(item):
+    if item.get("status") != "live":
+        return
+
+    date = item.get("date") or item.get("match_date")
+    hour = item.get("hour") or item.get("time")
+
+    try:
+        if not date or not hour:
+            return
+
+        kickoff = datetime.fromisoformat(
+            date + "T" + hour
+        ).replace(tzinfo=TZ)
+
+        # إذا مضت 5 ساعات على بداية المباراة
+        # ولا يوجد تحديث مباشر جديد، لا نتركها معلقة.
+        if NOW - kickoff > timedelta(hours=5):
+            item["status"] = "ended"
+
+    except Exception:
+        return
+
+
+def clean_old_record(item):
+    item = dict(item)
+
+    item.setdefault("home", item.get("team1", ""))
+    item.setdefault("away", item.get("team2", ""))
+
+    item["home"] = clean(item.get("home"))
+    item["away"] = clean(item.get("away"))
+
+    item["team1"] = item["home"]
+    item["team2"] = item["away"]
+
+    item["league"] = clean(item.get("league")) or "كرة القدم"
+
+    item["home_img"] = item.get("home_img") or ""
+    item["away_img"] = item.get("away_img") or ""
+
+    item["hour"] = item.get("hour") or item.get("time") or ""
+    item["time"] = item["hour"]
+
+    item["date"] = (
+        item.get("date")
+        or item.get("match_date")
+        or TODAY.isoformat()
+    )
+
+    item["match_date"] = item["date"]
+    item["score"] = valid_score(item.get("score", "")) or ""
+
+    item["_status_confirmed"] = False
+    item["_score_confirmed"] = False
+
+    fix_old_status(item)
+
+    return item
 
 
 def remove_internal_fields(records):
@@ -891,13 +1064,13 @@ def remove_internal_fields(records):
 
 def main():
     log("=" * 55)
-    log("YALLA KORA - DYNAMIC FIVE SOURCES")
+    log("YALLA KORA - SMART EXTRACTION ENGINE V19")
     log("NOW: " + NOW.isoformat())
     log("=" * 55)
 
     matches = []
 
-    # الاحتفاظ بالمباريات السابقة عند تعطل مصدر مؤقتاً
+    # استرجاع البيانات السابقة للمحافظة على معلومات القنوات
     if os.path.exists(OUTPUT):
         try:
             with open(OUTPUT, "r", encoding="utf-8") as file:
@@ -910,33 +1083,18 @@ def main():
                     if not isinstance(old, dict):
                         continue
 
-                    if not old.get("home") or not old.get("away"):
-                        continue
+                    record = clean_old_record(old)
 
-                    old = dict(old)
-                    old["score"] = valid_score(old.get("score", ""))
+                    if valid_team(record["home"]) and valid_team(record["away"]):
+                        matches.append(record)
 
-                    old["_status_confirmed"] = False
-                    old["_score_confirmed"] = False
-
-                    matches.append(old)
-
-            log(
-                "PREVIOUS MATCHES RESTORED: "
-                + str(len(matches))
-            )
+            log("PREVIOUS MATCHES RESTORED: " + str(len(matches)))
 
         except Exception as exc:
             log("PREVIOUS JSON WARNING: " + str(exc))
 
-    # المصادر الخمسة
-    for source in (
-        "asgoal",
-        "filgoal",
-        "talknow",
-        "original",
-        "almashhad"
-    ):
+    # المصادر الخمسة نفسها
+    for source in SOURCES:
         try:
             incoming = run_source(source)
             merge(matches, incoming)
@@ -953,11 +1111,25 @@ def main():
     matches = [
         item for item in matches
         if item.get("date") in (
-            yesterday,
-            today,
-            tomorrow
+            yesterday, today, tomorrow
         )
     ]
+
+    for item in matches:
+        item["league"] = clean(item.get("league")) or "كرة القدم"
+
+        item["home"] = clean(item.get("home"))
+        item["away"] = clean(item.get("away"))
+
+        item["team1"] = item["home"]
+        item["team2"] = item["away"]
+
+        item["score"] = valid_score(item.get("score")) or "VS"
+
+        item["hour"] = item.get("hour") or item.get("time") or ""
+        item["time"] = item["hour"]
+
+        item["match_date"] = item.get("date", "")
 
     matches.sort(
         key=lambda item: (
@@ -967,28 +1139,18 @@ def main():
         )
     )
 
-    # VS إذا لم توجد نتيجة صحيحة
-    for item in matches:
-        item["score"] = (
-            valid_score(item.get("score", ""))
-            or "VS"
-        )
-
     remove_internal_fields(matches)
 
     today_list = [
-        x for x in matches
-        if x.get("date") == today
+        x for x in matches if x.get("date") == today
     ]
 
     yesterday_list = [
-        x for x in matches
-        if x.get("date") == yesterday
+        x for x in matches if x.get("date") == yesterday
     ]
 
     tomorrow_list = [
-        x for x in matches
-        if x.get("date") == tomorrow
+        x for x in matches if x.get("date") == tomorrow
     ]
 
     STATS["channels"] = sum(
@@ -1008,7 +1170,7 @@ def main():
     )
 
     output = {
-        "version": "V18-DYNAMIC-FIVE-SOURCES",
+        "version": "V19-SMART-EXTRACTION",
         "updated_at": datetime.now(TZ).isoformat(),
         "timezone": "Asia/Baghdad",
         "matches": matches,
@@ -1042,14 +1204,12 @@ def main():
 
     log("=" * 55)
     log("FINISHED")
-    log(
-        "COUNTS: "
-        + json.dumps(output["counts"], ensure_ascii=False)
-    )
-    log(
-        "SOURCE STATS: "
-        + json.dumps(STATS, ensure_ascii=False)
-    )
+    log("COUNTS: " + json.dumps(
+        output["counts"], ensure_ascii=False
+    ))
+    log("SOURCE STATS: " + json.dumps(
+        STATS, ensure_ascii=False
+    ))
     log("=" * 55)
 
 
