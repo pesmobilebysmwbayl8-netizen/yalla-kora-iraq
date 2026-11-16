@@ -1,6 +1,6 @@
 {
   "version": "V19-SMART-EXTRACTION",
-  "updated_at": "2026-11-16T18:38:50.417551+03:00",
+  "updated_at": "2026-11-16T18:40:54.207428+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -3092,7 +3092,7 @@
     "with_away_image": 58,
     "errors": 5,
     "rejected_cards": 0,
-    "status_updates": 17,
+    "status_updates": 0,
     "score_updates": 0
   }
 }
