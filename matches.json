@@ -1,6 +1,6 @@
 {
   "version": "V17-FIVE-SOURCES-SCORE-VS-FALLBACK",
-  "updated_at": "2026-11-16T05:29:48.319662+03:00",
+  "updated_at": "2026-11-16T13:02:43.038584+03:00",
   "timezone": "Asia/Baghdad",
   "matches": [
     {
@@ -2545,7 +2545,7 @@
     "filgoal": 1,
     "asgoal": 47,
     "original": 0,
-    "almashhad": 12,
+    "almashhad": 0,
     "channels": 70,
     "commentators": 66,
     "with_home_image": 58,
