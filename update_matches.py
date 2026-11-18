@@ -1,238 +1,661 @@
-#!/usr/bin/env python3
-# YALLA KORA V22 - stable multi-source fixtures
-# Keeps the existing matches.json schema and preserves channel/commentator/streamUrl data.
-# No guessed Arabic website URLs are used.
 
-import json, re, time
+#!/usr/bin/env python3
+# YALLA KORA V23 - BROADCAST + COMMENTATOR ENGINE
+# Keeps existing matches.json structure.
+# Channels and commentators are matched per event.
+# Missing information stays empty; never guessed.
+
+import json
+import re
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
+
 import requests
 
 TZ = ZoneInfo("Asia/Baghdad")
 NOW = datetime.now(TZ)
 DATES = [NOW.date() + timedelta(days=i) for i in (-1, 0, 1)]
 DATE_SET = {d.isoformat() for d in DATES}
+
 OUTPUT = Path("matches.json")
 TIMEOUT = 25
+
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36",
     "Accept": "application/json,text/plain,*/*",
     "Accept-Language": "ar,en-US;q=0.9",
 }
+
 ESPN_LEAGUES = [
-    "eng.1","eng.2","eng.3","eng.4","esp.1","esp.2","ger.1","ger.2",
-    "ita.1","ita.2","fra.1","fra.2","ned.1","por.1","bel.1","tur.1",
-    "sco.1","usa.1","mex.1","arg.1","bra.1","aus.1","ksa.1","qat.1",
-    "irn.1","jpn.1","kor.1","uefa.champions","uefa.europa",
-    "uefa.europa.conf","uefa.nations","fifa.world","fifa.friendly",
+    "eng.1", "eng.2", "eng.3", "esp.1", "ger.1",
+    "ita.1", "fra.1", "ned.1", "por.1", "bel.1",
+    "tur.1", "sco.1", "usa.1", "mex.1", "arg.1",
+    "bra.1", "aus.1", "ksa.1", "uefa.champions",
+    "uefa.europa", "uefa.europa.conf",
+    "uefa.nations", "fifa.world", "fifa.friendly",
 ]
+
 session = requests.Session()
 session.headers.update(HEADERS)
-STATS = {"fotmob":{"ok":0,"failed":0},"espn":{"ok":0,"failed":0},"errors":[]}
+
+STATS = {
+    "espn": {"ok": 0, "failed": 0},
+    "fotmob": {"ok": 0, "failed": 0},
+    "broadcast": {"checked": 0, "found": 0},
+    "commentators": {"checked": 0, "found": 0},
+    "errors": [],
+}
+
 
 def clean(v):
-    return re.sub(r"\s+"," ",str(v or "")).strip(" \t\r\n|•·")
+    return re.sub(r"\s+", " ", str(v or "")).strip(" \t\r\n|•·")
+
 
 def norm(v):
-    s=clean(v).lower()
-    s=s.replace("أ","ا").replace("إ","ا").replace("آ","ا").replace("ى","ي").replace("ة","ه")
-    return re.sub(r"[^a-z0-9\u0600-\u06ff]","",s)
+    s = clean(v).lower()
+    s = s.replace("أ", "ا").replace("إ", "ا")
+    s = s.replace("آ", "ا").replace("ى", "ي")
+    s = s.replace("ة", "ه")
+    return re.sub(r"[^a-z0-9\u0600-\u06ff]", "", s)
+
 
 def unique(values):
-    out=[]; seen=set()
+    out = []
+    seen = set()
+
     for v in values or []:
-        v=clean(v); k=norm(v)
+        v = clean(v)
+        k = norm(v)
+
         if v and k and k not in seen:
-            seen.add(k); out.append(v)
+            seen.add(k)
+            out.append(v)
+
     return out
 
+
 def parse_dt(v):
-    if not v: return None
-    try:
-        d=datetime.fromisoformat(str(v).replace("Z","+00:00"))
-        if d.tzinfo is None: d=d.replace(tzinfo=timezone.utc)
-        return d.astimezone(TZ)
-    except (TypeError,ValueError):
+    if not v:
         return None
 
-def get_json(url,params=None):
-    r=session.get(url,params=params,timeout=TIMEOUT)
+    try:
+        d = datetime.fromisoformat(str(v).replace("Z", "+00:00"))
+
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=timezone.utc)
+
+        return d.astimezone(TZ)
+
+    except (TypeError, ValueError):
+        return None
+
+
+def get_json(url, params=None):
+    r = session.get(url, params=params, timeout=TIMEOUT)
     r.raise_for_status()
     return r.json()
 
-def find_metadata(obj, keys):
-    found=[]
-    if isinstance(obj,dict):
+
+def recursive_values(obj, keys):
+    found = []
+
+    if isinstance(obj, dict):
         for k in keys:
-            v=obj.get(k)
-            if isinstance(v,str): found.append(v)
-            elif isinstance(v,dict):
-                found.extend(v[x] for x in ("name","displayName","title") if v.get(x))
-            elif isinstance(v,list):
+            v = obj.get(k)
+
+            if isinstance(v, str):
+                found.append(v)
+
+            elif isinstance(v, dict):
+                for name in ("name", "displayName", "title"):
+                    if v.get(name):
+                        found.append(v[name])
+
+            elif isinstance(v, list):
                 for item in v:
-                    if isinstance(item,str): found.append(item)
-                    elif isinstance(item,dict):
-                        found.extend(item[x] for x in ("name","displayName","title") if item.get(x))
-        for v in obj.values():
-            if isinstance(v,dict): found.extend(find_metadata(v,keys))
-            elif isinstance(v,list):
-                for x in v:
-                    if isinstance(x,dict): found.extend(find_metadata(x,keys))
-    elif isinstance(obj,list):
-        for x in obj:
-            if isinstance(x,dict): found.extend(find_metadata(x,keys))
+                    if isinstance(item, str):
+                        found.append(item)
+
+                    elif isinstance(item, dict):
+                        for name in ("name", "displayName", "title"):
+                            if item.get(name):
+                                found.append(item[name])
+
+        for value in obj.values():
+            if isinstance(value, (dict, list)):
+                found.extend(recursive_values(value, keys))
+
+    elif isinstance(obj, list):
+        for item in obj:
+            if isinstance(item, (dict, list)):
+                found.extend(recursive_values(item, keys))
+
     return unique(found)
 
-def status(raw="",completed=False,state=""):
-    t=(clean(raw)+" "+clean(state)).lower()
-    if completed or state.lower()=="post" or any(x in t for x in ("final","full time","ended","انتهت","finished")):
+
+def match_status(raw="", completed=False, state=""):
+    t = (clean(raw) + " " + clean(state)).lower()
+
+    if completed or state.lower() == "post":
         return "ended"
-    if state.lower()=="in" or any(x in t for x in ("in progress","live","half","مباشر","استراحة","جارية")):
+
+    if any(x in t for x in (
+        "final", "full time", "ended", "finished",
+        "انتهت"
+    )):
+        return "ended"
+
+    if state.lower() == "in" or any(x in t for x in (
+        "in progress", "live", "half", "مباشر",
+        "استراحة", "جارية"
+    )):
         return "live"
+
     return "upcoming"
 
-def make_row(home,away,league,kickoff,st="upcoming",score="VS",home_img="",away_img="",channels=None,commentators=None):
-    ch=unique(channels or []); co=unique(commentators or [])
+
+def make_row(
+    home, away, league, kickoff,
+    status="upcoming", score="VS",
+    home_img="", away_img="",
+    channels=None, commentators=None,
+    event_id=""
+):
+    channels = unique(channels or [])
+    commentators = unique(commentators or [])
+
     return {
-        "league":clean(league) or "كرة القدم","home":clean(home),"away":clean(away),
-        "team1":clean(home),"team2":clean(away),"home_img":clean(home_img),"away_img":clean(away_img),
-        "hour":kickoff.strftime("%H:%M"),"time":kickoff.strftime("%H:%M"),
-        "date":kickoff.date().isoformat(),"match_date":kickoff.date().isoformat(),
-        "status":st,"score":clean(score) or "VS","channel":" | ".join(ch),"channels":ch,
-        "commentator":" | ".join(co),"commentators":co,"streamUrl":""
+        "league": clean(league) or "كرة القدم",
+        "home": clean(home),
+        "away": clean(away),
+        "team1": clean(home),
+        "team2": clean(away),
+        "home_img": clean(home_img),
+        "away_img": clean(away_img),
+        "hour": kickoff.strftime("%H:%M"),
+        "time": kickoff.strftime("%H:%M"),
+        "date": kickoff.date().isoformat(),
+        "match_date": kickoff.date().isoformat(),
+        "status": status,
+        "score": clean(score) or "VS",
+        "channel": " | ".join(channels),
+        "channels": channels,
+        "commentator": " | ".join(commentators),
+        "commentators": commentators,
+        "streamUrl": "",
+        "_event_id": str(event_id or "")
     }
+
+
+def parse_espn(day, league_id):
+    url = (
+        "https://site.api.espn.com/apis/site/v2/"
+        f"sports/soccer/{league_id}/scoreboard"
+    )
+
+    data = get_json(url, {
+        "dates": day.strftime("%Y%m%d"),
+        "limit": 500
+    })
+
+    rows = []
+    league_name = (
+        (data.get("leagues") or [{}])[0].get("name")
+        or league_id
+    )
+
+    for event in data.get("events", []):
+        kickoff = parse_dt(event.get("date"))
+        competitions = event.get("competitions") or []
+        comp = competitions[0] if competitions else {}
+
+        teams = comp.get("competitors") or []
+
+        home = next(
+            (x for x in teams if x.get("homeAway") == "home"),
+            None
+        )
+
+        away = next(
+            (x for x in teams if x.get("homeAway") == "away"),
+            None
+        )
+
+        if (not home or not away) and len(teams) >= 2:
+            home, away = teams[0], teams[1]
+
+        if not kickoff or not home or not away:
+            continue
+
+        ht = home.get("team") or {}
+        at = away.get("team") or {}
+
+        hn = clean(ht.get("displayName") or ht.get("name"))
+        an = clean(at.get("displayName") or at.get("name"))
+
+        if not hn or not an:
+            continue
+
+        state = comp.get("status") or event.get("status") or {}
+        typ = state.get("type") or {}
+
+        hs = home.get("score")
+        aws = away.get("score")
+
+        score = (
+            f"{hs} - {aws}"
+            if hs not in (None, "") and aws not in (None, "")
+            else "VS"
+        )
+
+        # Only explicitly provided broadcast metadata.
+        channels = recursive_values(
+            comp,
+            ("channel", "channels", "broadcast", "broadcasters")
+        )
+
+        commentators = recursive_values(
+            comp,
+            ("commentator", "commentators", "commentary")
+        )
+
+        rows.append(make_row(
+            hn,
+            an,
+            league_name,
+            kickoff,
+            match_status(
+                typ.get("description"),
+                typ.get("completed", False),
+                typ.get("state", "")
+            ),
+            score,
+            ht.get("logo", ""),
+            at.get("logo", ""),
+            channels,
+            commentators,
+            event.get("id", "")
+        ))
+
+    return rows
+
 
 def parse_fotmob(day):
-    data=get_json("https://www.fotmob.com/api/matches",{"date":day.strftime("%Y%m%d"),"ccode3":"IRQ"})
-    rows=[]
-    for league in data.get("leagues",[]):
-        for m in league.get("matches",[]):
-            h=m.get("home") or {}; a=m.get("away") or {}; s=m.get("status") or {}
-            dt=parse_dt(s.get("utcTime") or m.get("utcTime") or m.get("kickoff"))
-            hn=clean(h.get("name") or h.get("shortName")); an=clean(a.get("name") or a.get("shortName"))
-            if not dt or not hn or not an: continue
-            hs,aws=h.get("score"),a.get("score")
-            score=f"{hs} - {aws}" if hs is not None and aws is not None else "VS"
+    # Current API route is attempted first.
+    urls = [
+        "https://www.fotmob.com/api/data/matches",
+        "https://www.fotmob.com/api/matches",
+    ]
+
+    data = None
+
+    for url in urls:
+        try:
+            data = get_json(url, {
+                "date": day.strftime("%Y%m%d"),
+                "ccode3": "IRQ"
+            })
+            break
+        except Exception:
+            continue
+
+    if not isinstance(data, dict):
+        raise RuntimeError("FotMob match endpoint unavailable")
+
+    rows = []
+
+    for league in data.get("leagues", []):
+        for m in league.get("matches", []):
+            h = m.get("home") or {}
+            a = m.get("away") or {}
+            s = m.get("status") or {}
+
+            kickoff = parse_dt(
+                s.get("utcTime")
+                or m.get("utcTime")
+                or m.get("kickoff")
+            )
+
+            hn = clean(h.get("name") or h.get("shortName"))
+            an = clean(a.get("name") or a.get("shortName"))
+
+            if not kickoff or not hn or not an:
+                continue
+
+            hs = h.get("score")
+            aws = a.get("score")
+
+            score = (
+                f"{hs} - {aws}"
+                if hs is not None and aws is not None
+                else "VS"
+            )
+
+            channels = recursive_values(
+                m,
+                ("channel", "channels", "tv", "broadcaster", "broadcasters")
+            )
+
+            commentators = recursive_values(
+                m,
+                ("commentator", "commentators", "commentary")
+            )
+
             rows.append(make_row(
-                hn,an,league.get("name") or league.get("title"),dt,
-                status(s.get("reason") or s.get("description"),s.get("finished",False),s.get("state","")),
+                hn,
+                an,
+                league.get("name") or league.get("title"),
+                kickoff,
+                match_status(
+                    s.get("reason") or s.get("description"),
+                    s.get("finished", False),
+                    s.get("state", "")
+                ),
                 score,
-                f"https://images.fotmob.com/image_resources/logo/teamlogo/{h.get('id')}.png" if h.get("id") else "",
-                f"https://images.fotmob.com/image_resources/logo/teamlogo/{a.get('id')}.png" if a.get("id") else "",
-                find_metadata(m,("channel","channels","tv","broadcaster","broadcasters")),
-                find_metadata(m,("commentator","commentators","commentary"))
+                (
+                    "https://images.fotmob.com/image_resources/"
+                    f"logo/teamlogo/{h.get('id')}.png"
+                    if h.get("id") else ""
+                ),
+                (
+                    "https://images.fotmob.com/image_resources/"
+                    f"logo/teamlogo/{a.get('id')}.png"
+                    if a.get("id") else ""
+                ),
+                channels,
+                commentators,
+                m.get("id", "")
             ))
+
     return rows
 
-def parse_espn(day,lid):
-    data=get_json(f"https://site.api.espn.com/apis/site/v2/sports/soccer/{lid}/scoreboard",
-                  {"dates":day.strftime("%Y%m%d"),"limit":500})
-    rows=[]; league=((data.get("leagues") or [{}])[0]).get("name") or lid
-    for ev in data.get("events",[]):
-        dt=parse_dt(ev.get("date")); comps=ev.get("competitions") or []
-        comp=comps[0] if comps else {}; teams=comp.get("competitors") or []
-        h=next((x for x in teams if x.get("homeAway")=="home"),None)
-        a=next((x for x in teams if x.get("homeAway")=="away"),None)
-        if (not h or not a) and len(teams)>=2: h,a=teams[0],teams[1]
-        if not dt or not h or not a: continue
-        ht=h.get("team") or {}; at=a.get("team") or {}
-        hn=clean(ht.get("displayName") or ht.get("name")); an=clean(at.get("displayName") or at.get("name"))
-        if not hn or not an: continue
-        so=comp.get("status") or ev.get("status") or {}; typ=so.get("type") or {}
-        hs,aws=h.get("score"),a.get("score")
-        score=f"{hs} - {aws}" if hs not in (None,"") and aws not in (None,"") else "VS"
-        rows.append(make_row(
-            hn,an,league,dt,status(typ.get("description") or so.get("displayClock"),typ.get("completed",False),typ.get("state","")),
-            score,ht.get("logo",""),at.get("logo",""),
-            find_metadata(comp,("channel","channels","broadcast","broadcasters")),
-            find_metadata(comp,("commentator","commentators","commentary"))
-        ))
-    return rows
+
+def event_details(event_id):
+    """
+    Fetch ESPN event details.
+    Only use metadata returned for this exact event.
+    """
+    if not event_id:
+        return [], []
+
+    url = (
+        "https://site.api.espn.com/apis/site/v2/"
+        f"sports/soccer/all/summary?event={event_id}"
+    )
+
+    try:
+        data = get_json(url)
+
+        channels = recursive_values(
+            data,
+            ("channel", "channels", "broadcast", "broadcasters")
+        )
+
+        commentators = recursive_values(
+            data,
+            ("commentator", "commentators", "commentary")
+        )
+
+        return channels, commentators
+
+    except Exception:
+        return [], []
+
+
+def enrich_broadcasts(rows):
+    """
+    Event-specific enrichment.
+    Never copy metadata between different matches.
+    """
+    for row in rows:
+        event_id = row.get("_event_id", "")
+
+        if not event_id:
+            continue
+
+        STATS["broadcast"]["checked"] += 1
+
+        channels, commentators = event_details(event_id)
+
+        if channels:
+            row["channels"] = unique(
+                row.get("channels", []) + channels
+            )
+            row["channel"] = " | ".join(row["channels"])
+            STATS["broadcast"]["found"] += 1
+
+        if commentators:
+            row["commentators"] = unique(
+                row.get("commentators", []) + commentators
+            )
+            row["commentator"] = " | ".join(row["commentators"])
+            STATS["commentators"]["found"] += 1
+
+        time.sleep(0.05)
+
 
 def key(row):
-    return (clean(row.get("date") or row.get("match_date")),
-            norm(row.get("home") or row.get("team1")),
-            norm(row.get("away") or row.get("team2")))
+    return (
+        clean(row.get("date") or row.get("match_date")),
+        norm(row.get("home") or row.get("team1")),
+        norm(row.get("away") or row.get("team2"))
+    )
+
 
 def load_old():
-    if not OUTPUT.exists(): return {}
-    try:
-        d=json.loads(OUTPUT.read_text(encoding="utf-8"))
-        rows=d.get("matches",[]) if isinstance(d,dict) else d
-        return {key(x):x for x in rows if isinstance(x,dict) and key(x)[1] and key(x)[2]}
-    except Exception as e:
-        print("WARNING: previous JSON unreadable:",e); return {}
+    if not OUTPUT.exists():
+        return {}
 
-def merge(fresh,old):
-    merged={k:dict(v) for k,v in old.items() if k[0] in DATE_SET}
+    try:
+        data = json.loads(
+            OUTPUT.read_text(encoding="utf-8")
+        )
+
+        rows = data.get("matches", []) if isinstance(data, dict) else data
+
+        return {
+            key(x): x
+            for x in rows
+            if isinstance(x, dict)
+            and key(x)[1]
+            and key(x)[2]
+        }
+
+    except Exception as e:
+        print("WARNING: previous JSON unreadable:", e)
+        return {}
+
+
+def merge(fresh, old):
+    merged = {
+        k: dict(v)
+        for k, v in old.items()
+        if k[0] in DATE_SET
+    }
+
     for row in fresh:
-        k=key(row)
-        if k[0] not in DATE_SET or not k[1] or not k[2]: continue
-        prev=merged.get(k) or old.get(k) or {}
-        item=dict(prev); item.update(row)
-        for field in ("streamUrl","home_img","away_img"):
-            if prev.get(field) and not row.get(field): item[field]=prev[field]
-        old_ch=prev.get("channels") or ([prev["channel"]] if prev.get("channel") else [])
-        old_co=prev.get("commentators") or ([prev["commentator"]] if prev.get("commentator") else [])
-        item["channels"]=unique((row.get("channels") or [])+old_ch)
-        item["commentators"]=unique((row.get("commentators") or [])+old_co)
-        item["channel"]=" | ".join(item["channels"]); item["commentator"]=" | ".join(item["commentators"])
-        if row.get("status")=="upcoming" and prev.get("status") in ("live","ended"): item["status"]=prev["status"]
-        if row.get("score") in ("","VS",None) and prev.get("score") not in ("","VS",None): item["score"]=prev["score"]
-        item["team1"]=item.get("home",item.get("team1","")); item["team2"]=item.get("away",item.get("team2",""))
-        item["time"]=item.get("hour",item.get("time","")); item["match_date"]=item.get("date",item.get("match_date",""))
-        merged[k]=item
-    return sorted(merged.values(),key=lambda x:(clean(x.get("date")),clean(x.get("hour")),clean(x.get("home"))))
+        k = key(row)
+
+        if k[0] not in DATE_SET or not k[1] or not k[2]:
+            continue
+
+        previous = merged.get(k) or old.get(k) or {}
+
+        item = dict(previous)
+        item.update(row)
+
+        for field in ("streamUrl", "home_img", "away_img"):
+            if previous.get(field) and not row.get(field):
+                item[field] = previous[field]
+
+        old_channels = previous.get("channels") or (
+            [previous["channel"]] if previous.get("channel") else []
+        )
+
+        old_commentators = previous.get("commentators") or (
+            [previous["commentator"]]
+            if previous.get("commentator") else []
+        )
+
+        item["channels"] = unique(
+            (row.get("channels") or []) + old_channels
+        )
+
+        item["commentators"] = unique(
+            (row.get("commentators") or []) + old_commentators
+        )
+
+        item["channel"] = " | ".join(item["channels"])
+        item["commentator"] = " | ".join(item["commentators"])
+
+        if (
+            row.get("status") == "upcoming"
+            and previous.get("status") in ("live", "ended")
+        ):
+            item["status"] = previous["status"]
+
+        if (
+            row.get("score") in ("", "VS", None)
+            and previous.get("score") not in ("", "VS", None)
+        ):
+            item["score"] = previous["score"]
+
+        item["team1"] = item.get("home", item.get("team1", ""))
+        item["team2"] = item.get("away", item.get("team2", ""))
+        item["time"] = item.get("hour", item.get("time", ""))
+        item["match_date"] = item.get("date", item.get("match_date", ""))
+
+        merged[k] = item
+
+    return sorted(
+        merged.values(),
+        key=lambda x: (
+            clean(x.get("date")),
+            clean(x.get("hour")),
+            clean(x.get("home"))
+        )
+    )
+
 
 def main():
-    print("YALLA KORA V22 | Asia/Baghdad |",NOW.isoformat())
-    old=load_old(); fresh=[]
+    print("YALLA KORA V23")
+    print("Timezone:", NOW.isoformat())
+
+    old = load_old()
+    fresh = []
+
     for day in DATES:
-        try:
-            got=parse_fotmob(day); fresh.extend(got); STATS["fotmob"]["ok"]+=len(got)
-            print("FotMob",day,len(got))
-        except Exception as e:
-            STATS["fotmob"]["failed"]+=1; STATS["errors"].append(f"FotMob {day}: {e}")
-            print("FotMob FAILED",day,e)
-        for lid in ESPN_LEAGUES:
+        for league_id in ESPN_LEAGUES:
             try:
-                got=parse_espn(day,lid); fresh.extend(got); STATS["espn"]["ok"]+=len(got)
+                got = parse_espn(day, league_id)
+                fresh.extend(got)
+                STATS["espn"]["ok"] += len(got)
+
             except Exception as e:
-                STATS["espn"]["failed"]+=1
-                if len(STATS["errors"])<30: STATS["errors"].append(f"ESPN {lid} {day}: {e}")
+                STATS["espn"]["failed"] += 1
+
+                if len(STATS["errors"]) < 30:
+                    STATS["errors"].append(
+                        f"ESPN {league_id} {day}: {e}"
+                    )
+
             time.sleep(0.04)
 
-    rows=merge(fresh,old)
-    if not rows: raise RuntimeError("No fixtures found. Existing matches.json was not changed.")
+        try:
+            got = parse_fotmob(day)
+            fresh.extend(got)
+            STATS["fotmob"]["ok"] += len(got)
+
+        except Exception as e:
+            STATS["fotmob"]["failed"] += 1
+            STATS["errors"].append(
+                f"FotMob {day}: {e}"
+            )
+
+    # Enrich only when a source returns event-specific metadata.
+    enrich_broadcasts(fresh)
+
+    rows = merge(fresh, old)
+
+    if not rows:
+        raise RuntimeError(
+            "No fixtures found. Existing matches.json was not changed."
+        )
+
     for x in rows:
-        x.setdefault("team1",x.get("home","")); x.setdefault("team2",x.get("away",""))
-        x.setdefault("time",x.get("hour","")); x.setdefault("match_date",x.get("date",""))
-        x.setdefault("channels",[x["channel"]] if x.get("channel") else [])
-        x.setdefault("commentators",[x["commentator"]] if x.get("commentator") else [])
-        x["channels"]=unique(x.get("channels",[])); x["commentators"]=unique(x.get("commentators",[]))
-        x["channel"]=" | ".join(x["channels"]); x["commentator"]=" | ".join(x["commentators"])
-        x.setdefault("streamUrl","")
+        x.pop("_event_id", None)
 
-    today=NOW.date().isoformat()
-    result={
-        "version":"V22-STABLE-MULTI-SOURCE",
-        "updated_at":datetime.now(TZ).isoformat(),"timezone":"Asia/Baghdad","matches":rows,
-        "counts":{
-            "total":len(rows),"today":sum(x.get("date")==today for x in rows),
-            "yesterday":sum(x.get("date")== (NOW.date()-timedelta(days=1)).isoformat() for x in rows),
-            "tomorrow":sum(x.get("date")== (NOW.date()+timedelta(days=1)).isoformat() for x in rows),
-            "with_channel":sum(bool(x.get("channel")) for x in rows),
-            "with_multiple_channels":sum(len(x.get("channels",[]))>1 for x in rows),
-            "with_commentator":sum(bool(x.get("commentator")) for x in rows)
-        },"sources":STATS
+        x.setdefault("team1", x.get("home", ""))
+        x.setdefault("team2", x.get("away", ""))
+        x.setdefault("time", x.get("hour", ""))
+        x.setdefault("match_date", x.get("date", ""))
+
+        x["channels"] = unique(
+            x.get("channels") or (
+                [x["channel"]] if x.get("channel") else []
+            )
+        )
+
+        x["commentators"] = unique(
+            x.get("commentators") or (
+                [x["commentator"]]
+                if x.get("commentator") else []
+            )
+        )
+
+        x["channel"] = " | ".join(x["channels"])
+        x["commentator"] = " | ".join(x["commentators"])
+        x.setdefault("streamUrl", "")
+
+    today = NOW.date().isoformat()
+
+    result = {
+        "version": "V23-BROADCAST-COMMENTATOR",
+        "updated_at": datetime.now(TZ).isoformat(),
+        "timezone": "Asia/Baghdad",
+        "matches": rows,
+        "counts": {
+            "total": len(rows),
+            "today": sum(x.get("date") == today for x in rows),
+            "yesterday": sum(
+                x.get("date") == (
+                    NOW.date() - timedelta(days=1)
+                ).isoformat()
+                for x in rows
+            ),
+            "tomorrow": sum(
+                x.get("date") == (
+                    NOW.date() + timedelta(days=1)
+                ).isoformat()
+                for x in rows
+            ),
+            "with_channel": sum(
+                bool(x.get("channel")) for x in rows
+            ),
+            "with_commentator": sum(
+                bool(x.get("commentator")) for x in rows
+            )
+        },
+        "sources": STATS
     }
-    tmp=OUTPUT.with_suffix(".json.tmp")
-    tmp.write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
-    tmp.replace(OUTPUT)
-    print("DONE:",json.dumps(result["counts"],ensure_ascii=False))
-    print("SOURCES:",json.dumps(STATS,ensure_ascii=False))
 
-if __name__=="__main__":
+    tmp = OUTPUT.with_suffix(".json.tmp")
+
+    tmp.write_text(
+        json.dumps(result, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+
+    tmp.replace(OUTPUT)
+
+    print("DONE:")
+    print(json.dumps(result["counts"], ensure_ascii=False))
+    print("SOURCE STATS:")
+    print(json.dumps(STATS, ensure_ascii=False))
+
+
+if __name__ == "__main__":
     main()
-            
+    
