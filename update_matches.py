@@ -1,36 +1,32 @@
 
 #!/usr/bin/env python3
-# YALLA KORA V25 - Arabic Multi-Source Engine
-# Safe metadata matching. Never invent channels or commentators.
+# YALLA KORA - FIXED MULTI-SOURCE ENGINE
+# Sources: FotMob + ESPN
+# Timezone: Iraq
+# Never invent channel or commentator names.
 
 import json
 import re
 import html
-import time
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
-from urllib.parse import urlparse
 
 import requests
-from bs4 import BeautifulSoup
 
 TZ = ZoneInfo("Asia/Baghdad")
 NOW = datetime.now(TZ)
 DAYS = [NOW.date() + timedelta(days=n) for n in (-1, 0, 1)]
-DATE_SET = {d.isoformat() for d in DAYS}
 
-OUT = Path("matches.json")
-TIMEOUT = 22
-
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 Chrome/128 Safari/537.36",
-    "Accept": "text/html,application/json,*/*",
-    "Accept-Language": "ar,en-US;q=0.9",
-}
+OUTPUT = Path("matches.json")
+TIMEOUT = 25
 
 SESSION = requests.Session()
-SESSION.headers.update(HEADERS)
+SESSION.headers.update({
+    "User-Agent": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Chrome/128 Mobile Safari/537.36",
+    "Accept": "application/json,text/html,*/*",
+    "Accept-Language": "ar,en-US;q=0.9"
+})
 
 ESPN_LEAGUES = [
     "eng.1", "eng.2", "esp.1", "ger.1", "ita.1",
@@ -38,41 +34,8 @@ ESPN_LEAGUES = [
     "sco.1", "usa.1", "mex.1", "arg.1", "bra.1",
     "aus.1", "ksa.1", "uefa.champions",
     "uefa.europa", "uefa.europa.conf",
-    "uefa.nations", "fifa.world", "fifa.friendly",
+    "uefa.nations", "fifa.world"
 ]
-
-ARABIC_SOURCES = [
-    "https://elgoal.net/commentators/",
-]
-
-NEWS_QUERIES = [
-    "جدول مباريات اليوم القنوات الناقلة المعلقين site:winwin.com",
-    "جدول مباريات اليوم القنوات الناقلة المعلقين site:kooora.com",
-    "جدول مباريات اليوم القنوات الناقلة المعلقين site:elgoal.net",
-    "جدول مباريات اليوم القنوات الناقلة المعلقين site:goal.com",
-]
-
-ALLOWED_HOSTS = (
-    "winwin.com",
-    "kooora.com",
-    "elgoal.net",
-    "goal.com",
-)
-
-STATS = {
-    "fixtures": {"fotmob": 0, "espn": 0},
-    "arabic_sources": {
-        "checked": 0,
-        "pages_ok": 0,
-        "rows": 0,
-        "matched": 0,
-    },
-    "metadata": {
-        "with_channel": 0,
-        "with_commentator": 0,
-    },
-    "errors": [],
-}
 
 TEAM_ALIASES = {
     "الهلال": ["al hilal", "hilal"],
@@ -138,27 +101,60 @@ TEAM_ALIASES = {
     "منتخب سوريا": ["syria"],
     "منتخب فلسطين": ["palestine"],
     "منتخب لبنان": ["lebanon"],
-    "منتخب أوزبكستان": ["uzbekistan"],
+    "منتخب أوزبكستان": ["uzbekistan"]
 }
+
+LEAGUE_NAMES = [
+    (["premier league"], "الدوري الإنجليزي الممتاز"),
+    (["la liga", "laliga"], "الدوري الإسباني"),
+    (["bundesliga"], "الدوري الألماني"),
+    (["serie a"], "الدوري الإيطالي"),
+    (["ligue 1"], "الدوري الفرنسي"),
+    (["eredivisie"], "الدوري الهولندي"),
+    (["champions league"], "دوري أبطال أوروبا"),
+    (["europa league"], "الدوري الأوروبي"),
+    (["conference league"], "دوري المؤتمر الأوروبي"),
+    (["saudi pro league", "saudi league"], "الدوري السعودي"),
+    (["iraqi stars league", "iraq stars league"], "دوري نجوم العراق"),
+    (["iraqi premier"], "الدوري العراقي"),
+    (["qatar stars league"], "الدوري القطري"),
+    (["egyptian premier"], "الدوري المصري"),
+    (["world cup"], "كأس العالم"),
+    (["friendly", "friendlies"], "مباريات ودية")
+]
+
+STATS = {
+    "fotmob": 0,
+    "espn": 0,
+    "errors": [],
+    "total": 0,
+    "with_channel": 0,
+    "with_commentator": 0
+}
+
 
 def clean(value):
     return re.sub(
-        r"\s+",
-        " ",
+        r"\s+", " ",
         html.unescape(str(value or ""))
     ).strip(" \t\r\n|•·")
 
+
 def norm(value):
     value = clean(value).lower()
-    value = value.translate(
-        str.maketrans("أإآىة", "اااه")
-    )
+
+    # Fixed Arabic normalization: dictionary avoids unequal-length error.
+    value = value.translate(str.maketrans({
+        "أ": "ا",
+        "إ": "ا",
+        "آ": "ا",
+        "ى": "ي",
+        "ة": "ه"
+    }))
+
     value = re.sub(r"[ًٌٍَُِّْـ]", "", value)
-    return re.sub(
-        r"[^a-z0-9\u0600-\u06ff]",
-        "",
-        value
-    )
+    return re.sub(r"[^a-z0-9\u0600-\u06ff]", "", value)
+
 
 ALIAS_TO_AR = {}
 
@@ -167,61 +163,28 @@ for arabic, aliases in TEAM_ALIASES.items():
     for alias in aliases:
         ALIAS_TO_AR[norm(alias)] = arabic
 
-LEAGUES = [
-    (("premier league",), "الدوري الإنجليزي الممتاز"),
-    (("la liga", "laliga"), "الدوري الإسباني"),
-    (("bundesliga",), "الدوري الألماني"),
-    (("serie a",), "الدوري الإيطالي"),
-    (("ligue 1",), "الدوري الفرنسي"),
-    (("eredivisie",), "الدوري الهولندي"),
-    (("champions league",), "دوري أبطال أوروبا"),
-    (("europa league",), "الدوري الأوروبي"),
-    (("conference league",), "دوري المؤتمر الأوروبي"),
-    (("saudi pro league", "saudi league"), "الدوري السعودي"),
-    (("iraqi stars league", "iraq stars league"), "دوري نجوم العراق"),
-    (("iraqi premier",), "الدوري العراقي"),
-    (("qatar stars league",), "الدوري القطري"),
-    (("egyptian premier",), "الدوري المصري"),
-    (("friendly", "friendlies"), "مباريات ودية"),
-    (("world cup",), "كأس العالم"),
-]
-
-CHANNEL_WORDS = (
-    "bein", "ssc", "on sport", "on time",
-    "abu dhabi", "thmanyah", "sports",
-    "الكأس", "الكاس", "أون", "اون",
-    "أبوظبي", "ابوظبي", "العراقية",
-    "الرابعة", "السعودية الرياضية",
-    "الأردن الرياضية", "الكويت الرياضية",
-    "الشارقة الرياضية", "دبي الرياضية",
-    "stc tv", "شاهد",
-)
-
-EMPTY_WORDS = (
-    "يعلن لاحقا", "لم يعلن", "غير معلن",
-    "tba", "unknown", "—", "-"
-)
-
-def get(url, params=None):
-    response = SESSION.get(
-        url,
-        params=params,
-        timeout=TIMEOUT
-    )
-    response.raise_for_status()
-    return response
 
 def canonical_team(name):
-    return ALIAS_TO_AR.get(norm(name), "")
+    return ALIAS_TO_AR.get(norm(name), clean(name))
+
 
 def arabic_league(name):
     low = clean(name).lower()
-    for keys, arabic in LEAGUES:
+    for keys, arabic in LEAGUE_NAMES:
         if any(key in low for key in keys):
             return arabic
     return clean(name)
 
-def parse_dt(value):
+
+def request_json(url, params=None):
+    response = SESSION.get(
+        url, params=params, timeout=TIMEOUT
+    )
+    response.raise_for_status()
+    return response.json()
+
+
+def parse_datetime(value):
     try:
         dt = datetime.fromisoformat(
             str(value).replace("Z", "+00:00")
@@ -232,10 +195,9 @@ def parse_dt(value):
     except Exception:
         return None
 
-def match_status(description="", state="", completed=False):
-    value = (
-        clean(description) + " " + clean(state)
-    ).lower()
+
+def get_status(description="", state="", completed=False):
+    value = (clean(description) + " " + clean(state)).lower()
 
     if completed or any(x in value for x in (
         "final", "full time", "ended", "finished", "انتهت"
@@ -243,30 +205,27 @@ def match_status(description="", state="", completed=False):
         return "ended"
 
     if any(x in value for x in (
-        "in progress", "live", "half",
-        "مباشر", "استراحة"
+        "in progress", "live", "half", "مباشر", "استراحة"
     )):
         return "live"
 
     return "upcoming"
 
-def make_fixture(
+
+def make_match(
     home, away, league, kickoff,
     status="upcoming", score="VS",
     home_img="", away_img="", source=""
 ):
-    h_ar = canonical_team(home)
-    a_ar = canonical_team(away)
-
-    h = h_ar or clean(home)
-    a = a_ar or clean(away)
+    home_ar = canonical_team(home)
+    away_ar = canonical_team(away)
 
     return {
         "league": arabic_league(league),
-        "home": h,
-        "away": a,
-        "team1": h,
-        "team2": a,
+        "home": home_ar,
+        "away": away_ar,
+        "team1": home_ar,
+        "team2": away_ar,
         "home_img": clean(home_img),
         "away_img": clean(away_img),
         "hour": kickoff.strftime("%H:%M"),
@@ -280,20 +239,18 @@ def make_fixture(
         "commentator": "",
         "commentators": [],
         "streamUrl": "",
-        "_source": source,
+        "sources": [source] if source else []
     }
 
+
 def fetch_fotmob(day):
-    data = get(
+    data = request_json(
         "https://www.fotmob.com/api/data/matches",
         {
             "date": day.strftime("%Y%m%d"),
             "ccode3": "IRQ"
         }
-    ).json()
-
-    if not isinstance(data, dict):
-        raise RuntimeError("FotMob returned invalid data")
+    )
 
     output = []
 
@@ -301,10 +258,10 @@ def fetch_fotmob(day):
         for match in league.get("matches", []):
             home = match.get("home") or {}
             away = match.get("away") or {}
-            status = match.get("status") or {}
+            status_data = match.get("status") or {}
 
-            kickoff = parse_dt(
-                status.get("utcTime")
+            kickoff = parse_datetime(
+                status_data.get("utcTime")
                 or match.get("utcTime")
                 or match.get("kickoff")
             )
@@ -324,27 +281,30 @@ def fetch_fotmob(day):
                 else "VS"
             )
 
-            home_img = (
-                "https://images.fotmob.com/image_resources/logo/teamlogo/"
-                + str(home.get("id")) + ".png"
-                if home.get("id") else ""
-            )
+            home_img = ""
+            away_img = ""
 
-            away_img = (
-                "https://images.fotmob.com/image_resources/logo/teamlogo/"
-                + str(away.get("id")) + ".png"
-                if away.get("id") else ""
-            )
+            if home.get("id"):
+                home_img = (
+                    "https://images.fotmob.com/image_resources/"
+                    f"logo/teamlogo/{home['id']}.png"
+                )
 
-            output.append(make_fixture(
+            if away.get("id"):
+                away_img = (
+                    "https://images.fotmob.com/image_resources/"
+                    f"logo/teamlogo/{away['id']}.png"
+                )
+
+            output.append(make_match(
                 home_name,
                 away_name,
                 league.get("name") or league.get("title"),
                 kickoff,
-                match_status(
-                    status.get("reason") or status.get("description"),
-                    status.get("state"),
-                    status.get("finished", False)
+                get_status(
+                    status_data.get("reason") or status_data.get("description"),
+                    status_data.get("state"),
+                    status_data.get("finished", False)
                 ),
                 score,
                 home_img,
@@ -354,19 +314,17 @@ def fetch_fotmob(day):
 
     return output
 
+
 def fetch_espn(day, league_id):
     url = (
         "https://site.api.espn.com/apis/site/v2/sports/"
         f"soccer/{league_id}/scoreboard"
     )
 
-    data = get(
-        url,
-        {
-            "dates": day.strftime("%Y%m%d"),
-            "limit": 500
-        }
-    ).json()
+    data = request_json(url, {
+        "dates": day.strftime("%Y%m%d"),
+        "limit": 500
+    })
 
     league = (
         (data.get("leagues") or [{}])[0].get("name")
@@ -376,7 +334,7 @@ def fetch_espn(day, league_id):
     output = []
 
     for event in data.get("events", []):
-        kickoff = parse_dt(event.get("date"))
+        kickoff = parse_datetime(event.get("date"))
         competitions = event.get("competitions") or []
         competition = competitions[0] if competitions else {}
         teams = competition.get("competitors") or []
@@ -399,14 +357,18 @@ def fetch_espn(day, league_id):
         ht = home.get("team") or {}
         at = away.get("team") or {}
 
-        hn = ht.get("displayName") or ht.get("name")
-        an = at.get("displayName") or at.get("name")
+        home_name = ht.get("displayName") or ht.get("name")
+        away_name = at.get("displayName") or at.get("name")
 
-        if not hn or not an:
+        if not home_name or not away_name:
             continue
 
-        status = competition.get("status") or event.get("status") or {}
-        status_type = status.get("type") or {}
+        status_data = (
+            competition.get("status")
+            or event.get("status")
+            or {}
+        )
+        status_type = status_data.get("type") or {}
 
         hs = home.get("score")
         aws = away.get("score")
@@ -417,12 +379,12 @@ def fetch_espn(day, league_id):
             else "VS"
         )
 
-        output.append(make_fixture(
-            hn,
-            an,
+        output.append(make_match(
+            home_name,
+            away_name,
             league,
             kickoff,
-            match_status(
+            get_status(
                 status_type.get("description"),
                 status_type.get("state"),
                 status_type.get("completed", False)
@@ -434,3 +396,140 @@ def fetch_espn(day, league_id):
         ))
 
     return output
+
+
+def match_key(match):
+    return (
+        match.get("date", ""),
+        norm(match.get("home", "")),
+        norm(match.get("away", ""))
+    )
+
+
+def preserve_old_metadata(matches):
+    if not OUTPUT.exists():
+        return
+
+    try:
+        old_data = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        if not isinstance(old_data, list):
+            return
+
+        old_map = {
+            match_key(item): item
+            for item in old_data
+            if isinstance(item, dict)
+        }
+
+        for match in matches:
+            old = old_map.get(match_key(match))
+            if not old:
+                continue
+
+            # Keep previously collected broadcast information.
+            for field in (
+                "channel", "channels",
+                "commentator", "commentators",
+                "streamUrl"
+            ):
+                value = old.get(field)
+                if value:
+                    match[field] = value
+
+    except Exception as exc:
+        STATS["errors"].append(
+            "Old metadata preservation: " + str(exc)
+        )
+
+
+def main():
+    all_matches = []
+    seen = set()
+
+    print("=" * 60)
+    print("YALLA KORA - FIXED ENGINE")
+    print("Timezone:", str(TZ))
+    print("=" * 60)
+
+    for day in DAYS:
+        print("\nFetching:", day.isoformat())
+
+        try:
+            fixtures = fetch_fotmob(day)
+            STATS["fotmob"] += len(fixtures)
+            all_matches.extend(fixtures)
+            print("FotMob:", len(fixtures))
+        except Exception as exc:
+            STATS["errors"].append(
+                f"FotMob {day}: {exc}"
+            )
+            print("FotMob error:", exc)
+
+        for league_id in ESPN_LEAGUES:
+            try:
+                fixtures = fetch_espn(day, league_id)
+                STATS["espn"] += len(fixtures)
+                all_matches.extend(fixtures)
+            except Exception as exc:
+                STATS["errors"].append(
+                    f"ESPN {league_id} {day}: {exc}"
+                )
+
+    # Keep only requested dates and remove duplicate fixtures.
+    unique = []
+
+    for match in all_matches:
+        if match["date"] not in {
+            d.isoformat() for d in DAYS
+        }:
+            continue
+
+        key = match_key(match)
+        if key in seen:
+            continue
+
+        seen.add(key)
+        unique.append(match)
+
+    preserve_old_metadata(unique)
+
+    unique.sort(key=lambda x: (
+        x.get("date", ""),
+        x.get("hour", "")
+    ))
+
+    STATS["total"] = len(unique)
+    STATS["with_channel"] = sum(
+        bool(x.get("channel") or x.get("channels"))
+        for x in unique
+    )
+    STATS["with_commentator"] = sum(
+        bool(x.get("commentator") or x.get("commentators"))
+        for x in unique
+    )
+
+    OUTPUT.write_text(
+        json.dumps(
+            unique,
+            ensure_ascii=False,
+            indent=2
+        ),
+        encoding="utf-8"
+    )
+
+    print("\n========== DONE ==========")
+    print("Total:", STATS["total"])
+    print("FotMob:", STATS["fotmob"])
+    print("ESPN:", STATS["espn"])
+    print("With channel:", STATS["with_channel"])
+    print("With commentator:", STATS["with_commentator"])
+    print("Errors:", len(STATS["errors"]))
+
+    for error in STATS["errors"][:15]:
+        print("ERROR:", error)
+
+    print("Saved:", OUTPUT)
+
+
+if __name__ == "__main__":
+    main()
