@@ -1,146 +1,41 @@
 [
   {
     "league": "الدوري الإنجليزي الممتاز",
-    "home": "Hull City",
-    "away": "Brighton & Hove Albion",
-    "team1": "Hull City",
-    "team2": "Brighton & Hove Albion",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/331.png",
-    "hour": "5:00 PM",
-    "time": "5:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "2 - 0",
-    "channel": "USA Net",
-    "channels": [
-      "USA Net",
-      "Tele"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإنجليزي الممتاز",
-    "home": "ليفربول",
-    "away": "مانشستر يونايتد",
-    "team1": "ليفربول",
-    "team2": "مانشستر يونايتد",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
-    "hour": "7:30 PM",
-    "time": "7:30 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "live",
-    "score": "2 - 0",
-    "channel": "USA Net",
-    "channels": [
-      "USA Net",
-      "Tele"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإسباني",
-    "home": "برشلونة",
-    "away": "Villarreal",
-    "team1": "برشلونة",
-    "team2": "Villarreal",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
-    "hour": "4:00 PM",
-    "time": "4:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "3 - 2",
-    "channel": "ESPN Deportes",
-    "channels": [
-      "ESPN Deportes",
-      "ESPN+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإسباني",
-    "home": "Racing Santander",
-    "away": "Real Sociedad",
-    "team1": "Racing Santander",
-    "team2": "Real Sociedad",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-    "hour": "6:15 PM",
-    "time": "6:15 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "3 - 2",
-    "channel": "ESPN Deportes",
-    "channels": [
-      "ESPN Deportes",
-      "ESPN+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإسباني",
-    "home": "Osasuna",
-    "away": "Málaga",
-    "team1": "Osasuna",
-    "team2": "Málaga",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
-    "hour": "8:30 PM",
-    "time": "8:30 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "live",
-    "score": "0 - 0",
-    "channel": "ESPN Deportes",
-    "channels": [
-      "ESPN Deportes",
-      "ESPN+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإسباني",
-    "home": "Getafe",
-    "away": "أتلتيكو مدريد",
-    "team1": "Getafe",
-    "team2": "أتلتيكو مدريد",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
+    "home": "Brentford",
+    "away": "Everton",
+    "team1": "Brentford",
+    "team2": "Everton",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
     "hour": "11:00 PM",
     "time": "11:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
+    "date": "2026-11-23",
+    "match_date": "2026-11-23",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "USA Net",
+    "channels": [
+      "USA Net"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "الدوري الإسباني",
+    "home": "Levante",
+    "away": "Elche",
+    "team1": "Levante",
+    "team2": "Elche",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-23",
+    "match_date": "2026-11-23",
     "status": "upcoming",
     "score": "0 - 0",
     "channel": "ESPN Deportes",
@@ -156,248 +51,22 @@
     ]
   },
   {
-    "league": "الدوري الألماني",
-    "home": "FC Augsburg",
-    "away": "Mainz",
-    "team1": "FC Augsburg",
-    "team2": "Mainz",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/2950.png",
-    "hour": "5:30 PM",
-    "time": "5:30 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "3 - 1",
-    "channel": "Fandango",
-    "channels": [
-      "Fandango"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الألماني",
-    "home": "Werder Bremen",
-    "away": "Hamburg SV",
-    "team1": "Werder Bremen",
-    "team2": "Hamburg SV",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/137.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/127.png",
-    "hour": "7:30 PM",
-    "time": "7:30 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "live",
-    "score": "0 - 0",
-    "channel": "Fandango",
-    "channels": [
-      "Fandango"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
     "league": "الدوري الإيطالي",
-    "home": "يوفنتوس",
-    "away": "Venezia",
-    "team1": "يوفنتوس",
-    "team2": "Venezia",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/17530.png",
-    "hour": "2:30 PM",
-    "time": "2:30 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "4 - 0",
-    "channel": "Paramount+",
-    "channels": [
-      "Paramount+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإيطالي",
-    "home": "Bologna",
-    "away": "Udinese",
-    "team1": "Bologna",
-    "team2": "Udinese",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/107.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/118.png",
-    "hour": "5:00 PM",
-    "time": "5:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "1 - 1",
-    "channel": "CBSSN",
-    "channels": [
-      "CBSSN",
-      "Paramount+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإيطالي",
-    "home": "Sassuolo",
-    "away": "Genoa",
-    "team1": "Sassuolo",
-    "team2": "Genoa",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/3997.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
-    "hour": "5:00 PM",
-    "time": "5:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "0 - 2",
-    "channel": "Paramount+",
-    "channels": [
-      "Paramount+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإيطالي",
-    "home": "ميلان",
-    "away": "Frosinone",
-    "team1": "ميلان",
-    "team2": "Frosinone",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
-    "hour": "8:00 PM",
-    "time": "8:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "live",
-    "score": "2 - 1",
-    "channel": "Paramount+",
-    "channels": [
-      "Paramount+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الإيطالي",
-    "home": "Atalanta",
-    "away": "إنتر ميلان",
-    "team1": "Atalanta",
-    "team2": "إنتر ميلان",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/110.png",
+    "home": "Monza",
+    "away": "Fiorentina",
+    "team1": "Monza",
+    "team2": "Fiorentina",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/4007.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
     "hour": "10:45 PM",
     "time": "10:45 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
+    "date": "2026-11-23",
+    "match_date": "2026-11-23",
     "status": "upcoming",
     "score": "0 - 0",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الفرنسي",
-    "home": "Paris FC",
-    "away": "Angers",
-    "team1": "Paris FC",
-    "team2": "Angers",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
-    "hour": "5:00 PM",
-    "time": "5:00 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "ended",
-    "score": "4 - 0",
-    "channel": "beIn Sports",
-    "channels": [
-      "beIn Sports"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الفرنسي",
-    "home": "Lorient",
-    "away": "Stade Rennais",
-    "team1": "Lorient",
-    "team2": "Stade Rennais",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/169.png",
-    "hour": "7:15 PM",
-    "time": "7:15 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "live",
-    "score": "1 - 1",
-    "channel": "beIn Sports",
-    "channels": [
-      "beIn Sports"
-    ],
-    "commentator": "",
-    "commentators": [],
-    "streamUrl": "",
-    "sources": [
-      "ESPN"
-    ]
-  },
-  {
-    "league": "الدوري الفرنسي",
-    "home": "مارسيليا",
-    "away": "Le Mans",
-    "team1": "مارسيليا",
-    "team2": "Le Mans",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/2697.png",
-    "hour": "10:45 PM",
-    "time": "10:45 PM",
-    "date": "2026-11-22",
-    "match_date": "2026-11-22",
-    "status": "upcoming",
-    "score": "0 - 0",
-    "channel": "beIn Sports",
-    "channels": [
-      "beIn Sports"
     ],
     "commentator": "",
     "commentators": [],
