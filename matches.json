@@ -11,8 +11,8 @@
     "time": "8:45 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "ended",
+    "score": "1 - 0",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -36,8 +36,8 @@
     "time": "8:45 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "ended",
+    "score": "1 - 0",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -61,8 +61,8 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "live",
+    "score": "1 - 0",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -86,7 +86,7 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
+    "status": "live",
     "score": "0 - 0",
     "channel": "Paramount+",
     "channels": [
@@ -111,8 +111,8 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "live",
+    "score": "0 - 1",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -136,7 +136,7 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
+    "status": "live",
     "score": "0 - 0",
     "channel": "Paramount+",
     "channels": [
@@ -161,8 +161,8 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "live",
+    "score": "2 - 0",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -186,8 +186,8 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "live",
+    "score": "0 - 1",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
@@ -211,8 +211,8 @@
     "time": "11:00 PM",
     "date": "2026-11-24",
     "match_date": "2026-11-24",
-    "status": "upcoming",
-    "score": "0 - 0",
+    "status": "live",
+    "score": "0 - 1",
     "channel": "Paramount+",
     "channels": [
       "Paramount+"
