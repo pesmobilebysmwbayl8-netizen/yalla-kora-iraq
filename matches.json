@@ -1,21 +1,21 @@
 [
   {
-    "league": "الدوري الإنجليزي الممتاز",
-    "home": "Brentford",
-    "away": "Everton",
-    "team1": "Brentford",
-    "team2": "Everton",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
-    "hour": "11:00 PM",
-    "time": "11:00 PM",
-    "date": "2026-11-23",
-    "match_date": "2026-11-23",
+    "league": "دوري أبطال أوروبا",
+    "home": "Bodo/Glimt",
+    "away": "LASK Linz",
+    "team1": "Bodo/Glimt",
+    "team2": "LASK Linz",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/2980.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/4411.png",
+    "hour": "8:45 PM",
+    "time": "8:45 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
     "status": "upcoming",
     "score": "0 - 0",
-    "channel": "USA Net",
+    "channel": "Paramount+",
     "channels": [
-      "USA Net"
+      "Paramount+"
     ],
     "commentator": "",
     "commentators": [],
@@ -25,23 +25,22 @@
     ]
   },
   {
-    "league": "الدوري الإسباني",
-    "home": "Levante",
-    "away": "Elche",
-    "team1": "Levante",
-    "team2": "Elche",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
-    "hour": "11:00 PM",
-    "time": "11:00 PM",
-    "date": "2026-11-23",
-    "match_date": "2026-11-23",
+    "league": "دوري أبطال أوروبا",
+    "home": "Galatasaray",
+    "away": "Aston Villa",
+    "team1": "Galatasaray",
+    "team2": "Aston Villa",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/432.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+    "hour": "8:45 PM",
+    "time": "8:45 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
     "status": "upcoming",
     "score": "0 - 0",
-    "channel": "ESPN Deportes",
+    "channel": "Paramount+",
     "channels": [
-      "ESPN Deportes",
-      "ESPN+"
+      "Paramount+"
     ],
     "commentator": "",
     "commentators": [],
@@ -51,17 +50,167 @@
     ]
   },
   {
-    "league": "الدوري الإيطالي",
-    "home": "Monza",
-    "away": "Fiorentina",
-    "team1": "Monza",
-    "team2": "Fiorentina",
-    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/4007.png",
-    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
-    "hour": "10:45 PM",
-    "time": "10:45 PM",
-    "date": "2026-11-23",
-    "match_date": "2026-11-23",
+    "league": "دوري أبطال أوروبا",
+    "home": "أرسنال",
+    "away": "بوروسيا دورتموند",
+    "team1": "أرسنال",
+    "team2": "بوروسيا دورتموند",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/124.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "Como",
+    "away": "AEK Athens",
+    "team1": "Como",
+    "team2": "AEK Athens",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/887.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "Feyenoord Rotterdam",
+    "away": "FC Porto",
+    "team1": "Feyenoord Rotterdam",
+    "team2": "FC Porto",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "مانشستر سيتي",
+    "away": "نابولي",
+    "team1": "مانشستر سيتي",
+    "team2": "نابولي",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "RB Leipzig",
+    "away": "Lens",
+    "team1": "RB Leipzig",
+    "team2": "Lens",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/175.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "ريال مدريد",
+    "away": "PSV Eindhoven",
+    "team1": "ريال مدريد",
+    "team2": "PSV Eindhoven",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
+    "status": "upcoming",
+    "score": "0 - 0",
+    "channel": "Paramount+",
+    "channels": [
+      "Paramount+"
+    ],
+    "commentator": "",
+    "commentators": [],
+    "streamUrl": "",
+    "sources": [
+      "ESPN"
+    ]
+  },
+  {
+    "league": "دوري أبطال أوروبا",
+    "home": "Slovan Bratislava",
+    "away": "Real Betis",
+    "team1": "Slovan Bratislava",
+    "team2": "Real Betis",
+    "home_img": "https://a.espncdn.com/i/teamlogos/soccer/500/521.png",
+    "away_img": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+    "hour": "11:00 PM",
+    "time": "11:00 PM",
+    "date": "2026-11-24",
+    "match_date": "2026-11-24",
     "status": "upcoming",
     "score": "0 - 0",
     "channel": "Paramount+",
